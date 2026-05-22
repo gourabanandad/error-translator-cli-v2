@@ -2,80 +2,31 @@
 Core translation engine for the Error Translator CLI.
 
 This module is responsible for:
-1. Loading and compiling regex-based error translation rules.
-2. Parsing Python traceback messages.
-3. Matching errors against rules to provide human-readable explanations.
-4. Using a fast C extension for matching if available, with a Python fallback.
-5. Delegating to AST handlers for deep, code-specific insights.
+1. Orchestrating error translation.
+2. Using a fast C extension for matching if available, with a Python fallback.
+3. Delegating to AST handlers for deep, code-specific insights.
 """
-import json
-import os
-import re
-import linecache
-from functools import lru_cache
 from .ast.ast_handlers import AST_REGISTRY
+from .rules import load_rules, compiled_rules
+from .parser import extract_location, extract_code_context
 
 # Attempt to load the ultra-fast C extension for matching rules,
 # and fallback to the Python implementation if it's unavailable.
 try:
-    from .fast_matcher import match_loop
+    from .fast_matcher import match_loop  # type: ignore
     C_EXTENSION_AVAILABLE = True
 except ImportError:
     C_EXTENSION_AVAILABLE = False
 
 
-@lru_cache(maxsize=1)
-def load_rules():
-    """
-    Load the error translation rules from the 'rules.json' file.
-    The rules dictate how Python tracebacks map to human-readable explanations.
-    This function is cached so we only read the file once per runtime.
-    
-    Returns:
-        dict: Parsed JSON data containing "rules" and "default".
-    """
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    json_path = os.path.join(current_dir, "rules.json")
-
-    with open(json_path, "r", encoding="utf-8") as file:
-        return json.load(file)
-
-
-@lru_cache(maxsize=1)
-def compiled_rules():
-    """
-    Pre-compile the regular expressions for each rule defined in 'rules.json'.
-    Compiling regex patterns once avoids redundant compilation during every
-    error translation request, significantly speeding up the matching process.
-    
-    Returns:
-        list of tuples: Each tuple is (compiled_regex, rule_dict).
-    """
-    data = load_rules()
-    compiled = []
-    for rule in data["rules"]:
-        compiled.append((re.compile(rule["pattern"]), rule))
-    return compiled
-
-
-def _extract_location(traceback_text: str) -> tuple[str, str]:
-    """
-    Extract the file name and line number where the error occurred
-    by parsing the standard Python traceback format.
-    
-    Args:
-    Extract the file path and line number from the traceback text.
-    Looks for the standard Python format: File "...", line X
-    """
-    # Regex to capture "File <path>, line <number>"
-    location_match = re.search(r'File\s+[\'"]?(.*?)[\'"]?,\s+line\s+(\d+)', traceback_text)
-    if not location_match:
-        return "Unknown File", "Unknown Line"
-    return location_match.group(1), location_match.group(2)
-
-
 def translate_error(traceback_text: str) -> dict:
     """
+    Translate a raw traceback string into a detailed explanation dictionary.
+    
+    Args:
+        traceback_text (str): The raw traceback string.
+        
+    Returns:
         dict: A dictionary containing the explanation, suggested fix,
               AST-based insight (if any), file, line number, code context, 
               and the matched error line.
@@ -94,17 +45,10 @@ def translate_error(traceback_text: str) -> dict:
     actual_error_line = lines[-1]
 
     # Extract the origin of the error (file name and line number)
-    file_name, line_number = _extract_location(traceback_text)
+    file_name, line_number = extract_location(traceback_text)
 
     # Attempt to read the exact line of code that caused the error
-    code_context = ""
-    if file_name != "Unknown File" and line_number != "Unknown Line":
-        try:
-            raw_line = linecache.getline(file_name, int(line_number))
-            if raw_line:
-                code_context = raw_line.strip()
-        except Exception:
-            pass
+    code_context = extract_code_context(file_name, line_number)
 
     # ==========================================
     # FAST MATCHING ENGINE (C Extension + Python Fallback)

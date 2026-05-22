@@ -8,7 +8,7 @@ translates it, and prints a user-friendly explanation using the CLI output forma
 import sys
 import traceback
 from .core import translate_error
-from .cli import print_result
+from .ui import print_result
 
 def magic_hook(exc_type, exc_value, tb):
     """

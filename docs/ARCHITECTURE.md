@@ -1,14 +1,14 @@
 # Architectural Overview
 
-Error Translator is built around one deterministic engine in `error_translator/core.py`. The same engine powers the CLI, auto-hook mode, Python imports, and the FastAPI service.
+Error Translator is built around one deterministic engine in `error_translator/core.py`, supported by modular components for parsing and rule management. The same engine powers the CLI, auto-hook mode, Python imports, and the FastAPI service.
 
 ## Core Translation Pipeline
 
 Each translation request follows this sequence:
 
-1. **Load and cache rule data** from `src/error_translator/rules.json`.
-2. **Extract traceback location** (`file`, `line`) when present.
-3. **Read source context line** using `linecache` when file and line are available.
+1. **Load and cache rule data** via `error_translator/rules.py` from `src/error_translator/rules.json`.
+2. **Extract traceback location** (`file`, `line`) using `error_translator/parser.py`.
+3. **Read source context line** using `linecache` in `parser.py` when file and line are available.
 4. **Match the last error line** against pre-compiled regex patterns.
     - First attempt uses the optional C extension matcher (`error_translator.fast_matcher.match_loop`).
     - If the extension is unavailable, the engine falls back to the pure Python loop.
@@ -21,7 +21,7 @@ If no pattern matches, the `default` rule is returned.
 
 The same engine is exposed through:
 
-1. **CLI** (`error_translator/cli.py`):
+1. **CLI** (`error_translator/cli.py` acting as an entry point, orchestrating `runner.py` and `ui.py`):
     - `explain-error run script.py`
     - `explain-error "<error text>"`
     - `cat error.log | explain-error`
