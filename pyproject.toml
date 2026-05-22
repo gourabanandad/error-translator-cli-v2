@@ -62,9 +62,8 @@ server = ["fastapi>=0.110", "pydantic>=2.6", "uvicorn>=0.29"]
 docs = ["mkdocs>=1.6", "mkdocs-material>=9.7", "pymdown-extensions>=10.0"]
 dev = ["pytest>=8.0", "build>=1.2", "twine>=5.0"]
 
-[tool.setuptools]
-package-dir = {"" = "src"}
-packages = ["error_translator"]
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

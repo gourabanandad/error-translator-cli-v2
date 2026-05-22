@@ -169,3 +169,20 @@ def test_print_result_json_emits_valid_json(capsys):
     assert captured.count("\n") == 1
     parsed = json.loads(captured.strip())
     assert parsed == payload
+
+
+def test_cli_help(capsys, monkeypatch):
+    """Test that running the main CLI entrypoint with help flags displays the help information."""
+    import sys
+    from error_translator.cli import main
+
+    monkeypatch.setattr(sys, "argv", ["explain-error", "--help"])
+    
+    with pytest.raises(SystemExit) as excinfo:
+        main()
+        
+    assert excinfo.value.code == 0
+    captured = capsys.readouterr().out
+    assert "Error Translator CLI" in captured
+    assert "Command Line Interface" in captured
+    assert "CLI Options & Flags" in captured
