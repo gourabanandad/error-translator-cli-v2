@@ -22,46 +22,11 @@ except PackageNotFoundError:
 console = Console()
 
 def _print_title_banner():
-    """Prints a stylish, centered, and boxed title banner for the CLI."""
-    error_art = r"""
-███████╗██████╗ ██████╗  ██████╗ ██████╗
-██╔════╝██╔══██╗██╔══██╗██╔═══██╗██╔══██╗
-█████╗  ██████╔╝██████╔╝██║   ██║██████╔╝
-██╔══╝  ██╔══██╗██╔══██╗██║   ██║██╔══██╗
-███████╗██║  ██║██║  ██║╚██████╔╝██║  ██║
-╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝
-"""
-
-    translator_art = r"""
-████████╗██████╗  █████╗ ███╗   ██╗███████╗██╗      █████╗ ████████╗ ██████╗ ██████╗
-╚══██╔══╝██╔══██╗██╔══██╗████╗  ██║██╔════╝██║     ██╔══██╗╚══██╔══╝██╔═══██╗██╔══██╗
-   ██║   ██████╔╝███████║██╔██╗ ██║███████╗██║     ███████║   ██║   ██║   ██║██████╔╝
-   ██║   ██╔══██╗██╔══██║██║╚██╗██║╚════██║██║     ██╔══██║   ██║   ██║   ██║██╔══██╗
-   ██║   ██║  ██║██║  ██║██║ ╚████║███████║███████╗██║  ██║   ██║   ╚██████╔╝██║  ██║
-   ╚═╝   ╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚══════╝╚═╝  ╚═╝   ╚═╝    ╚═════╝ ╚═╝  ╚═╝
-"""
-
-    cli_v2_art = r"""
- ██████╗██╗     ██╗    ██╗   ██╗██████╗
-██╔════╝██║     ██║    ██║   ██║╚════██╗
-██║     ██║     ██║    ██║   ██║ █████╔╝
-██║     ██║     ██║    ╚██╗ ██╔╝██╔═══╝
-╚██████╗███████╗██║     ╚████╔╝ ███████╗
- ╚═════╝╚══════╝╚═╝      ╚═══╝  ╚══════╝
-"""
-
-    error_text = Text(error_art.lstrip("\n"), style="bold bright_red")
-    translator_text = Text(translator_art.lstrip("\n"), style="bold bright_blue")
-    cli_v2_text = Text(cli_v2_art.lstrip("\n"), style="bold bright_cyan")
-
-    art_group = Group(
-        Align.center(error_text),
-        Align.center(translator_text),
-        Align.center(cli_v2_text)
-    )
-
+    """Prints a simple text title banner for the CLI."""
+    simple_title = Text("Error Translator CLI V2", style="bold bright_magenta")
+    
     banner_panel = Panel(
-        art_group,
+        Align.center(simple_title),
         box=box.DOUBLE_EDGE,
         border_style="bright_magenta",
         title="[bold yellow]⚡ Fatal to Fabulous ⚡[/bold yellow]", 
