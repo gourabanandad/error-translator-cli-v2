@@ -6,9 +6,40 @@ handles standard input streams, and orchestrates the translation process.
 """
 import argparse
 import sys
+from pathlib import Path
 from .core import translate_error
 from .ui import print_about, print_help, print_result, print_result_json, VERSION, console
 from .runner import run_script
+
+def check_first_run(as_json: bool):
+    """Check if this is the first time the CLI is being run by the user."""
+    # Do not show welcome banner if outputting JSON or part of a pipeline
+    if as_json or not sys.stdout.isatty():
+        return
+
+    config_dir = Path.home() / ".config" / "error-translator"
+    flag_file = config_dir / ".initialized"
+
+    if not flag_file.exists():
+        try:
+            config_dir.mkdir(parents=True, exist_ok=True)
+            flag_file.touch()
+            
+            from .banner import print_install_banner
+            print_install_banner()
+            
+            from rich.panel import Panel
+            console.print(Panel(
+                "[white]This tool automatically intercepts confusing Python errors and translates them into plain English.[/white]\n\n"
+                "To get started, run:\n"
+                "  [bold cyan]explain-error --help[/bold cyan]",
+                title="[bold green]Welcome to Error Translator CLI V2![/bold green]",
+                border_style="green",
+                expand=False
+            ))
+            console.print()
+        except Exception:
+            pass
 
 def main():
     """Main CLI entry point."""
@@ -32,6 +63,9 @@ Examples:
     parser.add_argument("args", nargs="*", help="Positional arguments.")
 
     parsed_args = parser.parse_args()
+
+    # Check for first run before executing commands
+    check_first_run(getattr(parsed_args, "as_json", False))
 
     # Handle meta-flags
     if parsed_args.about:

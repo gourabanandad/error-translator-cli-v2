@@ -18,3 +18,4 @@ venv/
 .DS_Store
 Thumbs.db
 Local_Testing/
+local testing/

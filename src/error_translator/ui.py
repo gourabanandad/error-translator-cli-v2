@@ -129,7 +129,7 @@ def print_result(result: dict):
     file_name = result.get("file")
     line_no = result.get("line", "?")
     if file_name and file_name != "Unknown File":
-        console.print(Panel(f"[yellow]File:[/] {file_name}\n[yellow]Line:[/] {line_no}", title="[bold yellow]Location[/]", border_style="yellow", box=box.ROUNDED, expand=False))
+        console.print(Panel(f"[bold yellow]File:[/] [bold white]{file_name}\n[bold yellow]Line:[/] [bold white]{line_no}", title="[bold yellow]Location[/]", border_style="yellow", box=box.ROUNDED, expand=False))
 
     if result.get("code"):
         try:
@@ -141,13 +141,13 @@ def print_result(result: dict):
         console.print(Panel(syntax, title="[bold blue]Code Context[/]", border_style="blue", box=box.ROUNDED))
 
     explanation = result.get("explanation", "No explanation available.")
-    console.print(Panel(f"[white]{explanation}[/]", title="[bold cyan]Explanation[/]", title_align="left", border_style="cyan", box=box.ROUNDED, expand=False))
+    console.print(Panel(f"[bold white]{explanation}[/]", title="[bold cyan]Explanation[/]", border_style="cyan", box=box.ROUNDED, expand=False))
 
     fix = result.get("fix", "No suggested fix available.")
-    console.print(Panel(f"[bold green]{fix}[/]", title="[bold green]Suggested Fix[/]", title_align="left", border_style="green", box=box.ROUNDED, expand=False))
+    console.print(Panel(f"[bold white]{fix}[/]", title="[bold green]Suggested Fix[/]",  border_style="green", box=box.ROUNDED, expand=False))
 
     if result.get("ast_insight"):
-        console.print(Panel(f"[white]{result['ast_insight']}[/]", title="[bold magenta]AST Insight[/]", title_align="left", border_style="magenta", box=box.ROUNDED, expand=False))
+        console.print(Panel(f"[bold white]{result['ast_insight']}[/]", title="[bold magenta]AST Insight[/]", border_style="magenta", box=box.ROUNDED, expand=False))
 
 def print_result_json(result: dict):
     """Prints the translated error as a single-line JSON object on stdout."""
