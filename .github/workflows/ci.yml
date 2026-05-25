@@ -1,62 +1,53 @@
 name: Python CI/CD
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 on:
   pull_request:
-    types: [opened, synchronize, reopened]
-    branches: ["master"]
-
+    branches:
+      - master
   release:
-    types: [published]
+    types:
+      - published
+
+permissions:
+  contents: read
 
 jobs:
-  test-code:
-    if: github.event_name == 'pull_request' || github.event_name == 'release'
+  test:
+    name: Test on Python ${{ matrix.python-version }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Install project
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install -e ".[dev]"
+
+      - name: Run tests
+        run: python -m pytest tests
+
+  build-wheels:
+    name: Build wheels on ${{ matrix.os }}
+    if: github.event_name == 'release'
+    needs: test
     runs-on: ${{ matrix.os }}
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
-        python-version: ["3.9", "3.10", "3.11", "3.12"]
 
     steps:
       - uses: actions/checkout@v4
-      
-      - uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-          
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install pytest pytest-cov build twine
-          pip install -e .[dev]
-          
-      - name: Run Pytest with Coverage
-        run: pytest tests/ --cov=error_translator --cov-report=xml
-        
-      - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v4
-        with:
-          file: ./coverage.xml
-          fail_ci_if_error: false
-          token: ${{ secrets.CODECOV_TOKEN }} 
 
-  build-wheels:
-    name: Build wheels on ${{ matrix.os }}
-    if: github.event_name == 'release'
-    needs: test-code
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-    steps:
-      - uses: actions/checkout@v4
-      
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.22.0
         env:
@@ -64,32 +55,33 @@ jobs:
           CIBW_ARCHS_LINUX: "x86_64"
           CIBW_ARCHS_WINDOWS: "AMD64"
           CIBW_ARCHS_MACOS: "x86_64 arm64"
-          CIBW_TEST_REQUIRES: "pytest pytest-cov"
-          CIBW_TEST_COMMAND: "python -m pytest {project}/tests"
-          
+          CIBW_TEST_REQUIRES: "pytest"
+          CIBW_TEST_COMMAND: 'python -m pytest "{project}/tests"'
+
       - name: Upload wheels as artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
-          path: ./wheelhouse/*.whl
+          name: cibw-wheels-${{ matrix.os }}
+          path: wheelhouse/*.whl
 
   build-sdist:
     name: Build source distribution
     if: github.event_name == 'release'
-    needs: test-code
+    needs: test
     runs-on: ubuntu-latest
+
     steps:
       - uses: actions/checkout@v4
-      
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-          
+
       - name: Build sdist
         run: |
           python -m pip install --upgrade pip build
           python -m build --sdist
-          
+
       - name: Upload sdist as artifact
         uses: actions/upload-artifact@v4
         with:
@@ -99,15 +91,16 @@ jobs:
   publish-to-pypi:
     name: Publish to PyPI
     if: github.event_name == 'release'
-    needs: [build-wheels, build-sdist]
+    needs:
+      - build-wheels
+      - build-sdist
     runs-on: ubuntu-latest
-    # Define the GitHub environment to allow OIDC Trusted Publishing
     environment: pypi
     permissions:
-      id-token: write 
       contents: read
+
     steps:
-      - name: Download all artifacts
+      - name: Download artifacts
         uses: actions/download-artifact@v4
         with:
           pattern: cibw-*
@@ -117,7 +110,5 @@ jobs:
       - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          # If using OIDC, this password secret isn't needed, but keeping it won't break anything.
           password: ${{ secrets.PYPI_API_TOKEN }}
-          # Prevent failures if re-running a release that partially uploaded
           skip-existing: true
