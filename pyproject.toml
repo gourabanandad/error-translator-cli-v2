@@ -45,16 +45,7 @@ classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
-dependencies = [
-    "click>=8.1.0",
-    "colorama>=0.4.6",
-    "google-genai>=1.72.0",
-    "requests>=2.33.1",
-    "pydantic>=2.12.5",
-    "Pygments>=2.20.0",
-    "tqdm>=4.67.3",
-    "beautifulsoup4>=4.14.3"
-]
+dependencies = []
 
 [project.urls]
 "Homepage" = "https://github.com/gourabanandad/error-translator-cli-v2"

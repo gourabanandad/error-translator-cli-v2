@@ -1,4 +1,4 @@
-import requests
+import urllib.request
 from bs4 import BeautifulSoup
 import json
 
@@ -7,10 +7,12 @@ def scrape_python_errors():
     url = "https://docs.python.org/3/library/exceptions.html"
     
     # Download the webpage
-    response = requests.get(url)
+    req = urllib.request.Request(url, headers={'User-Agent': 'Mozilla/5.0'})
+    with urllib.request.urlopen(req) as response:
+        html = response.read().decode('utf-8')
     
     # Parse the raw HTML into a searchable object
-    soup = BeautifulSoup(response.text, 'html.parser')
+    soup = BeautifulSoup(html, 'html.parser')
     
     scraped_data = []
     
