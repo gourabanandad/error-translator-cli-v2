@@ -95,7 +95,6 @@ jobs:
       - build-wheels
       - build-sdist
     runs-on: ubuntu-latest
-    environment: pypi
     permissions:
       contents: read
 
