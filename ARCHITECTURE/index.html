@@ -602,13 +602,13 @@
 
 
 <h1 id="architectural-overview">Architectural Overview<a class="headerlink" href="#architectural-overview" title="Permanent link">&para;</a></h1>
-<p>Error Translator is built around one deterministic engine in <code>error_translator/core.py</code>. The same engine powers the CLI, auto-hook mode, Python imports, and the FastAPI service.</p>
+<p>Error Translator is built around one deterministic engine in <code>error_translator/core.py</code>, supported by modular components for parsing and rule management. The same engine powers the CLI, auto-hook mode, Python imports, and the FastAPI service.</p>
 <h2 id="core-translation-pipeline">Core Translation Pipeline<a class="headerlink" href="#core-translation-pipeline" title="Permanent link">&para;</a></h2>
 <p>Each translation request follows this sequence:</p>
 <ol>
-<li><strong>Load and cache rule data</strong> from <code>src/error_translator/rules.json</code>.</li>
-<li><strong>Extract traceback location</strong> (<code>file</code>, <code>line</code>) when present.</li>
-<li><strong>Read source context line</strong> using <code>linecache</code> when file and line are available.</li>
+<li><strong>Load and cache rule data</strong> via <code>error_translator/rules.py</code> from <code>src/error_translator/rules.json</code>.</li>
+<li><strong>Extract traceback location</strong> (<code>file</code>, <code>line</code>) using <code>error_translator/parser.py</code>.</li>
+<li><strong>Read source context line</strong> using <code>linecache</code> in <code>parser.py</code> when file and line are available.</li>
 <li><strong>Match the last error line</strong> against pre-compiled regex patterns.<ul>
 <li>First attempt uses the optional C extension matcher (<code>error_translator.fast_matcher.match_loop</code>).</li>
 <li>If the extension is unavailable, the engine falls back to the pure Python loop.</li>
@@ -621,7 +621,7 @@
 <h2 id="implementation-surfaces">Implementation Surfaces<a class="headerlink" href="#implementation-surfaces" title="Permanent link">&para;</a></h2>
 <p>The same engine is exposed through:</p>
 <ol>
-<li><strong>CLI</strong> (<code>error_translator/cli.py</code>):<ul>
+<li><strong>CLI</strong> (<code>error_translator/cli.py</code> acting as an entry point, orchestrating <code>runner.py</code> and <code>ui.py</code>):<ul>
 <li><code>explain-error run script.py</code></li>
 <li><code>explain-error "&lt;error text&gt;"</code></li>
 <li><code>cat error.log | explain-error</code></li>
