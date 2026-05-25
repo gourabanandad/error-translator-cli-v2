@@ -65,7 +65,7 @@ jobs:
           CIBW_ARCHS_WINDOWS: "AMD64"
           CIBW_ARCHS_MACOS: "x86_64 arm64"
           CIBW_TEST_REQUIRES: "pytest pytest-cov"
-          CIBW_TEST_COMMAND: "pytest {project}/tests"
+          CIBW_TEST_COMMAND: "cd {project} && python -m pytest tests"
           
       - name: Upload wheels as artifacts
         uses: actions/upload-artifact@v4

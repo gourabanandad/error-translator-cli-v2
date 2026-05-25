@@ -1,1 +1,2 @@
 include src/error_translator/ext/*.c
+recursive-include src/error_translator/api/static *.html *.css

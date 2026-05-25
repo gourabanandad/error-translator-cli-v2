@@ -2,15 +2,18 @@
 FastAPI Server for Error Translation.
 
 This module exposes the error translation functionality as a RESTful web API.
-It includes endpoints for single and batch translations, and serves a static 
+It includes endpoints for single and batch translations, and serves a static
 web interface. Useful for integrating the translator into web apps or distributed systems.
 """
-from src.error_translator.core import translate_error
-from pydantic import BaseModel
-from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles
-from fastapi.responses import FileResponse
 import os
+from pathlib import Path
+
+from fastapi import FastAPI
+from fastapi.responses import FileResponse
+from fastapi.staticfiles import StaticFiles
+from pydantic import BaseModel
+
+from ..core import translate_error
 from importlib.metadata import version, PackageNotFoundError
 import asyncio
 from typing import List
@@ -89,6 +92,6 @@ def health_check():
 
 
 # Mount static files directory (CSS, JS, images, etc.) so they can be loaded by the web UI
-static_path = os.path.join(os.path.dirname(__file__), "static")
+static_path = Path(__file__).with_name("static")
 if os.path.exists(static_path):
-    app.mount("/static", StaticFiles(directory=static_path), name="static")
+    app.mount("/static", StaticFiles(directory=str(static_path)), name="static")
