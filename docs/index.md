@@ -9,6 +9,10 @@
 
 <br>
 
+![Error Translator CLI V2 demo banner](assets/images/banner.png)
+
+<br>
+
 Error Translator parses raw Python tracebacks and converts them into readable explanations with actionable fixes. It uses a deterministic, offline regex-matching engine that powers the CLI, Python API, auto-hook mode, and a FastAPI service with a bundled web UI.
 
 For faster matching on supported platforms, the engine can also use an optional C extension (`fast_matcher`) and automatically falls back to pure Python when the extension is unavailable.

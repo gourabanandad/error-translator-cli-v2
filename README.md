@@ -11,6 +11,10 @@
 
 <br>
 
+![Error Translator CLI V2 demo banner](docs/assets/images/banner.png)
+
+<br>
+
 **Error Translator** is an offline Python traceback translator and exception explainer that converts raw errors into crystal-clear explanations and immediately actionable fixes. Built for local-first development workflows, it supports direct CLI usage, an automatic import hook, a programmatic Python API, and a FastAPI integration.
 
 If this project saves you debugging time, please consider starring it on GitHub: https://github.com/gourabanandad/error-translator-cli-v2
