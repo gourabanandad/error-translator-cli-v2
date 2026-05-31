@@ -622,7 +622,7 @@
 <p><br></p>
 <p><img alt="Error Translator CLI V2 demo banner" src="assets/images/banner.png" /></p>
 <p><br></p>
-<p>Error Translator parses raw Python tracebacks and converts them into readable explanations with actionable fixes. It uses a deterministic, offline regex-matching engine that powers the CLI, Python API, auto-hook mode, and a FastAPI service with a bundled web UI.</p>
+<p>Error Translator parses raw Python tracebacks and converts them into readable explanations with actionable fixes. It uses a deterministic, offline regex-matching engine that powers the CLI, Python API, auto-hook mode, Jupyter notebooks, and a FastAPI service with a bundled web UI.</p>
 <p>For faster matching on supported platforms, the engine can also use an optional C extension (<code>fast_matcher</code>) and automatically falls back to pure Python when the extension is unavailable.</p>
 <p>If this project is useful to you, support it with a GitHub star: https://github.com/gourabanandad/error-translator-cli-v2</p>
 <p>Quick links:</p>
@@ -667,6 +667,7 @@
 <li><strong>Command-Line Interface (CLI)</strong>: Translate active scripts, raw strings, or standard log streams automatically.</li>
 <li><strong>Python Native API</strong>: Directly integrate <code>error_translator.core.translate_error</code> into your internal system workflows.</li>
 <li><strong>FastAPI Protocol</strong>: Export translations externally over REST HTTP protocols via the <code>error_translator.api.server</code> module (<code>/translate</code>, <code>/health</code>, <code>/</code>).</li>
+<li><strong>Jupyter Notebook Extension</strong>: Automatically translate exceptions in your interactive Jupyter environments via the <code>%load_ext error_translator</code> magic command.</li>
 </ol>
 <h2 id="developer-quickstart">Developer Quickstart<a class="headerlink" href="#developer-quickstart" title="Permanent link">&para;</a></h2>
 <p>To install Error Translator globally via your package manager:</p>
