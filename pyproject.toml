@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "error-translator-cli-v2"
-version = "3.0.5"
+version = "3.0.6"
 description = "Offline Python traceback translator and error explainer CLI that converts exceptions into clear explanations and actionable fixes."
 readme = "README.md"
 requires-python = ">=3.9"
