@@ -496,6 +496,56 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#using-error-translator-in-jupyter-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Error Translator in Jupyter Notebooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Error Translator in Jupyter Notebooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-jupyter-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Jupyter Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advantages-in-jupyter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages in Jupyter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -675,6 +725,56 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#using-error-translator-in-jupyter-notebooks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Using Error Translator in Jupyter Notebooks
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Using Error Translator in Jupyter Notebooks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example-jupyter-usage" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Example Jupyter Usage
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#advantages-in-jupyter" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Advantages in Jupyter
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -940,6 +1040,53 @@ Note: the CLI prints a Rich panel UI; examples below use normalized plain text l
 <a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>Suggested Fix:
 <a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>Add a base case to stop the recursion. Check that the function arguments change in each call to eventually reach the base case. If deep recursion is intentional, you can increase the limit with sys.setrecursionlimit(), but restructuring the code to use iteration is often safer.
 </code></pre></div>
+<h2 id="using-error-translator-in-jupyter-notebooks">Using Error Translator in Jupyter Notebooks<a class="headerlink" href="#using-error-translator-in-jupyter-notebooks" title="Permanent link">&para;</a></h2>
+<p>Error Translator integrates seamlessly with Jupyter notebooks and JupyterLab environments, allowing you to debug interactively with clear, actionable error explanations.</p>
+<h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
+<p>Load the extension in any Jupyter notebook cell:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="o">%</span><span class="n">load_ext</span> <span class="n">error_translator</span><span class="o">.</span><span class="n">jupyter</span>
+</code></pre></div>
+<p>This command registers Error Translator as a custom exception handler. Any unhandled exception in subsequent cells will automatically be translated and displayed in a user-friendly format.</p>
+<h3 id="example-jupyter-usage">Example Jupyter Usage<a class="headerlink" href="#example-jupyter-usage" title="Permanent link">&para;</a></h3>
+<p><strong>Cell 1:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="o">%</span><span class="n">load_ext</span> <span class="n">error_translator</span><span class="o">.</span><span class="n">jupyter</span>
+</code></pre></div></p>
+<p><strong>Cell 2:</strong>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="c1"># This will trigger an unhandled exception</span>
+<a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
+<a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">])</span>  <span class="c1"># KeyError: &#39;email&#39;</span>
+</code></pre></div></p>
+<p><strong>Output:</strong></p>
+<p>The notebook displays:
+1. <strong>Standard Jupyter traceback</strong> (showing the actual error location and stack)
+2. <strong>Error Translator panel</strong> with:
+   - <strong>Detected Error</strong>: The error type and message
+   - <strong>Explanation</strong>: Clear description of what went wrong
+   - <strong>Suggested Fix</strong>: Actionable steps to resolve the issue
+   - <strong>AST Insight</strong> (if available): Code-specific hints based on the context</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>Traceback (most recent call last):
+<a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>  File &quot;&lt;ipython-input-2-...&gt;&quot;, line 3, in &lt;module&gt;
+<a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>    print(data[&quot;email&quot;])
+<a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>KeyError: &#39;email&#39;
+<a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>
+<a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>---
+<a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>### Error Translator Insight
+<a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>
+<a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>**Detected Error:** KeyError: &#39;email&#39;
+<a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>
+<a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>**Explanation:** You tried to access a dictionary key (&#39;email&#39;) that doesn&#39;t exist.
+<a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>
+<a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>**Suggested Fix:** Use dict.get(&#39;email&#39;, default_value) to safely retrieve the key with a fallback, or ensure the key is set before accessing it.
+<a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>
+<a id="__codelineno-25-15" name="__codelineno-25-15" href="#__codelineno-25-15"></a>---
+</code></pre></div>
+<h3 id="advantages-in-jupyter">Advantages in Jupyter<a class="headerlink" href="#advantages-in-jupyter" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>No Code Changes Required</strong>: Just load the extension and debug naturally.</li>
+<li><strong>Visual Formatting</strong>: Errors are presented in clean Markdown panels alongside your notebook.</li>
+<li><strong>Offline &amp; Fast</strong>: All translations happen locally without network latency.</li>
+<li><strong>Interactive Debugging</strong>: Understand errors immediately without leaving your notebook environment.</li>
+</ul>
 
 
 
