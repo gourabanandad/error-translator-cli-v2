@@ -99,7 +99,22 @@ if __name__ == "__main__":
     main()
 ```
 
-### 3. FastAPI Service
+### 3. Jupyter Integration
+
+Load the Error Translator as a Jupyter extension to automatically translate exceptions in your notebooks:
+
+```python
+%load_ext error_translator.jupyter
+```
+
+Any unhandled exception in subsequent cells will display:
+- The standard Jupyter traceback (for reference)
+- A formatted translation with explanation and suggested fix
+- AST-based insights (when applicable)
+
+This integrates seamlessly with Jupyter notebooks and JupyterLab, allowing you to debug interactively with clear, actionable error explanations.
+
+### 4. FastAPI Service
 
 Start the built-in HTTP server for remote translation services:
 
@@ -120,7 +135,7 @@ Additional endpoints:
 - `GET /health` returns service status.
 - `GET /` serves the bundled web UI from `error_translator/api/static/index.html`.
 
-### 4. Optional C Extension Build
+### 5. Optional C Extension Build
 
 The translation engine automatically attempts to import `error_translator.fast_matcher`.
 If it is not built or not available on the platform, Error Translator falls back to the pure Python regex loop with no behavior change.

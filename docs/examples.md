@@ -307,3 +307,66 @@ A function is calling itself so many times that Python's recursion limit has bee
 Suggested Fix:
 Add a base case to stop the recursion. Check that the function arguments change in each call to eventually reach the base case. If deep recursion is intentional, you can increase the limit with sys.setrecursionlimit(), but restructuring the code to use iteration is often safer.
 ```
+
+## Using Error Translator in Jupyter Notebooks
+
+Error Translator integrates seamlessly with Jupyter notebooks and JupyterLab environments, allowing you to debug interactively with clear, actionable error explanations.
+
+### Setup
+
+Load the extension in any Jupyter notebook cell:
+
+```python
+%load_ext error_translator.jupyter
+```
+
+This command registers Error Translator as a custom exception handler. Any unhandled exception in subsequent cells will automatically be translated and displayed in a user-friendly format.
+
+### Example Jupyter Usage
+
+**Cell 1:**
+```python
+%load_ext error_translator.jupyter
+```
+
+**Cell 2:**
+```python
+# This will trigger an unhandled exception
+data = {"name": "Alice", "age": 30}
+print(data["email"])  # KeyError: 'email'
+```
+
+**Output:**
+
+The notebook displays:
+1. **Standard Jupyter traceback** (showing the actual error location and stack)
+2. **Error Translator panel** with:
+   - **Detected Error**: The error type and message
+   - **Explanation**: Clear description of what went wrong
+   - **Suggested Fix**: Actionable steps to resolve the issue
+   - **AST Insight** (if available): Code-specific hints based on the context
+
+```text
+Traceback (most recent call last):
+  File "<ipython-input-2-...>", line 3, in <module>
+    print(data["email"])
+KeyError: 'email'
+
+---
+### Error Translator Insight
+
+**Detected Error:** KeyError: 'email'
+
+**Explanation:** You tried to access a dictionary key ('email') that doesn't exist.
+
+**Suggested Fix:** Use dict.get('email', default_value) to safely retrieve the key with a fallback, or ensure the key is set before accessing it.
+
+---
+```
+
+### Advantages in Jupyter
+
+- **No Code Changes Required**: Just load the extension and debug naturally.
+- **Visual Formatting**: Errors are presented in clean Markdown panels alongside your notebook.
+- **Offline & Fast**: All translations happen locally without network latency.
+- **Interactive Debugging**: Understand errors immediately without leaving your notebook environment.
