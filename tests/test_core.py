@@ -41,6 +41,22 @@ def test_empty_input_returns_helpful_message():
     assert result["fix"] == "Provide a valid Python error."
 
 
+def test_unexpected_eof_translation():
+    """Unexpected EOF should explain the likely missing closing delimiter."""
+    mock_traceback = """Traceback (most recent call last):
+  File "script.py", line 8
+    print("hello"
+                 ^
+SyntaxError: unexpected EOF while parsing"""
+
+    result = translate_error(mock_traceback)
+
+    assert "end of your file before the code was finished" in result["explanation"]
+    assert "properly closed" in result["fix"]
+    assert result["file"] == "script.py"
+    assert result["line"] == "8"
+
+
 def test_rule_loading_is_cached():
     first = load_rules()
     second = load_rules()
