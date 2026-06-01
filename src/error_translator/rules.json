@@ -46,6 +46,11 @@
             "fix": "Check the line where the error occurred (and the line before it) for missing characters or typos."
         },
         {
+            "pattern": "SyntaxError: unexpected EOF while parsing",
+            "explanation": "Python reached the end of your file before the code was finished. This usually means you forgot to close a parenthesis, bracket, or quotation mark.",
+            "fix": "Check the last line you edited and the lines just above it to make sure every '(', '[', and quote is properly closed."
+        },
+        {
             "pattern": "IndentationError: expected an indented block",
             "explanation": "Python expected indented code after a statement like 'def', 'if', 'for', or 'while', but didn't find it.",
             "fix": "Add indentation (usually 4 spaces) to the line(s) following the statement that ends with a colon."
