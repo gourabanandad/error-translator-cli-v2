@@ -29,6 +29,7 @@
                 <pre id="explanationText"></pre>
                 <h3>Suggested Fix</h3>
                 <pre id="fixText"></pre>
+                <button id="copy-btn" class="copy-btn" type="button">Copy Output</button>
             </div>
 
             <div id="error" class="error hidden"></div>
@@ -77,6 +78,7 @@
         const resultDiv = document.getElementById('result');
         const explanationText = document.getElementById('explanationText');
         const fixText = document.getElementById('fixText');
+        const copyBtn = document.getElementById('copy-btn');
         const errorDiv = document.getElementById('error');
 
         btn.addEventListener('click', async () => {
@@ -119,6 +121,26 @@
             errorDiv.textContent = msg;
             errorDiv.classList.remove('hidden');
         }
+
+        copyBtn.addEventListener('click', async () => {
+            const outputText = [
+                'Explanation',
+                explanationText.textContent.trim(),
+                '',
+                'Suggested Fix',
+                fixText.textContent.trim()
+            ].join('\n');
+
+            try {
+                await navigator.clipboard.writeText(outputText);
+                copyBtn.textContent = 'Copied!';
+                setTimeout(() => {
+                    copyBtn.textContent = 'Copy Output';
+                }, 1500);
+            } catch (err) {
+                showError('Could not copy output to clipboard.');
+            }
+        });
 
         // Batch Translation
         const addInputBtn = document.getElementById('addInputBtn');
