@@ -49,7 +49,7 @@ def handle_import_error(file_path: str, line_number: str, extracted_values: list
     suggestion = get_ast_suggestions(file_path, line_number, bad_name, "ImportError")
     if suggestion:
         return f"Did you mean to import '{suggestion}' instead?"
-    return f"Verify that the class/function exists in the target module and is spelled correctly."
+    return "Verify that the class/function exists in the target module and is spelled correctly."
     
 # --- 2. THE REGISTRY (THE MAGIC ROUTER) ---
 # We map the string name of the error to the function that handles it.

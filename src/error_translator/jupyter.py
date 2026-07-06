@@ -39,8 +39,8 @@ def custom_exc(shell, etype, evalue, tb, tb_offset=None):
     print(f"Fix: {fix}")
     
     # 6. Build a beautiful Markdown output for Jupyter
-    md_text = f"---\n"
-    md_text += f"### Error Translator Insight\n\n"
+    md_text = "---\n"
+    md_text += "### Error Translator Insight\n\n"
     md_text += f"**Detected Error:** {detected_error}\n\n"
     md_text += f"**Explanation:** {explanation}\n\n"
     md_text += f"**Suggested Fix:** {fix}\n\n"
