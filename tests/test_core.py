@@ -201,6 +201,7 @@ def test_cli_help(capsys, monkeypatch):
     captured = capsys.readouterr().out
     assert "Error Translator CLI" in captured
     assert "Command Line Interface" in captured
+    assert "CLI Options & Flags" in captured
 
 
 # --- 3. INTERACTIVE MODE TESTS ---
@@ -339,4 +340,3 @@ def test_interactive_subcommand_is_wired_into_main(monkeypatch):
 
     assert called.get("hit") is True
     assert called.get("as_json") is False
-    assert "CLI Options & Flags" in captured
