@@ -321,6 +321,63 @@ def test_interactive_json_mode_emits_one_json_line_per_entry_and_skips_banner(ca
     assert "Interactive Mode" not in captured
 
 
+def test_interactive_eof_mid_multiline_paste_still_translates_partial_entry(capsys, monkeypatch):
+    """If EOF (Ctrl+D) arrives while pasting a multi-line traceback, whatever was
+    captured so far must still be translated instead of silently dropped."""
+    from error_translator.cli import run_interactive_session
+
+    _stub_input(monkeypatch, [
+        "NameError: name 'my_variable' is not defined",
+        # input stream ends here -> EOFError fires on the next input() call, mid-paste
+    ])
+    run_interactive_session(as_json=False)
+
+    captured = capsys.readouterr().out
+    assert "my_variable" in captured
+
+
+def test_interactive_keyboard_interrupt_mid_paste_discards_entry_and_exits(capsys, monkeypatch):
+    """Ctrl+C in the middle of pasting a multi-line traceback abandons that entry
+    and ends the session, instead of translating a half-finished paste."""
+    from error_translator.cli import run_interactive_session
+
+    call_count = {"n": 0}
+
+    def fake_input(prompt=""):
+        call_count["n"] += 1
+        if call_count["n"] == 1:
+            return "Traceback (most recent call last):"
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr("builtins.input", fake_input)
+    run_interactive_session(as_json=False)
+
+    captured = capsys.readouterr().out
+    assert "Detected Error" not in captured
+
+
+def test_interactive_translate_error_exception_is_reported_not_fatal(capsys, monkeypatch):
+    """If translate_error() itself raises (an engine bug), the session must report
+    it via the existing execution-error panel and keep going, not crash outright."""
+    import error_translator.cli as cli_module
+
+    _stub_input(monkeypatch, [
+        "some input", "",
+        "exit",
+    ])
+
+    def boom(_text):
+        raise ValueError("boom")
+
+    monkeypatch.setattr(cli_module, "translate_error", boom)
+    cli_module.run_interactive_session(as_json=False)
+
+    captured = capsys.readouterr().out
+    assert "Translation Error" in captured
+    assert "boom" in captured
+    assert "Exiting interactive mode" in captured  # session kept running afterwards
+
+
 def test_interactive_subcommand_is_wired_into_main(monkeypatch):
     """`explain-error interactive` should dispatch to run_interactive_session, not be treated
     as a raw traceback string."""
