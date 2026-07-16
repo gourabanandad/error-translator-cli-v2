@@ -72,6 +72,7 @@ def print_help():
     cli_table.add_row("explain-error run <script_path>", "Execute a Python script, intercept, and translate tracebacks.")
     cli_table.add_row("explain-error \"<traceback_text>\"", "Translate a raw traceback string passed as an argument.")
     cli_table.add_row("cat error.log | explain-error", "Translate tracebacks piped via standard input (stdin).")
+    cli_table.add_row("explain-error interactive", "Start a REPL-style prompt to translate errors one after another.")
     
     console.print(Panel(cli_table, title="[bold cyan]1. Command Line Interface (CLI) Usage[/]", border_style="cyan", expand=False))
 
