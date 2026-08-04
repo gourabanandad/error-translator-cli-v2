@@ -19,3 +19,8 @@ venv/
 Thumbs.db
 Local_Testing/
 local testing/
+dist_validate_deps/
+test.ipynb
+site/
+.coverage
+*.whl
