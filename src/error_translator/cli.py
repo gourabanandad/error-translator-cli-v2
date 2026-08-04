@@ -10,7 +10,7 @@ from pathlib import Path
 
 from .core import translate_error
 from .runner import run_script
-from .ui import VERSION, console, print_about, print_help, print_result, print_result_json
+from .ui import VERSION, console, print_about, print_help, print_execution_error, print_result, print_result_json
 
 
 def check_first_run(as_json: bool):
