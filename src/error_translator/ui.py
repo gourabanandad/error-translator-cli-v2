@@ -3,14 +3,16 @@ UI Module for the Error Translator CLI.
 Provides terminal formatting, layout, and presentation logic using Rich.
 """
 import json
-from importlib.metadata import version as get_version, PackageNotFoundError
-from rich.console import Console, Group
-from rich.panel import Panel
-from rich.syntax import Syntax
-from rich.text import Text
-from rich.table import Table
+from importlib.metadata import PackageNotFoundError
+from importlib.metadata import version as get_version
+
 from rich import box
 from rich.align import Align
+from rich.console import Console
+from rich.panel import Panel
+from rich.syntax import Syntax
+from rich.table import Table
+from rich.text import Text
 
 # Attempt to load the application version
 try:
@@ -24,12 +26,12 @@ console = Console()
 def _print_title_banner():
     """Prints a simple text title banner for the CLI."""
     simple_title = Text("Error Translator CLI V2", style="bold bright_magenta")
-    
+
     banner_panel = Panel(
         Align.center(simple_title),
         box=box.DOUBLE_EDGE,
         border_style="bright_magenta",
-        title="[bold yellow]⚡ Fatal to Fabulous ⚡[/bold yellow]", 
+        title="[bold yellow]⚡ Fatal to Fabulous ⚡[/bold yellow]",
         subtitle="[italic bold bright_white] ⇆ Offline Python Traceback Explainer V2 ⇆ [/italic bold bright_white]",
         padding=(1, 4)
     )
@@ -65,14 +67,14 @@ def print_about():
 def print_help():
     """Print polished 'help' view using rich components, showcasing features, usage, and documentation."""
     _print_title_banner()
-    
+
     cli_table = Table(box=box.SIMPLE, show_header=True, header_style="bold cyan")
     cli_table.add_column("Command / Usage", style="bold yellow", width=42)
     cli_table.add_column("Description", style="white")
     cli_table.add_row("explain-error run <script_path>", "Execute a Python script, intercept, and translate tracebacks.")
     cli_table.add_row("explain-error \"<traceback_text>\"", "Translate a raw traceback string passed as an argument.")
     cli_table.add_row("cat error.log | explain-error", "Translate tracebacks piped via standard input (stdin).")
-    
+
     console.print(Panel(cli_table, title="[bold cyan]1. Command Line Interface (CLI) Usage[/]", border_style="cyan", expand=False))
 
     python_info = Text()
@@ -83,7 +85,7 @@ def print_help():
     python_info.append("Translate exception string programmatically within your codebase:\n", style="dim white")
     python_info.append("    from error_translator import translate_error\n", style="bold white")
     python_info.append("    result = translate_error(traceback_text)", style="bold white")
-    
+
     console.print(Panel(python_info, title="[bold magenta]2. Python Library Integration[/]", border_style="magenta", expand=False))
 
     fastapi_info = Text()
@@ -92,7 +94,7 @@ def print_help():
     fastapi_info.append("Exposes:\n", style="dim white")
     fastapi_info.append("  • GET  /        -> Interactive Web UI dashboard\n", style="white")
     fastapi_info.append("  • POST /translate -> REST endpoint for remote traceback translation", style="white")
-    
+
     console.print(Panel(fastapi_info, title="[bold yellow]3. Local Web UI & API Service[/]", border_style="yellow", expand=False))
 
     options_table = Table(box=box.SIMPLE, show_header=True, header_style="bold green")
@@ -102,7 +104,7 @@ def print_help():
     options_table.add_row("-a, --about", "Show developer, version, and project details.")
     options_table.add_row("-v, --version", "Show the current version.")
     options_table.add_row("--json", "Output response in structured JSON format.")
-    
+
     console.print(Panel(options_table, title="[bold green]4. CLI Options & Flags[/]", border_style="green", expand=False))
 
     links_table = Table.grid(padding=(0, 2))
@@ -111,7 +113,7 @@ def print_help():
     links_table.add_row("Official Docs", "https://gourabanandad.github.io/error-translator-cli-v2/")
     links_table.add_row("GitHub Repository", "https://github.com/gourabanandad/error-translator-cli-v2")
     links_table.add_row("PyPI Package", "https://pypi.org/project/error-translator-cli-v2/")
-    
+
     console.print(Panel(links_table, title="[bold blue]5. Documentation & Resources[/]", border_style="blue", expand=False))
 
 def print_result(result: dict):

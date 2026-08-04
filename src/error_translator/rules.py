@@ -7,6 +7,7 @@ import os
 import re
 from functools import lru_cache
 
+
 @lru_cache(maxsize=1)
 def load_rules():
     """
@@ -20,7 +21,7 @@ def load_rules():
     current_dir = os.path.dirname(os.path.abspath(__file__))
     json_path = os.path.join(current_dir, "rules.json")
 
-    with open(json_path, "r", encoding="utf-8") as file:
+    with open(json_path, encoding="utf-8") as file:
         return json.load(file)
 
 @lru_cache(maxsize=1)

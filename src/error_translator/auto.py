@@ -7,8 +7,10 @@ translates it, and prints a user-friendly explanation using the CLI output forma
 """
 import sys
 import traceback
+
 from .core import translate_error
 from .ui import print_result
+
 
 def magic_hook(exc_type, exc_value, tb):
     """
@@ -25,10 +27,10 @@ def magic_hook(exc_type, exc_value, tb):
     # 1. Convert the raw crash data into a standard traceback string
     tb_lines = traceback.format_exception(exc_type, exc_value, tb)
     tb_string = "".join(tb_lines)
-    
+
     # 2. Pass the standard traceback through our translation engine
     result = translate_error(tb_string)
-    
+
     # 3. Print our beautiful colorized output instead of the default Python crash
     print_result(result)
 

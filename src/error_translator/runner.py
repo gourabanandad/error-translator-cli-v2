@@ -2,10 +2,12 @@
 Script execution module.
 Responsible for running target Python scripts and intercepting their output.
 """
-import sys
 import subprocess
+import sys
+
 from .core import translate_error
-from .ui import print_result, print_result_json, print_execution_error
+from .ui import print_execution_error, print_result, print_result_json
+
 
 def run_script(script_name: str, *, as_json: bool = False):
     """
@@ -16,6 +18,8 @@ def run_script(script_name: str, *, as_json: bool = False):
         as_json (bool): Whether to output the error translation in JSON format instead of Rich UI.
     """
     try:
+        # check=False is intentional: we handle both success (returncode==0)
+        # and failure (non-zero returncode) paths explicitly below.
         # Run the script and capture stdout and stderr
         result = subprocess.run(
             [sys.executable, script_name],
@@ -40,16 +44,17 @@ def run_script(script_name: str, *, as_json: bool = False):
     except FileNotFoundError:
         # Handling the case where the provided script doesn't exist
         print_execution_error(
-            script_name, 
-            f"Could not find script '{script_name}'", 
-            as_json, 
+            script_name,
+            f"Could not find script '{script_name}'",
+            as_json,
             "Execution Error"
         )
     except Exception as exc:
         # Catch-all for unexpected runtime issues with the sub-process
+        # Surfaced to the user so they see *something* went wrong.
         print_execution_error(
-            script_name, 
-            str(exc), 
-            as_json, 
+            script_name,
+            str(exc),
+            as_json,
             "Runtime Error"
         )

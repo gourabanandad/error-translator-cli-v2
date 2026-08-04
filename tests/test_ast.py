@@ -1,6 +1,8 @@
-import pytest
-import tempfile
 import os
+import tempfile
+
+import pytest
+
 from src.error_translator.ast.ast_engine import get_ast_suggestions
 
 # Use distinctly different variable names so difflib doesn't accidentally match them!
@@ -30,7 +32,7 @@ def test_ast_scoping_func_a(mock_file):
     # Simulate a NameError crash on line 6 (inside func_a) looking for 'appl_qty'
     suggestion = get_ast_suggestions(mock_file, "6", "appl_qty", "NameError")
     assert suggestion == "apple_qty"
-    
+
     # Try to access func_b's variable from func_a
     suggestion_bad = get_ast_suggestions(mock_file, "6", "banan_num", "NameError")
     assert suggestion_bad is None  # Should be completely blocked

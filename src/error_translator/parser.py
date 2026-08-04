@@ -2,8 +2,9 @@
 Traceback parsing module.
 Responsible for extracting contextual information from traceback strings.
 """
-import re
 import linecache
+import re
+
 
 def extract_location(traceback_text: str) -> tuple[str, str]:
     """
@@ -38,6 +39,6 @@ def extract_code_context(file_name: str, line_number: str) -> str:
             raw_line = linecache.getline(file_name, int(line_number))
             if raw_line:
                 return raw_line.strip()
-        except Exception:
+        except (OSError, ValueError):
             pass
     return ""

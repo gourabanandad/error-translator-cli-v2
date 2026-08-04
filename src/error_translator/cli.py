@@ -7,9 +7,11 @@ handles standard input streams, and orchestrates the translation process.
 import argparse
 import sys
 from pathlib import Path
+
 from .core import translate_error
-from .ui import print_about, print_help, print_result, print_result_json, VERSION, console
 from .runner import run_script
+from .ui import VERSION, console, print_about, print_help, print_result, print_result_json
+
 
 def check_first_run(as_json: bool):
     """Check if this is the first time the CLI is being run by the user."""
@@ -24,10 +26,10 @@ def check_first_run(as_json: bool):
         try:
             config_dir.mkdir(parents=True, exist_ok=True)
             flag_file.touch()
-            
+
             from .banner import print_install_banner
             print_install_banner()
-            
+
             from rich.panel import Panel
             console.print(Panel(
                 "[white]This tool automatically intercepts confusing Python errors and translates them into plain English.[/white]\n\n"
@@ -38,7 +40,9 @@ def check_first_run(as_json: bool):
                 expand=False
             ))
             console.print()
-        except Exception:
+        except OSError:
+            # Can't write the ~/.config flag file (read-only home, etc.).
+            # Not fatal — just skip the welcome banner.
             pass
 
 def main():
@@ -71,11 +75,11 @@ Examples:
     if parsed_args.about:
         print_about()
         sys.exit(0)
-    
+
     if parsed_args.version:
         console.print(f"Error Translator CLI Version: [bold green]{VERSION}[/]")
         sys.exit(0)
-    
+
     if parsed_args.help:
         console.print(f"Error Translator CLI Version: [bold green]{VERSION}[/]")
         print_help()

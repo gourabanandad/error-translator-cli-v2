@@ -48,7 +48,9 @@ static PyObject* match_error_loop(PyObject* self, PyObject* args){
     
     // If the method call failed or raised an exception, continue to the next iteration.
     if(match == NULL) {
-      // Typically, one would use PyErr_Clear() here if we want to ignore the exception.
+      // A regex raised an exception (e.g. bad pattern). Clear it so it
+      // doesn't leak into the next iteration's PyObject_CallMethod call.
+      PyErr_Clear();
       continue;
     }
 
