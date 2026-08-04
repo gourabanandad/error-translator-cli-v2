@@ -205,3 +205,198 @@ def test_cli_help(capsys, monkeypatch):
     assert "Error Translator CLI" in captured
     assert "Command Line Interface" in captured
     assert "CLI Options & Flags" in captured
+
+
+# --- 3. INTERACTIVE MODE TESTS ---
+
+def _stub_input(monkeypatch, responses):
+    """Patch builtins.input to yield `responses` in order, then raise EOFError (stdin closed)."""
+    it = iter(responses)
+
+    def fake_input(prompt=""):
+        try:
+            return next(it)
+        except StopIteration:
+            raise EOFError
+
+    monkeypatch.setattr("builtins.input", fake_input)
+
+
+def test_interactive_translates_single_line_then_exits(capsys, monkeypatch):
+    from error_translator.cli import run_interactive_session
+
+    _stub_input(monkeypatch, [
+        "NameError: name 'my_variable' is not defined",
+        "",       # blank line submits the single-line entry
+        "exit",   # leaves the session
+    ])
+    run_interactive_session(as_json=False)
+
+    captured = capsys.readouterr().out
+    assert "my_variable" in captured
+    assert "Exiting interactive mode" in captured
+
+
+def test_interactive_quit_command_is_case_insensitive_and_skips_translation(capsys, monkeypatch):
+    from error_translator.cli import run_interactive_session
+
+    _stub_input(monkeypatch, ["QUIT"])
+    run_interactive_session(as_json=False)
+
+    captured = capsys.readouterr().out
+    assert "Detected Error" not in captured
+    assert "Exiting interactive mode" in captured
+
+
+def test_interactive_eof_at_prompt_ends_session_without_crashing(monkeypatch):
+    from error_translator.cli import run_interactive_session
+
+    _stub_input(monkeypatch, [])  # first input() call raises EOFError immediately
+    run_interactive_session(as_json=False)  # must return cleanly, not raise
+
+
+def test_interactive_blank_first_line_is_ignored_not_submitted(capsys, monkeypatch):
+    from error_translator.cli import run_interactive_session
+
+    _stub_input(monkeypatch, [
+        "",     # accidental empty Enter at the prompt: should just re-prompt
+        "exit",
+    ])
+    run_interactive_session(as_json=False)
+
+    captured = capsys.readouterr().out
+    assert "Detected Error" not in captured
+
+
+def test_interactive_multiline_paste_is_one_translation(capsys, monkeypatch):
+    """A pasted multi-line traceback (ended by a blank line) must be translated as a single unit,
+    not as one call per line."""
+    from error_translator.cli import run_interactive_session
+
+    _stub_input(monkeypatch, [
+        "Traceback (most recent call last):",
+        '  File "script.py", line 2, in <module>',
+        "    print(my_variable)",
+        "NameError: name 'my_variable' is not defined",
+        "",       # blank line submits the whole block
+        "exit",
+    ])
+    run_interactive_session(as_json=False)
+
+    captured = capsys.readouterr().out
+    # Only one "Detected Error" panel should appear, proving the 4 lines were joined.
+    assert captured.count("Detected Error") == 1
+    assert "script.py" in captured
+
+
+def test_interactive_two_separate_entries_in_one_session(capsys, monkeypatch):
+    from error_translator.cli import run_interactive_session
+
+    _stub_input(monkeypatch, [
+        "NameError: name 'a' is not defined", "",
+        "NameError: name 'b' is not defined", "",
+        "exit",
+    ])
+    run_interactive_session(as_json=False)
+
+    captured = capsys.readouterr().out
+    assert captured.count("Detected Error") == 2
+    assert "'a' is not defined" in captured
+    assert "'b' is not defined" in captured
+
+
+def test_interactive_json_mode_emits_one_json_line_per_entry_and_skips_banner(capsys, monkeypatch):
+    import json
+    from error_translator.cli import run_interactive_session
+
+    _stub_input(monkeypatch, [
+        "NameError: name 'x' is not defined", "",
+        "exit",
+    ])
+    run_interactive_session(as_json=True)
+
+    captured = capsys.readouterr().out
+    json_lines = [line for line in captured.splitlines() if line.strip().startswith("{")]
+    assert len(json_lines) == 1
+    parsed = json.loads(json_lines[0])
+    assert "x" in parsed["explanation"]
+    # The decorative Rich panel should not be printed in --json mode.
+    assert "Interactive Mode" not in captured
+
+
+def test_interactive_eof_mid_multiline_paste_still_translates_partial_entry(capsys, monkeypatch):
+    """If EOF (Ctrl+D) arrives while pasting a multi-line traceback, whatever was
+    captured so far must still be translated instead of silently dropped."""
+    from error_translator.cli import run_interactive_session
+
+    _stub_input(monkeypatch, [
+        "NameError: name 'my_variable' is not defined",
+        # input stream ends here -> EOFError fires on the next input() call, mid-paste
+    ])
+    run_interactive_session(as_json=False)
+
+    captured = capsys.readouterr().out
+    assert "my_variable" in captured
+
+
+def test_interactive_keyboard_interrupt_mid_paste_discards_entry_and_exits(capsys, monkeypatch):
+    """Ctrl+C in the middle of pasting a multi-line traceback abandons that entry
+    and ends the session, instead of translating a half-finished paste."""
+    from error_translator.cli import run_interactive_session
+
+    call_count = {"n": 0}
+
+    def fake_input(prompt=""):
+        call_count["n"] += 1
+        if call_count["n"] == 1:
+            return "Traceback (most recent call last):"
+        raise KeyboardInterrupt
+
+    monkeypatch.setattr("builtins.input", fake_input)
+    run_interactive_session(as_json=False)
+
+    captured = capsys.readouterr().out
+    assert "Detected Error" not in captured
+
+
+def test_interactive_translate_error_exception_is_reported_not_fatal(capsys, monkeypatch):
+    """If translate_error() itself raises (an engine bug), the session must report
+    it via the existing execution-error panel and keep going, not crash outright."""
+    import error_translator.cli as cli_module
+
+    _stub_input(monkeypatch, [
+        "some input", "",
+        "exit",
+    ])
+
+    def boom(_text):
+        raise ValueError("boom")
+
+    monkeypatch.setattr(cli_module, "translate_error", boom)
+    cli_module.run_interactive_session(as_json=False)
+
+    captured = capsys.readouterr().out
+    assert "Translation Error" in captured
+    assert "boom" in captured
+    assert "Exiting interactive mode" in captured  # session kept running afterwards
+
+
+def test_interactive_subcommand_is_wired_into_main(monkeypatch):
+    """`explain-error interactive` should dispatch to run_interactive_session, not be treated
+    as a raw traceback string."""
+    import sys
+    import error_translator.cli as cli_module
+
+    monkeypatch.setattr(sys, "argv", ["explain-error", "interactive"])
+    monkeypatch.setattr(sys.stdin, "isatty", lambda: True)
+
+    called = {}
+    def fake_run_interactive_session(as_json=False):
+        called["hit"] = True
+        called["as_json"] = as_json
+
+    monkeypatch.setattr(cli_module, "run_interactive_session", fake_run_interactive_session)
+    cli_module.main()
+
+    assert called.get("hit") is True
+    assert called.get("as_json") is False

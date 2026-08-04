@@ -21,6 +21,12 @@ Pipe system or Docker logs into the engine:
 cat error.log | explain-error
 ```
 
+Start an interactive session to translate multiple errors one after another without leaving the terminal:
+```bash
+explain-error interactive
+```
+Paste a single-line error, or a full multi-line traceback followed by a blank line (or `Ctrl+D`), to submit it. Type `exit`, `quit`, or press `Ctrl+C` to leave the session.
+
 Emit structured JSON for scripting and automation:
 ```bash
 explain-error --json "NameError: name 'x' is not defined"
