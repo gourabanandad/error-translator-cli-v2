@@ -5,7 +5,9 @@ This module exposes the error translation functionality as a RESTful web API.
 It includes endpoints for single and batch translations, and serves a static
 web interface. Useful for integrating the translator into web apps or distributed systems.
 """
+import asyncio
 import os
+from importlib.metadata import PackageNotFoundError, version
 from pathlib import Path
 
 from fastapi import FastAPI
@@ -14,9 +16,6 @@ from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel
 
 from ..core import translate_error
-from importlib.metadata import version, PackageNotFoundError
-import asyncio
-from typing import List
 
 # Try to determine the package version to expose in the API metadata.
 try:
@@ -39,7 +38,7 @@ class ErrorRequest(BaseModel):
 
 class BatchErrorRequest(BaseModel):
     """Schema for translating multiple errors in a single request."""
-    tracebacks: List[str]
+    tracebacks: list[str]
 
 # --- API Endpoints ---
 
@@ -50,7 +49,7 @@ def translation_endpoint(request: ErrorRequest):
     Accepts a JSON payload with a `traceback_setting` field and returns the translation.
     """
     translation_result = translate_error(request.traceback_setting)
-    return translation_result
+    return {"translate_error": translation_result, "status": "ok"}
 
 
 @app.post("/translate/batch")
@@ -66,7 +65,7 @@ async def batch_translation_endoint(request: BatchErrorRequest):
 
     # Gather results from all tasks
     results = await asyncio.gather(*tasks)
-    return {"translate_errors": results}
+    return {"translations": results, "status": "ok"}
 
 
 @app.get("/")

@@ -2,6 +2,7 @@ import ast
 import difflib
 import os
 
+
 class ScopedSymbolCollector(ast.NodeVisitor):
     """
     Walks the Abstract Syntax Tree (AST) of the target Python file.
@@ -33,7 +34,7 @@ class ScopedSymbolCollector(ast.NodeVisitor):
         # The function's name is always added to the enclosing scope
         self.names.add(node.name)
         self.functions.add(node.name)
-        
+
         # SCOPING LOGIC: Only visit the body if the crash happened INSIDE this function
         if hasattr(node, 'lineno') and hasattr(node, 'end_lineno'):
             if node.lineno <= self.target_line <= node.end_lineno:
@@ -49,7 +50,7 @@ class ScopedSymbolCollector(ast.NodeVisitor):
         # The class name is always added to the enclosing scope
         self.names.add(node.name)
         self.classes.add(node.name)
-        
+
         # SCOPING LOGIC: Only visit the body if the crash happened INSIDE this class
         if hasattr(node, 'lineno') and hasattr(node, 'end_lineno'):
             if node.lineno <= self.target_line <= node.end_lineno:
@@ -98,35 +99,35 @@ def get_ast_suggestions(filepath: str, line_number: str, target_word: str, error
 
     try:
         target_line = int(line_number) if line_number.isdigit() else 0
-        
+
         # Read the crashing source file
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, encoding='utf-8') as f:
             source_code = f.read()
-        
+
         # Parse it into an Abstract Syntax Tree
         tree = ast.parse(source_code)
-        
+
         # Walk the tree and collect symbols visible at the target line
         collector = ScopedSymbolCollector(target_line)
         collector.visit(tree)
-        
+
         # Determine the search pool based on the type of error
         pool = set()
         if error_type == "NameError":
             pool = collector.names | collector.functions | collector.classes
         elif error_type == "AttributeError":
-            pool = collector.attributes | collector.functions 
+            pool = collector.attributes | collector.functions
         elif error_type in ("ImportError", "ModuleNotFoundError"):
             pool = collector.classes | collector.functions | collector.names | collector.imports
-        
+
         # Use difflib to find the most similar symbol in the pool
         # Cutoff=0.6 means the suggestion must be at least 60% similar to the target word
         matches = difflib.get_close_matches(target_word, pool, n=1, cutoff=0.6)
-        
+
         if matches:
             return matches[0]
         return None
-        
-    except Exception:
+
+    except (SyntaxError, UnicodeDecodeError, OSError, ValueError):
         # If parsing or processing fails (e.g., SyntaxError in the file), fail gracefully
         return None

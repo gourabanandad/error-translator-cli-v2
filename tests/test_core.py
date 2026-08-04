@@ -1,5 +1,6 @@
 import pytest
-from error_translator.core import translate_error, load_rules, compiled_rules
+
+from error_translator.core import compiled_rules, load_rules, translate_error
 
 # --- 1. EDGE CASE TESTS ---
 
@@ -30,7 +31,7 @@ def test_unknown_error_fallback():
     """Test that garbage input returns the default safe message."""
     mock_traceback = "Something completely random went wrong here."
     result = translate_error(mock_traceback)
-    
+
     assert "unknown error" in result["explanation"]
     assert result["matched_error"] == "Something completely random went wrong here."
 
@@ -156,10 +157,10 @@ def test_regex_extraction_for_supported_errors(mock_traceback, expected_in_expla
     once for every error in the list above!
     """
     result = translate_error(mock_traceback)
-    
+
     # 1. Prove the Regex Engine successfully extracted the variable and injected it
     assert expected_in_explanation in result["explanation"], f"Failed to find '{expected_in_explanation}' in explanation."
-    
+
     # 2. Prove the Context Engine successfully parsed the file location
     assert result["file"] == "script.py"
     assert result["line"] == "5"
@@ -168,6 +169,7 @@ def test_regex_extraction_for_supported_errors(mock_traceback, expected_in_expla
 def test_print_result_json_emits_valid_json(capsys):
     """The --json formatter writes a single line of valid JSON containing the result keys."""
     import json
+
     from error_translator.cli import print_result_json
 
     payload = {
@@ -190,13 +192,14 @@ def test_print_result_json_emits_valid_json(capsys):
 def test_cli_help(capsys, monkeypatch):
     """Test that running the main CLI entrypoint with help flags displays the help information."""
     import sys
+
     from error_translator.cli import main
 
     monkeypatch.setattr(sys, "argv", ["explain-error", "--help"])
-    
+
     with pytest.raises(SystemExit) as excinfo:
         main()
-        
+
     assert excinfo.value.code == 0
     captured = capsys.readouterr().out
     assert "Error Translator CLI" in captured

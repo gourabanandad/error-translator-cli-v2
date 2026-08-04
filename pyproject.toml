@@ -77,3 +77,29 @@ addopts = "--cov=error_translator --cov-report=term-missing"
 
 [tool.setuptools.package-data]
 error_translator = ["rules.json", "api/static/*.html", "api/static/*.css"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py39"
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes (unused imports, etc.)
+    "I",    # isort (import sorting)
+    "UP",   # pyupgrade
+    "B",    # flake8-bugbear (blind except, etc.)
+    "C4",   # flake8-comprehensions
+    "PIE",  # flake8-pie
+    "RUF",  # ruff-specific
+]
+ignore = [
+    "E501",   # line too long (handled by formatter)
+    "BLE001", # blind-except: we handle these case-by-case below
+    "S110",   # try-except-pass: intentional in fail-gracefully paths
+    "PLW1510", # subprocess-run-without-check: we check returncode manually
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["error_translator"]

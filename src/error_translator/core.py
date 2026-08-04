@@ -7,8 +7,8 @@ This module is responsible for:
 3. Delegating to AST handlers for deep, code-specific insights.
 """
 from .ast.ast_handlers import AST_REGISTRY
-from .rules import load_rules, compiled_rules
-from .parser import extract_location, extract_code_context
+from .parser import extract_code_context, extract_location
+from .rules import compiled_rules, load_rules
 
 # Attempt to load the ultra-fast C extension for matching rules,
 # and fallback to the Python implementation if it's unavailable.
@@ -73,21 +73,21 @@ def translate_error(traceback_text: str) -> dict:
     if match and rule:
         # Extract variables from the regex groups (e.g., variable names, functions)
         extracted_values = list(match.groups())
-        
+
         # Inject the extracted values into the template fix string
         fix_text = rule["fix"].format(*extracted_values)
 
         # Parse the error type (e.g., "NameError", "TypeError") to dispatch AST insights
         error_type = actual_error_line.split(":")[0].strip()
-        
+
         # Check if there's a specialized AST handler for this specific error type
         handler_function = AST_REGISTRY.get(error_type)
         insight = None
-        
+
         # If an AST handler exists and the file is accessible, run deep code analysis
         if handler_function and file_name != "Unknown File":
             insight = handler_function(file_name, line_number, extracted_values)
-        
+
         return {
             "explanation": rule["explanation"].format(*extracted_values),
             "fix": fix_text,

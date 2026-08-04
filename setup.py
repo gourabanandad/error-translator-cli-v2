@@ -1,6 +1,7 @@
-import sys
 import os
-from setuptools import setup, Extension
+import sys
+
+from setuptools import Extension, setup
 
 try:
     # Print the stylish banner on installation
@@ -13,12 +14,19 @@ except Exception:
 # Windows (MSVC) uses /O2, Linux/Mac (GCC/Clang) uses -O3
 compile_args = ['/O2'] if sys.platform == 'win32' else ['-O3']
 
-fast_matcher_module = Extension(
-    'error_translator.fast_matcher',
-    sources=['src/error_translator/ext/fast_matcher.c'],
-    extra_compile_args=compile_args
-)
+ext_modules = []
+try:
+    fast_matcher_module = Extension(
+        'error_translator.fast_matcher',
+        sources=['src/error_translator/ext/fast_matcher.c'],
+        extra_compile_args=compile_args
+    )
+    ext_modules = [fast_matcher_module]
+
+except Exception:
+    # C extension is optional — the pure-Python fallback in core.py handles it.
+    ext_modules = []
 
 setup(
-    ext_modules=[fast_matcher_module]
+    ext_modules=ext_modules
 )

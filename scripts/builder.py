@@ -1,6 +1,7 @@
+import argparse
 import json
 import os
-import argparse
+
 from google import genai  # Nuevo SDK
 
 # ANSI Colors
@@ -22,7 +23,7 @@ else:
 
 def load_json(filepath):
     if os.path.exists(filepath):
-        with open(filepath, 'r', encoding='utf-8') as f:
+        with open(filepath, encoding='utf-8') as f:
             return json.load(f)
     return None
 

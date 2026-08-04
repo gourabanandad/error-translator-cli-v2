@@ -40,7 +40,7 @@ def print_install_banner():
 ╚██████╗███████╗██║     ╚████╔╝ ███████╗
  ╚═════╝╚══════╝╚═╝      ╚═══╝  ╚══════╝
 """
-    
+
     print(f"\n{BOLD}{RED}{error_art.strip()}{RESET}")
     print(f"{BOLD}{BLUE}{translator_art.strip()}{RESET}")
     print(f"{BOLD}{CYAN}{cli_v2_art.strip()}{RESET}")
