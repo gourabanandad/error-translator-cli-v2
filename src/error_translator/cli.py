@@ -45,6 +45,79 @@ def check_first_run(as_json: bool):
             # Not fatal — just skip the welcome banner.
             pass
 
+def run_interactive_session(as_json: bool = False):
+    """
+    Start a REPL-style loop that repeatedly reads error text from the user
+    and prints the translation, without having to re-invoke the CLI each time.
+
+    Entry format:
+        - A single line (e.g. a raw exception message) is submitted immediately
+          on Enter.
+        - A pasted multi-line traceback keeps being read until a blank line
+          or EOF (Ctrl+D / Ctrl+Z) is received, then it is submitted as one block.
+        - Typing "exit" or "quit" (case-insensitive), or pressing Ctrl+C / Ctrl+D
+          at the prompt, ends the session.
+    """
+    emit = print_result_json if as_json else print_result
+
+    if not as_json:
+        from rich.panel import Panel
+        console.print(Panel(
+            "[white]Paste a Python error message or full traceback below.[/white]\n"
+            "Press [bold]Enter[/bold] on a blank line (or [bold]Ctrl+D[/bold]) to submit it.\n"
+            "Type [bold]exit[/bold] or [bold]quit[/bold] to leave, or press [bold]Ctrl+C[/bold] anytime.",
+            title="[bold green]Interactive Mode[/bold green]",
+            border_style="green",
+            expand=False,
+        ))
+
+    while True:
+        try:
+            first_line = input("Enter error: ")
+        except (EOFError, KeyboardInterrupt):
+            console.print()
+            break
+
+        stripped = first_line.strip()
+        if stripped.lower() in ("exit", "quit"):
+            break
+        if not stripped:
+            # Ignore accidental blank submissions at the top of the prompt.
+            continue
+
+        # Keep collecting lines so a pasted multi-line traceback is treated
+        # as a single error instead of one error per line.
+        lines = [first_line]
+        interrupted = False
+        while True:
+            try:
+                line = input()
+            except EOFError:
+                break
+            except KeyboardInterrupt:
+                interrupted = True
+                break
+            if line.strip() == "":
+                break
+            lines.append(line)
+
+        if interrupted:
+            console.print()
+            break
+
+        error_text = "\n".join(lines)
+        try:
+            result = translate_error(error_text)
+        except Exception as exc:
+            # Never let a malformed paste or an engine bug kill the whole session.
+            print_execution_error("interactive input", str(exc), as_json, "Translation Error")
+        else:
+            emit(result)
+
+    if not as_json:
+        console.print("[dim]Exiting interactive mode.[/dim]")
+
+
 def main():
     """Main CLI entry point."""
     parser = argparse.ArgumentParser(
@@ -55,6 +128,7 @@ Examples:
   explain-error run my_script.py
   explain-error "NameError: name 'usr_count' is not defined"
   cat error.log | explain-error
+  explain-error interactive
         """,
         formatter_class=argparse.RawDescriptionHelpFormatter,
         add_help=False
@@ -104,6 +178,8 @@ Examples:
     if parsed_args.args[0] == "run" and len(parsed_args.args) > 1:
         script_name = parsed_args.args[1]
         run_script(script_name, as_json=parsed_args.as_json)
+    elif parsed_args.args[0] == "interactive":
+        run_interactive_session(as_json=parsed_args.as_json)
     else:
         # Otherwise, treat the entire string of arguments as a raw traceback text
         error_input = " ".join(parsed_args.args)
