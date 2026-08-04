@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://gourabanandad.github.io/error-translator-cli-v2/sitemap.xml
