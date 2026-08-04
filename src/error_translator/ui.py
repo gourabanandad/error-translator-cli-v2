@@ -3,6 +3,8 @@ UI Module for the Error Translator CLI.
 Provides terminal formatting, layout, and presentation logic using Rich.
 """
 import json
+import platform
+import sys
 from importlib.metadata import PackageNotFoundError
 from importlib.metadata import version as get_version
 
@@ -14,6 +16,8 @@ from rich.syntax import Syntax
 from rich.table import Table
 from rich.text import Text
 
+from .core import C_EXTENSION_AVAILABLE
+
 # Attempt to load the application version
 try:
     VERSION = get_version("error-translator-cli-v2")
@@ -22,6 +26,17 @@ except PackageNotFoundError:
 
 # Initialize the global rich console for styled terminal output
 console = Console()
+
+def print_version():
+    """Prints detailed version, Python environment, C extension status, and platform metadata."""
+    c_ext_status = "Enabled (fast_matcher)" if C_EXTENSION_AVAILABLE else "Disabled (pure-Python fallback)"
+    py_ver = sys.version.split()[0]
+    plat_info = platform.platform()
+
+    console.print(f"Error Translator CLI Version: [bold green]{VERSION}[/]")
+    console.print(f"Python: [bold green]{py_ver}[/]")
+    console.print(f"C Extension: [bold green]{c_ext_status}[/]")
+    console.print(f"Platform: [bold green]{plat_info}[/]")
 
 def _print_title_banner():
     """Prints a simple text title banner for the CLI."""
@@ -43,10 +58,17 @@ def print_about():
     """Prints a polished 'about' view using rich components, showcasing features and metadata."""
     _print_title_banner()
 
+    c_ext_status = "Enabled (fast_matcher)" if C_EXTENSION_AVAILABLE else "Disabled (pure-Python fallback)"
+    py_ver = sys.version.split()[0]
+    plat_info = platform.platform()
+
     meta = Table.grid(padding=(0, 1))
     meta.add_column(style="bold white", justify="right")
     meta.add_column(style="green")
     meta.add_row("Version", VERSION)
+    meta.add_row("Python", py_ver)
+    meta.add_row("C Extension", c_ext_status)
+    meta.add_row("Platform", plat_info)
     meta.add_row("Author", "Gourabananda Datta")
     meta.add_row("Repository", "https://github.com/gourabanandad/error-translator-cli-v2")
     console.print(Panel(meta, title="[bold cyan]Project[/]", border_style="cyan", expand=False))

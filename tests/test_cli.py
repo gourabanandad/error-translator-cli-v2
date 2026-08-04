@@ -58,6 +58,9 @@ def test_version_flag_shows_version_and_exits_zero(capsys, monkeypatch):
     assert excinfo.value.code == 0
     captured = capsys.readouterr().out
     assert "Version" in captured
+    assert "Python:" in captured
+    assert "C Extension:" in captured
+    assert "Platform:" in captured
 
 
 def test_no_arguments_shows_help_and_exits_with_code_one(capsys, monkeypatch):

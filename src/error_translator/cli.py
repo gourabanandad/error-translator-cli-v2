@@ -10,7 +10,7 @@ from pathlib import Path
 
 from .core import translate_error
 from .runner import run_script
-from .ui import VERSION, console, print_about, print_help, print_execution_error, print_result, print_result_json
+from .ui import VERSION, console, print_about, print_help, print_execution_error, print_result, print_result_json, print_version
 
 
 def check_first_run(as_json: bool):
@@ -151,7 +151,7 @@ Examples:
         sys.exit(0)
 
     if parsed_args.version:
-        console.print(f"Error Translator CLI Version: [bold green]{VERSION}[/]")
+        print_version()
         sys.exit(0)
 
     if parsed_args.help:
