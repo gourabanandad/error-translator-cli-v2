@@ -182,6 +182,21 @@ Examples:
         run_interactive_session(as_json=parsed_args.as_json)
     else:
         # Otherwise, treat the entire string of arguments as a raw traceback text
+        if len(parsed_args.args) == 1:
+            try:
+                path = Path(parsed_args.args[0])
+                if path.is_file():
+                    if path.suffix == ".py":
+                        run_script(str(path), as_json=parsed_args.as_json)
+                        return
+                    else:
+                        error_input = path.read_text(encoding="utf-8")
+                        if error_input.strip():
+                            emit(translate_error(error_input))
+                            return
+            except Exception:
+                pass
+
         error_input = " ".join(parsed_args.args)
         emit(translate_error(error_input))
 
