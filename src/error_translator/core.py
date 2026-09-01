@@ -63,7 +63,15 @@ def translate_error(traceback_text: str) -> dict:
             match, rule = result
     else:
         # Fallback to standard Python regex loop
-        for pattern, r in rules:
+        # for pattern, r in rules:
+        #     m = pattern.search(actual_error_line)
+        #     if m:
+        #         match, rule = m, r
+        #         break
+        pass
+
+    if not match:
+        for pattern, r in values:
             m = pattern.search(actual_error_line)
             if m:
                 match, rule = m, r

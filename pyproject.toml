@@ -65,7 +65,7 @@ explain-error = "error_translator.cli:main"
 [project.optional-dependencies]
 server = ["fastapi>=0.110", "pydantic>=2.6", "uvicorn>=0.29"]
 docs = ["mkdocs>=1.6", "mkdocs-material>=9.7", "pymdown-extensions>=10.0"]
-dev = ["pytest>=8.0", "build>=1.2", "twine>=5.0", "pytest-cov>=7.1.0"]
+dev = ["pytest>=8.0", "build>=1.2", "twine>=5.0", "pytest-cov>=7.1.0", "httpx"]
 jupyter = ["ipython>=7.0.0"]
 
 [tool.setuptools.packages.find]
