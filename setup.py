@@ -19,7 +19,8 @@ try:
     fast_matcher_module = Extension(
         'error_translator.fast_matcher',
         sources=['src/error_translator/ext/fast_matcher.c'],
-        extra_compile_args=compile_args
+        extra_compile_args=compile_args,
+        optional=True,
     )
     ext_modules = [fast_matcher_module]
 

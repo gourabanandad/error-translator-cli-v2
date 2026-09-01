@@ -71,7 +71,7 @@ def translate_error(traceback_text: str) -> dict:
         pass
 
     if not match:
-        for pattern, r in values:
+        for pattern, r in rules:
             m = pattern.search(actual_error_line)
             if m:
                 match, rule = m, r

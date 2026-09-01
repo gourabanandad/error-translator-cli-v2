@@ -3,7 +3,7 @@ import tempfile
 
 import pytest
 
-from src.error_translator.ast.ast_engine import get_ast_suggestions
+from error_translator.ast.ast_engine import get_ast_suggestions
 
 # Use distinctly different variable names so difflib doesn't accidentally match them!
 MOCK_CODE = """

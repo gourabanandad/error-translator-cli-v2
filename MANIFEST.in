@@ -1,2 +1,4 @@
 include src/error_translator/ext/*.c
+include src/error_translator/rules.json
 recursive-include src/error_translator/api/static *.html *.css
+recursive-include tests *.py
