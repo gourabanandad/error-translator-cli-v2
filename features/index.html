@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Python error translator and traceback explainer for developers. Convert Python exceptions into clear explanations and actionable fixes offline.">
+        <meta name="description" content="Offline Python traceback translator and error explainer. Convert cryptic exceptions into clear explanations and actionable fixes.">
       
       
         <meta name="author" content="Gourabananda Datta">
@@ -25,7 +25,7 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
@@ -33,7 +33,7 @@
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#features-integrations" class="md-skip">
+        <a href="#features-integrations-guide" class="md-skip">
           Skip to content
         </a>
       
@@ -178,6 +178,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -357,36 +359,26 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-automatic-import-hook" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Automatic Import Hook
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-jupyter-notebook-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Jupyter Notebook Integration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Jupyter Notebook Integration">
+    <nav class="md-nav" aria-label="1. Command-Line Interface (CLI)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#cli-command-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setup
+        CLI Command Modes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI Command Modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-execute-a-target-python-script-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Execute a Target Python Script (run)
       
     </span>
   </a>
@@ -394,10 +386,93 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#interactive-usage" class="md-nav__link">
+  <a href="#b-translate-raw-error-text" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Interactive Usage
+        B. Translate Raw Error Text
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-pipe-logs-via-standard-input-stdin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Pipe Logs via Standard Input (Stdin)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-direct-file-argument-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Direct File Argument Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-flags-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI Flags &amp; Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI Flags &amp; Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#machine-readable-automation-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Machine-Readable Automation (--json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-interactive-repl-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Interactive REPL Mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Interactive REPL Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-capabilities-of-interactive-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Capabilities of Interactive Mode:
       
     </span>
   </a>
@@ -410,32 +485,266 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-fastapi-service" class="md-nav__link">
+  <a href="#3-automatic-import-hook-error_translatorauto" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. FastAPI Service
+        3. Automatic Import Hook (error_translator.auto)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Automatic Import Hook (error_translator.auto)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Example
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#5-python-native-api" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#execution-output" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Python Native API
+        Execution Output:
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#6-optional-native-acceleration" class="md-nav__link">
+  <a href="#4-jupyter-notebook-lab-magic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Optional Native Acceleration
+        4. Jupyter Notebook &amp; Lab Magic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Jupyter Notebook &amp; Lab Magic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-activation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup &amp; Activation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-cell-crash-interception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In-Cell Crash Interception
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dual-view-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dual-View Display
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-fastapi-microservice-web-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. FastAPI Microservice &amp; Web Dashboard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. FastAPI Microservice &amp; Web Dashboard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starting-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Starting the Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-ui-dashboard-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web UI Dashboard (GET /)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rest-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="REST API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-single-translation-post-translate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Single Translation (POST /translate)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-batch-translation-post-translatebatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Batch Translation (POST /translate/batch)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-health-check-get-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Health Check (GET /health)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-programmatic-python-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Programmatic Python API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Programmatic Python API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#result-dictionary-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result Dictionary Contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-recipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Recipes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ast-powered-scoped-diagnostic-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. AST-Powered Scoped Diagnostic Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. AST-Powered Scoped Diagnostic Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-ast-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported AST Handlers:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-dual-engine-performance-c-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Dual-Engine Performance &amp; C Extension
       
     </span>
   </a>
@@ -464,7 +773,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Architecture & Internals
   
 
     
@@ -491,7 +800,7 @@
   <span class="md-ellipsis">
     
   
-    Examples
+    Real-World Examples
   
 
     
@@ -518,7 +827,7 @@
   <span class="md-ellipsis">
     
   
-    Contributing
+    Contributing Guide
   
 
     
@@ -566,36 +875,26 @@
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#2-automatic-import-hook" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        2. Automatic Import Hook
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#3-jupyter-notebook-integration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        3. Jupyter Notebook Integration
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="3. Jupyter Notebook Integration">
+    <nav class="md-nav" aria-label="1. Command-Line Interface (CLI)">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#setup" class="md-nav__link">
+  <a href="#cli-command-modes" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Setup
+        CLI Command Modes
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI Command Modes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-execute-a-target-python-script-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Execute a Target Python Script (run)
       
     </span>
   </a>
@@ -603,10 +902,93 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#interactive-usage" class="md-nav__link">
+  <a href="#b-translate-raw-error-text" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Interactive Usage
+        B. Translate Raw Error Text
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-pipe-logs-via-standard-input-stdin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. Pipe Logs via Standard Input (Stdin)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#d-direct-file-argument-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        D. Direct File Argument Detection
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cli-flags-options" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        CLI Flags &amp; Options
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CLI Flags &amp; Options">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#machine-readable-automation-json" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Machine-Readable Automation (--json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-interactive-repl-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Interactive REPL Mode
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Interactive REPL Mode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-capabilities-of-interactive-mode" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Capabilities of Interactive Mode:
       
     </span>
   </a>
@@ -619,32 +1001,266 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-fastapi-service" class="md-nav__link">
+  <a href="#3-automatic-import-hook-error_translatorauto" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. FastAPI Service
+        3. Automatic Import Hook (error_translator.auto)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Automatic Import Hook (error_translator.auto)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#usage-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Usage Example
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#5-python-native-api" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#execution-output" class="md-nav__link">
     <span class="md-ellipsis">
       
-        5. Python Native API
+        Execution Output:
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#6-optional-native-acceleration" class="md-nav__link">
+  <a href="#4-jupyter-notebook-lab-magic" class="md-nav__link">
     <span class="md-ellipsis">
       
-        6. Optional Native Acceleration
+        4. Jupyter Notebook &amp; Lab Magic
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Jupyter Notebook &amp; Lab Magic">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#setup-activation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Setup &amp; Activation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-cell-crash-interception" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In-Cell Crash Interception
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dual-view-display" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Dual-View Display
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-fastapi-microservice-web-dashboard" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. FastAPI Microservice &amp; Web Dashboard
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. FastAPI Microservice &amp; Web Dashboard">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#starting-the-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Starting the Server
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#web-ui-dashboard-get" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Web UI Dashboard (GET /)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rest-api-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        REST API Endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="REST API Endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-single-translation-post-translate" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Single Translation (POST /translate)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-batch-translation-post-translatebatch" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Batch Translation (POST /translate/batch)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-health-check-get-health" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Health Check (GET /health)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-programmatic-python-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Programmatic Python API
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Programmatic Python API">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#result-dictionary-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Result Dictionary Contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-recipes" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Integration Recipes
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ast-powered-scoped-diagnostic-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. AST-Powered Scoped Diagnostic Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. AST-Powered Scoped Diagnostic Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#how-it-works" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        How It Works:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#supported-ast-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Supported AST Handlers:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-dual-engine-performance-c-extension" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Dual-Engine Performance &amp; C Extension
       
     </span>
   </a>
@@ -684,82 +1300,413 @@
   
 
 
-<h1 id="features-integrations">Features &amp; Integrations<a class="headerlink" href="#features-integrations" title="Permanent link">&para;</a></h1>
-<p>Error Translator exposes its deterministic engine across multiple interfaces to fit naturally into any development workflow.</p>
+<h1 id="features-integrations-guide">Features &amp; Integrations Guide<a class="headerlink" href="#features-integrations-guide" title="Permanent link">&para;</a></h1>
+<p><strong>Error Translator</strong> provides a unified, deterministic translation engine accessible across multiple interfaces. Whether you are debugging locally in your terminal, writing code in Jupyter notebooks, building microservices with FastAPI, or automating CI/CD pipelines, Error Translator seamlessly integrates into your workflow.</p>
+<hr />
 <h2 id="1-command-line-interface-cli">1. Command-Line Interface (CLI)<a class="headerlink" href="#1-command-line-interface-cli" title="Permanent link">&para;</a></h2>
-<p>The CLI provides a polished Rich terminal layout with rounded panels, clear section titles, and syntax-highlighted code context.</p>
-<p>Run a Python script and catch any unhandled exceptions:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>explain-error<span class="w"> </span>run<span class="w"> </span>script.py
-</code></pre></div></p>
-<p>Provide an error string directly:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>explain-error<span class="w"> </span><span class="s2">&quot;NameError: name &#39;usr_count&#39; is not defined&quot;</span>
-</code></pre></div></p>
-<p>Pipe system or Docker logs into the engine:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>cat<span class="w"> </span>error.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>explain-error
-</code></pre></div></p>
-<p>Emit structured JSON for scripting and automation:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>explain-error<span class="w"> </span>--json<span class="w"> </span><span class="s2">&quot;NameError: name &#39;x&#39; is not defined&quot;</span>
-</code></pre></div>
-<em>(The <code>--json</code> flag works with every input mode).</em></p>
-<p>Show an about screen with project metadata and usage examples:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>explain-error<span class="w"> </span>--about
-</code></pre></div></p>
-<h2 id="2-automatic-import-hook">2. Automatic Import Hook<a class="headerlink" href="#2-automatic-import-hook" title="Permanent link">&para;</a></h2>
-<p>Catch and translate unhandled exceptions globally in your Python scripts by importing the auto module. This overrides <code>sys.excepthook</code> for graceful, translated crash reporting without modifying your core logic.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">error_translator.auto</span>
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">def</span><span class="w"> </span><span class="nf">main</span><span class="p">():</span>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    <span class="c1"># This TypeError will automatically trigger the error translator</span>
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">total</span> <span class="o">=</span> <span class="s2">&quot;Users: &quot;</span> <span class="o">+</span> <span class="mi">42</span>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="n">main</span><span class="p">()</span>
-</code></pre></div>
-<h2 id="3-jupyter-notebook-integration">3. Jupyter Notebook Integration<a class="headerlink" href="#3-jupyter-notebook-integration" title="Permanent link">&para;</a></h2>
-<p>Error Translator integrates seamlessly with Jupyter notebooks and JupyterLab environments, allowing you to debug interactively without leaving your cell.</p>
-<h3 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">&para;</a></h3>
-<p>Load the extension in any Jupyter notebook cell:</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="o">%</span><span class="n">load_ext</span> <span class="n">error_translator</span><span class="o">.</span><span class="n">jupyter</span>
-</code></pre></div>
-<em>(You can also use <code>%reload_ext</code> or <code>%unload_ext</code> as needed).</em></p>
-<h3 id="interactive-usage">Interactive Usage<a class="headerlink" href="#interactive-usage" title="Permanent link">&para;</a></h3>
-<p>Once loaded, any unhandled exception in subsequent cells will automatically be translated and displayed in a user-friendly format.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># Cell 1</span>
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="o">%</span><span class="n">load_ext</span> <span class="n">error_translator</span><span class="o">.</span><span class="n">jupyter</span>
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1"># Cell 2</span>
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="n">data</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Alice&quot;</span><span class="p">,</span> <span class="s2">&quot;age&quot;</span><span class="p">:</span> <span class="mi">30</span><span class="p">}</span>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">data</span><span class="p">[</span><span class="s2">&quot;email&quot;</span><span class="p">])</span>  <span class="c1"># KeyError: &#39;email&#39;</span>
-</code></pre></div>
-<p>The notebook will display:
-1. The <strong>standard Jupyter traceback</strong> (to preserve the exact location context).
-2. The <strong>Error Translator panel</strong> containing the detected error, clear explanation, suggested fix, and AST-based insights (when applicable).</p>
-<h2 id="4-fastapi-service">4. FastAPI Service<a class="headerlink" href="#4-fastapi-service" title="Permanent link">&para;</a></h2>
-<p>Expose the core engine over HTTP via the included FastAPI server for remote translation services.</p>
-<p>Start the built-in HTTP server:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uvicorn<span class="w"> </span>error_translator.api.server:app<span class="w"> </span>--host<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--reload
-</code></pre></div></p>
-<p>Submit a traceback payload via the exposed REST API:
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/translate<span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">&quot;Content-Type: application/json&quot;</span><span class="w"> </span><span class="se">\</span>
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s2">&quot;{\&quot;traceback_setting\&quot;:\&quot;Traceback (most recent call last):\\n  File &#39;app.py&#39;, line 14, in &lt;module&gt;\\n    total = &#39;Users: &#39; + 42\\nTypeError: can only concatenate str (not &#39;int&#39;) to str\&quot;}&quot;</span>
-</code></pre></div></p>
-<p>Additional endpoints:
-- <code>GET /health</code>: Returns service status.
-- <code>GET /</code>: Serves the bundled web UI from <code>error_translator/api/static/index.html</code>.</p>
-<h2 id="5-python-native-api">5. Python Native API<a class="headerlink" href="#5-python-native-api" title="Permanent link">&para;</a></h2>
-<p>Directly integrate the translation pipeline into your own internal workflows or custom tools.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">error_translator.core</span><span class="w"> </span><span class="kn">import</span> <span class="n">translate_error</span>
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">raw_error</span> <span class="o">=</span> <span class="s2">&quot;NameError: name &#39;x&#39; is not defined&quot;</span>
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">result</span> <span class="o">=</span> <span class="n">translate_error</span><span class="p">(</span><span class="n">raw_error</span><span class="p">)</span>
-<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
-<a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Explanation:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;explanation&quot;</span><span class="p">])</span>
-<a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fix:&quot;</span><span class="p">,</span> <span class="n">result</span><span class="p">[</span><span class="s2">&quot;fix&quot;</span><span class="p">])</span>
-</code></pre></div>
-<h2 id="6-optional-native-acceleration">6. Optional Native Acceleration<a class="headerlink" href="#6-optional-native-acceleration" title="Permanent link">&para;</a></h2>
-<p>For maximum performance, the engine can utilize an optional C extension (<code>fast_matcher</code>). If available on the platform, it accelerates regex rule scanning. If unavailable, it automatically falls back to the pure Python loop with zero change in behavior.</p>
-<p><em>(For instructions on building the C extension, refer to the <a href="../ARCHITECTURE/#optional-native-acceleration">Architecture &amp; Internals</a> documentation).</em></p>
+<p>The CLI tool (<code>explain-error</code>) is the primary entry point for terminal-based debugging. It provides a polished terminal interface using <a href="https://github.com/Textualize/rich">Rich</a>, with rounded panels, syntax highlighting, and distinct diagnostic sections.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Usage: explain-error [OPTIONS] [COMMAND / ARGS]...
+</span></code></pre></div>
+<h3 id="cli-command-modes">CLI Command Modes<a class="headerlink" href="#cli-command-modes" title="Permanent link">&para;</a></h3>
+<h4 id="a-execute-a-target-python-script-run">A. Execute a Target Python Script (<code>run</code>)<a class="headerlink" href="#a-execute-a-target-python-script-run" title="Permanent link">&para;</a></h4>
+<p>Run a target Python script directly through the translator. If the script succeeds, standard output is displayed normally. If an unhandled exception occurs, standard error is intercepted, parsed, and translated:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>explain-error<span class="w"> </span>run<span class="w"> </span>path/to/script.py
+</span></code></pre></div>
+<p><em>Shorthand syntax (direct <code>.py</code> file detection):</em>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>explain-error<span class="w"> </span>path/to/script.py
+</span></code></pre></div></p>
+<h4 id="b-translate-raw-error-text">B. Translate Raw Error Text<a class="headerlink" href="#b-translate-raw-error-text" title="Permanent link">&para;</a></h4>
+<p>Pass raw exception text directly from your clipboard or terminal history:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>explain-error<span class="w"> </span><span class="s2">"TypeError: can only concatenate str (not 'int') to str"</span>
+</span></code></pre></div>
+<h4 id="c-pipe-logs-via-standard-input-stdin">C. Pipe Logs via Standard Input (Stdin)<a class="headerlink" href="#c-pipe-logs-via-standard-input-stdin" title="Permanent link">&para;</a></h4>
+<p>Stream traceback data from log files, CI runners, or Docker containers into the translator:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1"># Pipe from a file</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>cat<span class="w"> </span>crash.log<span class="w"> </span><span class="p">|</span><span class="w"> </span>explain-error
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1"># Pipe from Docker container logs</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>docker<span class="w"> </span>logs<span class="w"> </span>backend-container<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>explain-error
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># Pipe from Python execution</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>python<span class="w"> </span>buggy_app.py<span class="w"> </span><span class="m">2</span>&gt;<span class="p">&amp;</span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>explain-error
+</span></code></pre></div>
+<h4 id="d-direct-file-argument-detection">D. Direct File Argument Detection<a class="headerlink" href="#d-direct-file-argument-detection" title="Permanent link">&para;</a></h4>
+<p>If you pass a <code>.log</code> or text file as an argument, Error Translator automatically reads and translates the exception contained inside:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>explain-error<span class="w"> </span>server_error.log
+</span></code></pre></div>
+<hr />
+<h3 id="cli-flags-options">CLI Flags &amp; Options<a class="headerlink" href="#cli-flags-options" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Flag</th>
+<th style="text-align: left;">Name</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>--json</code></td>
+<td style="text-align: left;"><strong>JSON Mode</strong></td>
+<td style="text-align: left;">Outputs translations as single-line JSON objects instead of Rich UI panels.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-a</code>, <code>--about</code></td>
+<td style="text-align: left;"><strong>About View</strong></td>
+<td style="text-align: left;">Displays author information, environment details, Python version, and C-extension status.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-v</code>, <code>--version</code></td>
+<td style="text-align: left;"><strong>Version Info</strong></td>
+<td style="text-align: left;">Prints version strings and native acceleration diagnostics.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>-h</code>, <code>--help</code></td>
+<td style="text-align: left;"><strong>Help Dashboard</strong></td>
+<td style="text-align: left;">Renders a styled help reference table and documentation links.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="machine-readable-automation-json">Machine-Readable Automation (<code>--json</code>)<a class="headerlink" href="#machine-readable-automation-json" title="Permanent link">&para;</a></h4>
+<p>The <code>--json</code> flag works across all input modes. It formats the output as a clean, single-line JSON payload suitable for parsing with <code>jq</code>, log aggregators (e.g., Datadog, ELK), or automated test suites:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>explain-error<span class="w"> </span>--json<span class="w"> </span><span class="s2">"KeyError: 'auth_token'"</span>
+</span></code></pre></div>
+<p><strong>JSON Output Example:</strong>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="p">{</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span><span class="nt">"explanation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You tried to look up a key named 'auth_token' in a dictionary, but that key doesn't exist."</span><span class="p">,</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span><span class="nt">"fix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Check for typos in the key name, or use the .get('auth_token') method to safely access dictionary values."</span><span class="p">,</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span><span class="nt">"ast_insight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span><span class="nt">"matched_error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KeyError: 'auth_token'"</span><span class="p">,</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">  </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown File"</span><span class="p">,</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">  </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown Line"</span><span class="p">,</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">}</span>
+</span></code></pre></div></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="c1"># Extract only the recommended fix using jq:</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>explain-error<span class="w"> </span>--json<span class="w"> </span><span class="s2">"KeyError: 'auth_token'"</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>jq<span class="w"> </span>-r<span class="w"> </span>.fix
+</span></code></pre></div>
+<hr />
+<h2 id="2-interactive-repl-mode">2. Interactive REPL Mode<a class="headerlink" href="#2-interactive-repl-mode" title="Permanent link">&para;</a></h2>
+<p>The interactive mode (<code>explain-error interactive</code>) provides a persistent debugging environment where you can paste multiple single-line errors or multi-line tracebacks without restarting the CLI.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>explain-error<span class="w"> </span>interactive
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>┌─ Interactive Mode ───────────────────────────────────────────────────────────┐
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>│ Paste a Python error message or full traceback below.                         │
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>│ Press Enter on a blank line (or Ctrl+D) to submit it.                        │
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>│ Type exit or quit to leave, or press Ctrl+C anytime.                         │
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>Enter error:
+</span></code></pre></div>
+<h3 id="key-capabilities-of-interactive-mode">Key Capabilities of Interactive Mode:<a class="headerlink" href="#key-capabilities-of-interactive-mode" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Smart Multi-Line Buffering</strong>: Paste an entire 20-line traceback into the terminal. Error Translator buffers the lines and processes the entire traceback as a single error once an empty line or EOF is encountered.</li>
+<li><strong>Single-Line Immediate Execution</strong>: Entering a single error line (e.g., <code>ZeroDivisionError: division by zero</code>) and pressing Enter immediately translates it.</li>
+<li><strong>Fault-Tolerant Engine</strong>: If a malformed traceback or edge case occurs, the interactive session catches the exception, surfaces a warning panel, and keeps the REPL active.</li>
+<li><strong>JSON Support</strong>: Start the REPL with <code>explain-error interactive --json</code> to receive structured JSON objects after each submission.</li>
+<li><strong>Navigation Shortcuts</strong>: Type <code>exit</code>, <code>quit</code>, or press <code>Ctrl+C</code> / <code>Ctrl+D</code> to gracefully exit the session.</li>
+</ul>
+<hr />
+<h2 id="3-automatic-import-hook-error_translatorauto">3. Automatic Import Hook (<code>error_translator.auto</code>)<a class="headerlink" href="#3-automatic-import-hook-error_translatorauto" title="Permanent link">&para;</a></h2>
+<p>For hands-free debugging during local development, import <code>error_translator.auto</code> at the top of your main entry point. This overrides Python's default exception handler (<code>sys.excepthook</code>).</p>
+<p>When an unhandled exception occurs, Error Translator intercepts the crash, extracts the location and code context, and prints the translated Rich diagnostic card before the program terminates.</p>
+<h3 id="usage-example">Usage Example<a class="headerlink" href="#usage-example" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="c1"># main.py</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">error_translator.auto</span>
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">process_data</span><span class="p">():</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>    <span class="n">items</span> <span class="o">=</span> <span class="p">[</span><span class="s2">"apple"</span><span class="p">,</span> <span class="s2">"banana"</span><span class="p">]</span>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">items</span><span class="p">[</span><span class="mi">5</span><span class="p">])</span>  <span class="c1"># IndexError</span>
+</span><span id="__span-11-7"><a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>
+</span><span id="__span-11-8"><a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a><span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">"__main__"</span><span class="p">:</span>
+</span><span id="__span-11-9"><a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>    <span class="n">process_data</span><span class="p">()</span>
+</span></code></pre></div>
+<h3 id="execution-output">Execution Output:<a class="headerlink" href="#execution-output" title="Permanent link">&para;</a></h3>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>$ python main.py
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>│ IndexError: list index out of range                                          │
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>│ File: main.py  |  Line: 6                                                    │
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>│ 6 │ print(items[5])                                                          │
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>│ You are trying to access an item in a list at a position that doesn't exist. │
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>│ Check the length of your list using len(). Python lists are 0-indexed!       │
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<div class="admonition tip">
+<p class="admonition-title">Production Best Practice</p>
+<p>Import hooks are ideal for local development, debugging environments, and staging builds. For production services, consider combining the <a href="#6-programmatic-python-api">Programmatic Python API</a> with your structured logging pipeline.</p>
+</div>
+<hr />
+<h2 id="4-jupyter-notebook-lab-magic">4. Jupyter Notebook &amp; Lab Magic<a class="headerlink" href="#4-jupyter-notebook-lab-magic" title="Permanent link">&para;</a></h2>
+<p>Error Translator includes full support for interactive computing environments like Jupyter Notebooks, JupyterLab, Google Colab, and VS Code Notebooks via the <code>%load_ext</code> mechanism.</p>
+<h3 id="setup-activation">Setup &amp; Activation<a class="headerlink" href="#setup-activation" title="Permanent link">&para;</a></h3>
+<p>In your first notebook cell, load the extension:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="o">%</span><span class="n">load_ext</span> <span class="n">error_translator</span><span class="o">.</span><span class="n">jupyter</span>
+</span></code></pre></div>
+<p><em>To reload or unload:</em>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="o">%</span><span class="n">reload_ext</span> <span class="n">error_translator</span><span class="o">.</span><span class="n">jupyter</span>
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="o">%</span><span class="n">unload_ext</span> <span class="n">error_translator</span><span class="o">.</span><span class="n">jupyter</span>
+</span></code></pre></div></p>
+<h3 id="in-cell-crash-interception">In-Cell Crash Interception<a class="headerlink" href="#in-cell-crash-interception" title="Permanent link">&para;</a></h3>
+<p>Once loaded, any unhandled exception in subsequent notebook cells automatically triggers the translator:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="c1"># Cell 2</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="n">user_record</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"username"</span><span class="p">:</span> <span class="s2">"gourab"</span><span class="p">,</span> <span class="s2">"role"</span><span class="p">:</span> <span class="s2">"admin"</span><span class="p">}</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="nb">print</span><span class="p">(</span><span class="n">user_record</span><span class="p">[</span><span class="s2">"email_address"</span><span class="p">])</span>
+</span></code></pre></div>
+<h3 id="dual-view-display">Dual-View Display<a class="headerlink" href="#dual-view-display" title="Permanent link">&para;</a></h3>
+<p>When a cell crashes, the extension renders:
+1. <strong>Standard Jupyter Traceback</strong>: Preserves original line numbers, cell references, and call hierarchies.
+2. <strong>Error Translator Markdown Card</strong>: A formatted Markdown banner displaying the detected error, plain-English explanation, concrete fix, and AST suggestions.</p>
+<hr />
+<h2 id="5-fastapi-microservice-web-dashboard">5. FastAPI Microservice &amp; Web Dashboard<a class="headerlink" href="#5-fastapi-microservice-web-dashboard" title="Permanent link">&para;</a></h2>
+<p>For distributed systems, team-wide error triage, or web-based tools, Error Translator bundles a complete <a href="https://fastapi.tiangolo.com/">FastAPI</a> service with single and batch translation endpoints and a built-in static dashboard.</p>
+<h3 id="starting-the-server">Starting the Server<a class="headerlink" href="#starting-the-server" title="Permanent link">&para;</a></h3>
+<p>Install server dependencies and launch Uvicorn:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>pip<span class="w"> </span>install<span class="w"> </span><span class="s2">"error-translator-cli-v2[server]"</span>
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>uvicorn<span class="w"> </span>error_translator.api.server:app<span class="w"> </span>--host<span class="w"> </span><span class="m">127</span>.0.0.1<span class="w"> </span>--port<span class="w"> </span><span class="m">8000</span><span class="w"> </span>--reload
+</span></code></pre></div>
+<h3 id="web-ui-dashboard-get">Web UI Dashboard (<code>GET /</code>)<a class="headerlink" href="#web-ui-dashboard-get" title="Permanent link">&para;</a></h3>
+<p>Navigate to <code>http://127.0.0.1:8000/</code> in any modern web browser to access the interactive web interface. Paste tracebacks directly into the UI to inspect formatted translations in real-time.</p>
+<hr />
+<h3 id="rest-api-endpoints">REST API Endpoints<a class="headerlink" href="#rest-api-endpoints" title="Permanent link">&para;</a></h3>
+<h4 id="1-single-translation-post-translate">1. Single Translation (<code>POST /translate</code>)<a class="headerlink" href="#1-single-translation-post-translate" title="Permanent link">&para;</a></h4>
+<p>Translates a single Python traceback string.</p>
+<ul>
+<li><strong>Request URL</strong>: <code>http://127.0.0.1:8000/translate</code></li>
+<li>
+<p><strong>Request Body</strong>:
+  <div class="language-json highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="p">{</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="w">  </span><span class="nt">"traceback_setting"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TypeError: unsupported operand type(s) for +: 'int' and 'str'"</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a><span class="p">}</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>cURL Example</strong>:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/translate<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"traceback_setting": "TypeError: unsupported operand type(s) for +: '</span><span class="se">\'</span><span class="s1">'int'</span><span class="se">\'</span><span class="s1">' and '</span><span class="se">\'</span><span class="s1">'str'</span><span class="se">\'</span><span class="s1">'"}'</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Response Payload</strong>:
+  <div class="language-json highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="p">{</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="w">  </span><span class="nt">"translate_error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a><span class="w">    </span><span class="nt">"explanation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You are trying to add two incompatible types: a int and a str."</span><span class="p">,</span>
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a><span class="w">    </span><span class="nt">"fix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ensure both sides of the '+' are the same type (e.g., both numbers or both strings)."</span><span class="p">,</span>
+</span><span id="__span-19-5"><a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a><span class="w">    </span><span class="nt">"ast_insight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-19-6"><a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a><span class="w">    </span><span class="nt">"matched_error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TypeError: unsupported operand type(s) for +: 'int' and 'str'"</span><span class="p">,</span>
+</span><span id="__span-19-7"><a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a><span class="w">    </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown File"</span><span class="p">,</span>
+</span><span id="__span-19-8"><a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a><span class="w">    </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown Line"</span><span class="p">,</span>
+</span><span id="__span-19-9"><a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a><span class="w">    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span>
+</span><span id="__span-19-10"><a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a><span class="w">  </span><span class="p">},</span>
+</span><span id="__span-19-11"><a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span>
+</span><span id="__span-19-12"><a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a><span class="p">}</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<hr />
+<h4 id="2-batch-translation-post-translatebatch">2. Batch Translation (<code>POST /translate/batch</code>)<a class="headerlink" href="#2-batch-translation-post-translatebatch" title="Permanent link">&para;</a></h4>
+<p>Translates multiple tracebacks in parallel using Python's <code>asyncio.to_thread</code> worker pool. Designed for processing high-throughput server error logs.</p>
+<ul>
+<li><strong>Request URL</strong>: <code>http://127.0.0.1:8000/translate/batch</code></li>
+<li>
+<p><strong>Request Body</strong>:
+  <div class="language-json highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="p">{</span>
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a><span class="w">  </span><span class="nt">"tracebacks"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a><span class="w">    </span><span class="s2">"KeyError: 'session_id'"</span><span class="p">,</span>
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a><span class="w">    </span><span class="s2">"ZeroDivisionError: division by zero"</span><span class="p">,</span>
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a><span class="w">    </span><span class="s2">"IndexError: list index out of range"</span>
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a><span class="w">  </span><span class="p">]</span>
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a><span class="p">}</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>cURL Example</strong>:
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>curl<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>http://127.0.0.1:8000/translate/batch<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"tracebacks": ["KeyError: \"session_id\"", "ZeroDivisionError: division by zero"]}'</span>
+</span></code></pre></div></p>
+</li>
+<li>
+<p><strong>Response Payload</strong>:
+  <div class="language-json highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="p">{</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="w">  </span><span class="nt">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="w">      </span><span class="nt">"explanation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You tried to look up a key named 'session_id' in a dictionary, but that key doesn't exist."</span><span class="p">,</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="w">      </span><span class="nt">"fix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Check for typos in the key name, or use the .get('session_id') method to safely access dictionary values."</span><span class="p">,</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="w">      </span><span class="nt">"ast_insight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="w">      </span><span class="nt">"matched_error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KeyError: 'session_id'"</span><span class="p">,</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a><span class="w">      </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown File"</span><span class="p">,</span>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="w">      </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown Line"</span><span class="p">,</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="w">      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="w">    </span><span class="p">},</span>
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-22-13"><a id="__codelineno-22-13" name="__codelineno-22-13" href="#__codelineno-22-13"></a><span class="w">      </span><span class="nt">"explanation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You are trying to divide a number by zero, which is mathematically impossible."</span><span class="p">,</span>
+</span><span id="__span-22-14"><a id="__codelineno-22-14" name="__codelineno-22-14" href="#__codelineno-22-14"></a><span class="w">      </span><span class="nt">"fix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Add an if-statement before the division to check if the denominator is 0."</span><span class="p">,</span>
+</span><span id="__span-22-15"><a id="__codelineno-22-15" name="__codelineno-22-15" href="#__codelineno-22-15"></a><span class="w">      </span><span class="nt">"ast_insight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-22-16"><a id="__codelineno-22-16" name="__codelineno-22-16" href="#__codelineno-22-16"></a><span class="w">      </span><span class="nt">"matched_error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ZeroDivisionError: division by zero"</span><span class="p">,</span>
+</span><span id="__span-22-17"><a id="__codelineno-22-17" name="__codelineno-22-17" href="#__codelineno-22-17"></a><span class="w">      </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown File"</span><span class="p">,</span>
+</span><span id="__span-22-18"><a id="__codelineno-22-18" name="__codelineno-22-18" href="#__codelineno-22-18"></a><span class="w">      </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown Line"</span><span class="p">,</span>
+</span><span id="__span-22-19"><a id="__codelineno-22-19" name="__codelineno-22-19" href="#__codelineno-22-19"></a><span class="w">      </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span>
+</span><span id="__span-22-20"><a id="__codelineno-22-20" name="__codelineno-22-20" href="#__codelineno-22-20"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-22-21"><a id="__codelineno-22-21" name="__codelineno-22-21" href="#__codelineno-22-21"></a><span class="w">  </span><span class="p">],</span>
+</span><span id="__span-22-22"><a id="__codelineno-22-22" name="__codelineno-22-22" href="#__codelineno-22-22"></a><span class="w">  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span>
+</span><span id="__span-22-23"><a id="__codelineno-22-23" name="__codelineno-22-23" href="#__codelineno-22-23"></a><span class="p">}</span>
+</span></code></pre></div></p>
+</li>
+</ul>
+<hr />
+<h4 id="3-health-check-get-health">3. Health Check (<code>GET /health</code>)<a class="headerlink" href="#3-health-check-get-health" title="Permanent link">&para;</a></h4>
+<p>Returns service health status for Kubernetes liveness/readiness probes or uptime monitors.</p>
+<ul>
+<li><strong>Request</strong>: <code>GET http://127.0.0.1:8000/health</code></li>
+<li><strong>Response</strong>: <code>{"status": "ok"}</code></li>
+</ul>
+<hr />
+<h2 id="6-programmatic-python-api">6. Programmatic Python API<a class="headerlink" href="#6-programmatic-python-api" title="Permanent link">&para;</a></h2>
+<p>Embed translation capabilities directly into custom tools, developer scripts, or test frameworks using the <code>translate_error</code> function.</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a><span class="kn">from</span><span class="w"> </span><span class="nn">error_translator</span><span class="w"> </span><span class="kn">import</span> <span class="n">translate_error</span>
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a><span class="n">traceback_text</span> <span class="o">=</span> <span class="s2">"""</span>
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a><span class="s2">Traceback (most recent call last):</span>
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a><span class="s2">  File "data_pipeline.py", line 45, in load_config</span>
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a><span class="s2">    api_key = config["api_ky"]</span>
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a><span class="s2">KeyError: 'api_ky'</span>
+</span><span id="__span-23-8"><a id="__codelineno-23-8" name="__codelineno-23-8" href="#__codelineno-23-8"></a><span class="s2">"""</span>
+</span><span id="__span-23-9"><a id="__codelineno-23-9" name="__codelineno-23-9" href="#__codelineno-23-9"></a>
+</span><span id="__span-23-10"><a id="__codelineno-23-10" name="__codelineno-23-10" href="#__codelineno-23-10"></a><span class="n">result</span> <span class="o">=</span> <span class="n">translate_error</span><span class="p">(</span><span class="n">traceback_text</span><span class="p">)</span>
+</span></code></pre></div>
+<h3 id="result-dictionary-contract">Result Dictionary Contract<a class="headerlink" href="#result-dictionary-contract" title="Permanent link">&para;</a></h3>
+<p>The returned dictionary conforms to the following schema:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Field</th>
+<th style="text-align: left;">Type</th>
+<th style="text-align: left;">Presence</th>
+<th style="text-align: left;">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><code>explanation</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;">Always</td>
+<td style="text-align: left;">Plain-English summary of what caused the exception.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>fix</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;">Always</td>
+<td style="text-align: left;">Actionable steps or code patterns to resolve the issue.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>matched_error</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;">Always</td>
+<td style="text-align: left;">The extracted final error line from the traceback.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>file</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;">Always</td>
+<td style="text-align: left;">Source file path (<code>Unknown File</code> if not found in traceback).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>line</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;">Always</td>
+<td style="text-align: left;">Offending line number (<code>Unknown Line</code> if not found).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>code</code></td>
+<td style="text-align: left;"><code>str</code></td>
+<td style="text-align: left;">Always</td>
+<td style="text-align: left;">Code snippet from the source file (empty string if unavailable).</td>
+</tr>
+<tr>
+<td style="text-align: left;"><code>ast_insight</code></td>
+<td style="text-align: left;"><code>str \| None</code></td>
+<td style="text-align: left;">Optional</td>
+<td style="text-align: left;">Contextual AST suggestions (e.g. typos, missing imports).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="integration-recipes">Integration Recipes<a class="headerlink" href="#integration-recipes" title="Permanent link">&para;</a></h3>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Custom Logging Handler</label><label for="__tabbed_1_2">Pytest Failure Hook (<code>conftest.py</code>)</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">logging</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">error_translator</span><span class="w"> </span><span class="kn">import</span> <span class="n">translate_error</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">HumanFriendlyErrorHandler</span><span class="p">(</span><span class="n">logging</span><span class="o">.</span><span class="n">Handler</span><span class="p">):</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">emit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">record</span><span class="p">):</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>        <span class="k">if</span> <span class="n">record</span><span class="o">.</span><span class="n">exc_text</span><span class="p">:</span>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>            <span class="n">translation</span> <span class="o">=</span> <span class="n">translate_error</span><span class="p">(</span><span class="n">record</span><span class="o">.</span><span class="n">exc_text</span><span class="p">)</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[ERROR EXPLAINED] </span><span class="si">{</span><span class="n">translation</span><span class="p">[</span><span class="s1">'explanation'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[SUGGESTED FIX]   </span><span class="si">{</span><span class="n">translation</span><span class="p">[</span><span class="s1">'fix'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">(</span><span class="s2">"app"</span><span class="p">)</span>
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a><span class="n">logger</span><span class="o">.</span><span class="n">addHandler</span><span class="p">(</span><span class="n">HumanFriendlyErrorHandler</span><span class="p">())</span>
+</span></code></pre></div>
+</div>
+<div class="tabbed-block">
+<div class="language-python highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pytest</span>
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a><span class="kn">from</span><span class="w"> </span><span class="nn">error_translator</span><span class="w"> </span><span class="kn">import</span> <span class="n">translate_error</span>
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a><span class="k">def</span><span class="w"> </span><span class="nf">pytest_exception_interact</span><span class="p">(</span><span class="n">node</span><span class="p">,</span> <span class="n">call</span><span class="p">,</span> <span class="n">report</span><span class="p">):</span>
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>    <span class="k">if</span> <span class="n">report</span><span class="o">.</span><span class="n">failed</span> <span class="ow">and</span> <span class="n">call</span><span class="o">.</span><span class="n">excinfo</span><span class="p">:</span>
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>        <span class="n">tb_str</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">call</span><span class="o">.</span><span class="n">excinfo</span><span class="o">.</span><span class="n">getrepr</span><span class="p">())</span>
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>        <span class="n">translation</span> <span class="o">=</span> <span class="n">translate_error</span><span class="p">(</span><span class="n">tb_str</span><span class="p">)</span>
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">"</span><span class="se">\n</span><span class="s2">"</span> <span class="o">+</span> <span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"FAILED TEST: </span><span class="si">{</span><span class="n">node</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"EXPLANATION: </span><span class="si">{</span><span class="n">translation</span><span class="p">[</span><span class="s1">'explanation'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"FIX:         </span><span class="si">{</span><span class="n">translation</span><span class="p">[</span><span class="s1">'fix'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>        <span class="nb">print</span><span class="p">(</span><span class="s2">"="</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
+</span></code></pre></div>
+</div>
+</div>
+</div>
+<hr />
+<h2 id="7-ast-powered-scoped-diagnostic-engine">7. AST-Powered Scoped Diagnostic Engine<a class="headerlink" href="#7-ast-powered-scoped-diagnostic-engine" title="Permanent link">&para;</a></h2>
+<p>Beyond simple regular expressions, Error Translator includes an <strong>Abstract Syntax Tree (AST) inspection engine</strong> located in <code>error_translator/ast/ast_engine.py</code>.</p>
+<h3 id="how-it-works">How It Works:<a class="headerlink" href="#how-it-works" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Source File Parsing</strong>: When a traceback includes a valid source file path and line number, the file is parsed into a Python AST.</li>
+<li><strong>Lexical Scope Boundary Detection (<code>ScopedSymbolCollector</code>)</strong>: The visitor inspects AST nodes while tracking <code>lineno</code> and <code>end_lineno</code> boundaries. It only descends into function or class bodies if the crash line occurred <em>inside</em> that specific block. This prevents variables from unrelated scopes from being suggested.</li>
+<li><strong>Symbol Harvesting</strong>: Collects variables, function definitions, class names, imports, and accessed attributes in the active scope.</li>
+<li><strong>Fuzzy Typo Resolution</strong>: Uses <code>difflib.get_close_matches</code> with a <code>0.6</code> similarity threshold to find the most likely intended symbol.</li>
+</ol>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="c1"># Example: If a user types 'usr_cnt' inside a function where 'user_count' is defined:</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="c1"># AST insight output:</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a><span class="s2">"Did you mean 'user_count'? There appears to be a typo."</span>
+</span></code></pre></div>
+<h3 id="supported-ast-handlers">Supported AST Handlers:<a class="headerlink" href="#supported-ast-handlers" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong><code>NameError</code></strong>: Detects misspelled variables and functions within the current lexical scope.</li>
+<li><strong><code>AttributeError</code></strong>: Identifies misspelled methods or object attributes.</li>
+<li><strong><code>ImportError</code> / <code>ModuleNotFoundError</code></strong>: Suggests correctly-spelled classes or functions from available imports.</li>
+</ul>
+<hr />
+<h2 id="8-dual-engine-performance-c-extension">8. Dual-Engine Performance &amp; C Extension<a class="headerlink" href="#8-dual-engine-performance-c-extension" title="Permanent link">&para;</a></h2>
+<p>To maximize throughput when processing large volumes of stack traces, Error Translator utilizes a <strong>hybrid dual-engine architecture</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>┌─────────────────────────────────────────────────────────────┐
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>│                   Error Translation Engine                  │
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>├──────────────────────────────┬──────────────────────────────┤
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>│  Primary: Native C Extension │  Fallback: Pure Python Loop  │
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>│      (fast_matcher.c)        │         (re.search)          │
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>│   • Direct PyObject matching │   • Pre-compiled patterns    │
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>│   • Sub-millisecond scan     │   • 100% platform compatible │
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>│   • Automatic memory safety  │   • Zero external dependencies│
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>└──────────────────────────────┴──────────────────────────────┘
+</span></code></pre></div>
+<ul>
+<li><strong>Compiled C Speed</strong>: When compiled via CPython (<code>setup.py</code>), the <code>fast_matcher</code> module scans rule tables natively in C without Python bytecode dispatch overhead.</li>
+<li><strong>Seamless Portability</strong>: If a C compiler is unavailable during <code>pip install</code>, the installation succeeds without errors, and the engine automatically falls back to pre-compiled regex objects in Python with <strong>100% identical outputs</strong>.</li>
+</ul>
 
 
 
@@ -779,6 +1726,12 @@
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -809,10 +1762,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.top", "navigation.sections", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

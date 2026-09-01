@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Python error translator and traceback explainer for developers. Convert Python exceptions into clear explanations and actionable fixes offline.">
+        <meta name="description" content="Offline Python traceback translator and error explainer. Convert cryptic exceptions into clear explanations and actionable fixes.">
       
       
         <meta name="author" content="Gourabananda Datta">
@@ -25,15 +25,15 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Examples - Error Translator</title>
+        <title>Real-World Examples - Error Translator</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#real-world-input-output-examples" class="md-skip">
+        <a href="#real-world-examples-catalog" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Examples
+              Real-World Examples
             
           </span>
         </div>
@@ -178,6 +178,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -323,7 +325,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Architecture & Internals
   
 
     
@@ -359,7 +361,7 @@
   <span class="md-ellipsis">
     
   
-    Examples
+    Real-World Examples
   
 
     
@@ -377,7 +379,7 @@
   <span class="md-ellipsis">
     
   
-    Examples
+    Real-World Examples
   
 
     
@@ -403,123 +405,617 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example-a-type-mismatch" class="md-nav__link">
+  <a href="#1-type-value-errors" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example A: Type mismatch
+        1. Type &amp; Value Errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Type &amp; Value Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-11-incompatible-string-and-integer-concatenation-typeerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 1.1: Incompatible String and Integer Concatenation (TypeError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 1.1: Incompatible String and Integer Concatenation (TypeError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-b-missing-variable-typo" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example B: Missing variable typo
+        Error Translator Output:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-c-index-out-of-range" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#json-payload" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example C: Index out of range
+        JSON Payload:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-d-key-not-found-in-dictionary" class="md-nav__link">
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-12-converting-float-string-to-integer-valueerror" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example D: Key not found in dictionary
+        Scenario 1.2: Converting Float String to Integer (ValueError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 1.2: Converting Float String to Integer (ValueError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-e-division-by-zero" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example E: Division by zero
+        Error Translator Output:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-f-file-not-found" class="md-nav__link">
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-13-subscripting-a-nonetype-object-typeerror" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example F: File not found
+        Scenario 1.3: Subscripting a NoneType Object (TypeError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 1.3: Subscripting a NoneType Object (TypeError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-g-attribute-error-on-wrong-type" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example G: Attribute error on wrong type
+        Error Translator Output:
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#example-h-import-module-not-found" class="md-nav__link">
+  <a href="#2-variable-scope-typo-lookups" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example H: Import module not found
+        2. Variable Scope &amp; Typo Lookups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Variable Scope &amp; Typo Lookups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-21-variable-name-typo-with-ast-scoped-suggestion-nameerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 2.1: Variable Name Typo with AST Scoped Suggestion (NameError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 2.1: Variable Name Typo with AST Scoped Suggestion (NameError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-i-indentation-mismatch" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example I: Indentation mismatch
+        Error Translator Output:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-j-value-conversion-error" class="md-nav__link">
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-22-calling-a-method-on-the-wrong-data-type-attributeerror" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example J: Value conversion error
+        Scenario 2.2: Calling a Method on the Wrong Data Type (AttributeError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 2.2: Calling a Method on the Wrong Data Type (AttributeError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-k-recursion-limit-exceeded" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example K: Recursion limit exceeded
+        Error Translator Output:
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-collections-mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Collections &amp; Mappings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Collections &amp; Mappings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-31-accessing-an-out-of-bounds-list-index-indexerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 3.1: Accessing an Out-of-Bounds List Index (IndexError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 3.1: Accessing an Out-of-Bounds List Index (IndexError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-32-missing-dictionary-key-keyerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 3.2: Missing Dictionary Key (KeyError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 3.2: Missing Dictionary Key (KeyError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-syntax-indentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Syntax &amp; Indentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Syntax &amp; Indentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-41-missing-indented-block-indentationerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 4.1: Missing Indented Block (IndentationError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 4.1: Missing Indented Block (IndentationError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modules-package-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Modules &amp; Package Imports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Modules &amp; Package Imports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-51-missing-third-party-dependency-modulenotfounderror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 5.1: Missing Third-Party Dependency (ModuleNotFoundError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 5.1: Missing Third-Party Dependency (ModuleNotFoundError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-filesystem-os-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Filesystem &amp; OS Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Filesystem &amp; OS Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-61-non-existent-file-path-filenotfounderror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 6.1: Non-Existent File Path (FileNotFoundError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 6.1: Non-Existent File Path (FileNotFoundError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-arithmetic-math" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Arithmetic &amp; Math
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Arithmetic &amp; Math">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-71-zero-division-zerodivisionerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 7.1: Zero Division (ZeroDivisionError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 7.1: Zero Division (ZeroDivisionError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-runtime-limits-recursion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Runtime Limits &amp; Recursion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Runtime Limits &amp; Recursion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-81-infinite-recursion-recursionerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 8.1: Infinite Recursion (RecursionError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 8.1: Infinite Recursion (RecursionError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -545,7 +1041,7 @@
   <span class="md-ellipsis">
     
   
-    Contributing
+    Contributing Guide
   
 
     
@@ -585,123 +1081,617 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#example-a-type-mismatch" class="md-nav__link">
+  <a href="#1-type-value-errors" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example A: Type mismatch
+        1. Type &amp; Value Errors
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Type &amp; Value Errors">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-11-incompatible-string-and-integer-concatenation-typeerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 1.1: Incompatible String and Integer Concatenation (TypeError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 1.1: Incompatible String and Integer Concatenation (TypeError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-b-missing-variable-typo" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example B: Missing variable typo
+        Error Translator Output:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-c-index-out-of-range" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#json-payload" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example C: Index out of range
+        JSON Payload:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-d-key-not-found-in-dictionary" class="md-nav__link">
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-12-converting-float-string-to-integer-valueerror" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example D: Key not found in dictionary
+        Scenario 1.2: Converting Float String to Integer (ValueError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 1.2: Converting Float String to Integer (ValueError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-e-division-by-zero" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_1" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example E: Division by zero
+        Error Translator Output:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-f-file-not-found" class="md-nav__link">
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-13-subscripting-a-nonetype-object-typeerror" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example F: File not found
+        Scenario 1.3: Subscripting a NoneType Object (TypeError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 1.3: Subscripting a NoneType Object (TypeError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-g-attribute-error-on-wrong-type" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_2" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example G: Attribute error on wrong type
+        Error Translator Output:
       
     </span>
   </a>
   
 </li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
       
         <li class="md-nav__item">
-  <a href="#example-h-import-module-not-found" class="md-nav__link">
+  <a href="#2-variable-scope-typo-lookups" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example H: Import module not found
+        2. Variable Scope &amp; Typo Lookups
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Variable Scope &amp; Typo Lookups">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-21-variable-name-typo-with-ast-scoped-suggestion-nameerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 2.1: Variable Name Typo with AST Scoped Suggestion (NameError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 2.1: Variable Name Typo with AST Scoped Suggestion (NameError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-i-indentation-mismatch" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_3" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example I: Indentation mismatch
+        Error Translator Output:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-j-value-conversion-error" class="md-nav__link">
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-22-calling-a-method-on-the-wrong-data-type-attributeerror" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example J: Value conversion error
+        Scenario 2.2: Calling a Method on the Wrong Data Type (AttributeError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 2.2: Calling a Method on the Wrong Data Type (AttributeError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#example-k-recursion-limit-exceeded" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_4" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Example K: Recursion limit exceeded
+        Error Translator Output:
       
     </span>
   </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-collections-mappings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Collections &amp; Mappings
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Collections &amp; Mappings">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-31-accessing-an-out-of-bounds-list-index-indexerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 3.1: Accessing an Out-of-Bounds List Index (IndexError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 3.1: Accessing an Out-of-Bounds List Index (IndexError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scenario-32-missing-dictionary-key-keyerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 3.2: Missing Dictionary Key (KeyError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 3.2: Missing Dictionary Key (KeyError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-syntax-indentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Syntax &amp; Indentation
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Syntax &amp; Indentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-41-missing-indented-block-indentationerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 4.1: Missing Indented Block (IndentationError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 4.1: Missing Indented Block (IndentationError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-modules-package-imports" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Modules &amp; Package Imports
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Modules &amp; Package Imports">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-51-missing-third-party-dependency-modulenotfounderror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 5.1: Missing Third-Party Dependency (ModuleNotFoundError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 5.1: Missing Third-Party Dependency (ModuleNotFoundError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-filesystem-os-operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Filesystem &amp; OS Operations
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Filesystem &amp; OS Operations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-61-non-existent-file-path-filenotfounderror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 6.1: Non-Existent File Path (FileNotFoundError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 6.1: Non-Existent File Path (FileNotFoundError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-arithmetic-math" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Arithmetic &amp; Math
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Arithmetic &amp; Math">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-71-zero-division-zerodivisionerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 7.1: Zero Division (ZeroDivisionError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 7.1: Zero Division (ZeroDivisionError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-runtime-limits-recursion" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Runtime Limits &amp; Recursion
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Runtime Limits &amp; Recursion">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#scenario-81-infinite-recursion-recursionerror" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scenario 8.1: Infinite Recursion (RecursionError)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scenario 8.1: Infinite Recursion (RecursionError)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#raw-python-traceback_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Raw Python Traceback:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#error-translator-output_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error Translator Output:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -738,235 +1728,309 @@
   
 
 
-<h1 id="real-world-input-output-examples">Real-World Input → Output Examples<a class="headerlink" href="#real-world-input-output-examples" title="Permanent link">&para;</a></h1>
-<p>Here are some examples of raw tracebacks and their translated output using Error Translator.</p>
-<p>Note: file/line/code context is only available when the input includes traceback location lines like <code>File "...", line N</code>.
-Note: the CLI prints a Rich panel UI; examples below use normalized plain text labels for readability.</p>
-<h3 id="example-a-type-mismatch">Example A: Type mismatch<a class="headerlink" href="#example-a-type-mismatch" title="Permanent link">&para;</a></h3>
-<p>Input traceback:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File &quot;app.py&quot;, line 14, in &lt;module&gt;
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    total = &quot;Users: &quot; + 42
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>TypeError: can only concatenate str (not &quot;int&quot;) to str
-</code></pre></div>
-<p>Translated output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Detected Error:
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>TypeError: can only concatenate str (not &quot;int&quot;) to str
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>Location: app.py (Line 14)
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>
-<a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>   |
-<a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>   |  total = &quot;Users: &quot; + 42
-<a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>   |
-<a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>
-<a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>Explanation:
-<a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>You are trying to add a string to an int, which Python cannot do.
-<a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
-<a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>Suggested Fix:
-<a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>Convert the int to a string first using str() before concatenating.
-</code></pre></div>
-<h3 id="example-b-missing-variable-typo">Example B: Missing variable typo<a class="headerlink" href="#example-b-missing-variable-typo" title="Permanent link">&para;</a></h3>
-<p>Input error line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>NameError: name &#39;usr_count&#39; is not defined
-</code></pre></div>
-<p>Translated output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Detected Error:
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>NameError: name &#39;usr_count&#39; is not defined
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>Location: Unknown File (Line Unknown Line)
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>Explanation:
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>You tried to use a variable or function named &#39;usr_count&#39;, but Python doesn&#39;t recognize it.
-<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>
-<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>Suggested Fix:
-<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>Check if &#39;usr_count&#39; is spelled correctly, or ensure you defined/imported it before using it.
-</code></pre></div>
-<h3 id="example-c-index-out-of-range">Example C: Index out of range<a class="headerlink" href="#example-c-index-out-of-range" title="Permanent link">&para;</a></h3>
-<p>Input traceback:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Traceback (most recent call last):
-<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>  File &quot;script.py&quot;, line 3, in &lt;module&gt;
-<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    print(items[5])
-<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>IndexError: list index out of range
-</code></pre></div>
-<p>Translated output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Detected Error:
-<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>IndexError: list index out of range
-<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
-<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>Location: script.py (Line 3)
-<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
-<a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>   |
-<a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>   |  print(items[5])
-<a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>   |
-<a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>
-<a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>Explanation:
-<a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>You tried to access an index (position 5) that doesn&#39;t exist in the list.
-<a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>
-<a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>Suggested Fix:
-<a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>Check the length of the list using len(items) - 1 to find the last valid index.
-</code></pre></div>
-<h3 id="example-d-key-not-found-in-dictionary">Example D: Key not found in dictionary<a class="headerlink" href="#example-d-key-not-found-in-dictionary" title="Permanent link">&para;</a></h3>
-<p>Input error line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>KeyError: &#39;age&#39;
-</code></pre></div>
-<p>Translated output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Detected Error:
-<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>KeyError: &#39;age&#39;
-<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
-<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Location: Unknown File (Line Unknown Line)
-<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>
-<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>Explanation:
-<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>You tried to access a dictionary key (&#39;age&#39;) that doesn&#39;t exist.
-<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
-<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>Suggested Fix:
-<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>Use dict.get(&#39;age&#39;, default_value) to safely retrieve the key with a fallback,
-<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>or ensure the key is set before accessing it.
-</code></pre></div>
-<h3 id="example-e-division-by-zero">Example E: Division by zero<a class="headerlink" href="#example-e-division-by-zero" title="Permanent link">&para;</a></h3>
-<p>Input error line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>ZeroDivisionError: division by zero
-</code></pre></div>
-<p>Translated output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Detected Error:
-<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>ZeroDivisionError: division by zero
-<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
-<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>Location: Unknown File (Line Unknown Line)
-<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>
-<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>Explanation:
-<a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a>You attempted to divide a number by zero, which is mathematically undefined.
-<a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a>
-<a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>Suggested Fix:
-<a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a>Add a condition to check if the denominator is zero before performing division.
-</code></pre></div>
-<h3 id="example-f-file-not-found">Example F: File not found<a class="headerlink" href="#example-f-file-not-found" title="Permanent link">&para;</a></h3>
-<p>Input traceback:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Traceback (most recent call last):
-<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>  File &quot;reader.py&quot;, line 2, in &lt;module&gt;
-<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>    with open(&#39;data.csv&#39;, &#39;r&#39;) as f:
-<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>FileNotFoundError: [Errno 2] No such file or directory: &#39;data.csv&#39;
-</code></pre></div>
-<p>Translated output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Detected Error:
-<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>FileNotFoundError: [Errno 2] No such file or directory: &#39;data.csv&#39;
-<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
-<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>Location: reader.py (Line 2)
-<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
-<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>   |
-<a id="__codelineno-11-7" name="__codelineno-11-7" href="#__codelineno-11-7"></a>   |  with open(&#39;data.csv&#39;, &#39;r&#39;) as f:
-<a id="__codelineno-11-8" name="__codelineno-11-8" href="#__codelineno-11-8"></a>   |
-<a id="__codelineno-11-9" name="__codelineno-11-9" href="#__codelineno-11-9"></a>
-<a id="__codelineno-11-10" name="__codelineno-11-10" href="#__codelineno-11-10"></a>Explanation:
-<a id="__codelineno-11-11" name="__codelineno-11-11" href="#__codelineno-11-11"></a>Python cannot find the file &#39;data.csv&#39; in the current working directory.
-<a id="__codelineno-11-12" name="__codelineno-11-12" href="#__codelineno-11-12"></a>
-<a id="__codelineno-11-13" name="__codelineno-11-13" href="#__codelineno-11-13"></a>Suggested Fix:
-<a id="__codelineno-11-14" name="__codelineno-11-14" href="#__codelineno-11-14"></a>Verify the file path and name. Use os.path.exists() to check before opening,
-<a id="__codelineno-11-15" name="__codelineno-11-15" href="#__codelineno-11-15"></a>or provide an absolute path.
-</code></pre></div>
-<h3 id="example-g-attribute-error-on-wrong-type">Example G: Attribute error on wrong type<a class="headerlink" href="#example-g-attribute-error-on-wrong-type" title="Permanent link">&para;</a></h3>
-<p>Input error line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>AttributeError: &#39;int&#39; object has no attribute &#39;append&#39;
-</code></pre></div>
-<p>Translated output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Detected Error:
-<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>AttributeError: &#39;int&#39; object has no attribute &#39;append&#39;
-<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>
-<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>Location: Unknown File (Line Unknown Line)
-<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>
-<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>Explanation:
-<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>You are trying to call .append() on an integer. .append() is a method for lists.
-<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>
-<a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>Suggested Fix:
-<a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>If you meant to collect multiple values, initialize a list instead (my_list = []).
-<a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>If you&#39;re working with a single integer, review what operation you intended.
-</code></pre></div>
-<h3 id="example-h-import-module-not-found">Example H: Import module not found<a class="headerlink" href="#example-h-import-module-not-found" title="Permanent link">&para;</a></h3>
-<p>Input error line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>ModuleNotFoundError: No module named &#39;requests&#39;
-</code></pre></div>
-<p>Translated output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Detected Error:
-<a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>ModuleNotFoundError: No module named &#39;requests&#39;
-<a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>
-<a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>Location: Unknown File (Line Unknown Line)
-<a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>
-<a id="__codelineno-15-6" name="__codelineno-15-6" href="#__codelineno-15-6"></a>Explanation:
-<a id="__codelineno-15-7" name="__codelineno-15-7" href="#__codelineno-15-7"></a>Python cannot find the &#39;requests&#39; module. It is not part of the standard library
-<a id="__codelineno-15-8" name="__codelineno-15-8" href="#__codelineno-15-8"></a>and needs to be installed separately or you have a typo in the module name.
-<a id="__codelineno-15-9" name="__codelineno-15-9" href="#__codelineno-15-9"></a>
-<a id="__codelineno-15-10" name="__codelineno-15-10" href="#__codelineno-15-10"></a>Suggested Fix:
-<a id="__codelineno-15-11" name="__codelineno-15-11" href="#__codelineno-15-11"></a>Install the missing package using pip: pip install requests.
-<a id="__codelineno-15-12" name="__codelineno-15-12" href="#__codelineno-15-12"></a>If the module is your own file, check the import path and file location.
-</code></pre></div>
-<h3 id="example-i-indentation-mismatch">Example I: Indentation mismatch<a class="headerlink" href="#example-i-indentation-mismatch" title="Permanent link">&para;</a></h3>
-<p>Input traceback:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Traceback (most recent call last):
-<a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  File &quot;script.py&quot;, line 5
-<a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>    print(&quot;Hello&quot;)
-<a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>        ^
-<a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>IndentationError: expected an indented block
-</code></pre></div>
-<p>Translated output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Detected Error:
-<a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>IndentationError: expected an indented block
-<a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>
-<a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>Location: script.py (Line 5)
-<a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>
-<a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>   |
-<a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>   |  print(&quot;Hello&quot;)
-<a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>   |
-<a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>
-<a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>Explanation:
-<a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>Python uses indentation to define blocks of code. You likely forgot to indent
-<a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>after a statement that expects a nested block (e.g., after if, for, def).
-<a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>
-<a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>Suggested Fix:
-<a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>Add consistent spaces or tabs to the line after the colon. Use 4 spaces per level.
-</code></pre></div>
-<h3 id="example-j-value-conversion-error">Example J: Value conversion error<a class="headerlink" href="#example-j-value-conversion-error" title="Permanent link">&para;</a></h3>
-<p>Input error line:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>ValueError: invalid literal for int() with base 10: &#39;42.5&#39;
-</code></pre></div>
-<p>Translated output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Detected Error:
-<a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>ValueError: invalid literal for int() with base 10: &#39;42.5&#39;
-<a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>
-<a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>Location: Unknown File (Line Unknown Line)
-<a id="__codelineno-19-5" name="__codelineno-19-5" href="#__codelineno-19-5"></a>
-<a id="__codelineno-19-6" name="__codelineno-19-6" href="#__codelineno-19-6"></a>Explanation:
-<a id="__codelineno-19-7" name="__codelineno-19-7" href="#__codelineno-19-7"></a>You are trying to convert the string &#39;42.5&#39; to an integer, but it contains a
-<a id="__codelineno-19-8" name="__codelineno-19-8" href="#__codelineno-19-8"></a>decimal point, so it&#39;s not a valid whole number.
-<a id="__codelineno-19-9" name="__codelineno-19-9" href="#__codelineno-19-9"></a>
-<a id="__codelineno-19-10" name="__codelineno-19-10" href="#__codelineno-19-10"></a>Suggested Fix:
-<a id="__codelineno-19-11" name="__codelineno-19-11" href="#__codelineno-19-11"></a>If you need to keep the fractional part, use float() instead of int().
-<a id="__codelineno-19-12" name="__codelineno-19-12" href="#__codelineno-19-12"></a>If you want to truncate, convert to float first then to int: int(float(&#39;42.5&#39;)).
-</code></pre></div>
-<h3 id="example-k-recursion-limit-exceeded">Example K: Recursion limit exceeded<a class="headerlink" href="#example-k-recursion-limit-exceeded" title="Permanent link">&para;</a></h3>
-<p>Input traceback:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>Traceback (most recent call last):
-<a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>  File &quot;recursive.py&quot;, line 4, in &lt;module&gt;
-<a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>    infinite()
-<a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>  File &quot;recursive.py&quot;, line 2, in infinite
-<a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>    return infinite()
-<a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>  File &quot;recursive.py&quot;, line 2, in infinite
-<a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>    return infinite()
-<a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>  ...
-<a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>RecursionError: maximum recursion depth exceeded
-</code></pre></div>
-<p>Translated output:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Detected Error:
-<a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>RecursionError: maximum recursion depth exceeded
-<a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
-<a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>Location: recursive.py (Line 2)
-<a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a>
-<a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>   |
-<a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a>   |  return infinite()
-<a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a>   |
-<a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a>
-<a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a>Explanation:
-<a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a>A function is calling itself so many times that Python&#39;s recursion limit has been reached. This usually happens when a recursive function lacks a proper base case or stop condition.
-<a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>
-<a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a>Suggested Fix:
-<a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a>Add a base case to stop the recursion. Check that the function arguments change in each call to eventually reach the base case. If deep recursion is intentional, you can increase the limit with sys.setrecursionlimit(), but restructuring the code to use iteration is often safer.
-</code></pre></div>
+<h1 id="real-world-examples-catalog">Real-World Examples Catalog<a class="headerlink" href="#real-world-examples-catalog" title="Permanent link">&para;</a></h1>
+<p>This catalog demonstrates how <strong>Error Translator</strong> transforms raw, confusing Python stack traces into clear, actionable advice.</p>
+<hr />
+<h2 id="1-type-value-errors">1. Type &amp; Value Errors<a class="headerlink" href="#1-type-value-errors" title="Permanent link">&para;</a></h2>
+<h3 id="scenario-11-incompatible-string-and-integer-concatenation-typeerror">Scenario 1.1: Incompatible String and Integer Concatenation (<code>TypeError</code>)<a class="headerlink" href="#scenario-11-incompatible-string-and-integer-concatenation-typeerror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> Attempting to add an integer directly to a string using the <code>+</code> operator.</p>
+<h4 id="raw-python-traceback">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Traceback (most recent call last):
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  File "app.py", line 14, in &lt;module&gt;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>    total = "Users: " + 42
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>TypeError: can only concatenate str (not "int") to str
+</span></code></pre></div>
+<h4 id="error-translator-output">Error Translator Output:<a class="headerlink" href="#error-translator-output" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>│ TypeError: can only concatenate str (not "int") to str                       │
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│ File: app.py  |  Line: 14                                                    │
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│ 14 │ total = "Users: " + 42                                                  │
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│ You are trying to add a string to a int, which Python cannot do.             │
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>│ Convert the int to a string first using str() before concatenating.          │
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<h4 id="json-payload">JSON Payload:<a class="headerlink" href="#json-payload" title="Permanent link">&para;</a></h4>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span><span class="nt">"explanation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You are trying to add a string to a int, which Python cannot do."</span><span class="p">,</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">  </span><span class="nt">"fix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Convert the int to a string first using str() before concatenating."</span><span class="p">,</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">  </span><span class="nt">"ast_insight"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="w">  </span><span class="nt">"matched_error"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TypeError: can only concatenate str (not \"int\") to str"</span><span class="p">,</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">  </span><span class="nt">"file"</span><span class="p">:</span><span class="w"> </span><span class="s2">"app.py"</span><span class="p">,</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="w">  </span><span class="nt">"line"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14"</span><span class="p">,</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="w">  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"total = \"Users: \" + 42"</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<hr />
+<h3 id="scenario-12-converting-float-string-to-integer-valueerror">Scenario 1.2: Converting Float String to Integer (<code>ValueError</code>)<a class="headerlink" href="#scenario-12-converting-float-string-to-integer-valueerror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> Passing a decimal string like <code>'42.5'</code> directly to <code>int()</code>.</p>
+<h4 id="raw-python-traceback_1">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback_1" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Traceback (most recent call last):
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>  File "parser.py", line 8, in parse_age
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    age = int(raw_input)
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>ValueError: invalid literal for int() with base 10: '42.5'
+</span></code></pre></div>
+<h4 id="error-translator-output_1">Error Translator Output:<a class="headerlink" href="#error-translator-output_1" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>│ ValueError: invalid literal for int() with base 10: '42.5'                   │
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>│ File: parser.py  |  Line: 8                                                  │
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>│ 8 │ age = int(raw_input)                                                     │
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>│ You are trying to convert the string '42.5' to an integer, but it contains a  │
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>│ decimal point, so it's not a valid whole number.                             │
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>│ If you need to keep decimals, use float(). If truncating, convert to float    │
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>│ first: int(float('42.5')).                                                   │
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h3 id="scenario-13-subscripting-a-nonetype-object-typeerror">Scenario 1.3: Subscripting a NoneType Object (<code>TypeError</code>)<a class="headerlink" href="#scenario-13-subscripting-a-nonetype-object-typeerror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> Attempting to access an index or key on a function return value that returned <code>None</code>.</p>
+<h4 id="raw-python-traceback_2">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback_2" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Traceback (most recent call last):
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>  File "fetcher.py", line 22, in get_user_name
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    first_name = user_record["name"]
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>TypeError: 'NoneType' object is not subscriptable
+</span></code></pre></div>
+<h4 id="error-translator-output_2">Error Translator Output:<a class="headerlink" href="#error-translator-output_2" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>│ TypeError: 'NoneType' object is not subscriptable                            │
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>│ File: fetcher.py  |  Line: 22                                                │
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>│ 22 │ first_name = user_record["name"]                                        │
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>│ You are trying to access an item from a variable that is None.               │
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>│ Check why the variable evaluated to None before accessing its elements or    │
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>│ add an 'if var is not None:' guard.                                          │
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h2 id="2-variable-scope-typo-lookups">2. Variable Scope &amp; Typo Lookups<a class="headerlink" href="#2-variable-scope-typo-lookups" title="Permanent link">&para;</a></h2>
+<h3 id="scenario-21-variable-name-typo-with-ast-scoped-suggestion-nameerror">Scenario 2.1: Variable Name Typo with AST Scoped Suggestion (<code>NameError</code>)<a class="headerlink" href="#scenario-21-variable-name-typo-with-ast-scoped-suggestion-nameerror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> Calling a misspelled variable <code>usr_count</code> where <code>user_count</code> was defined within the local function scope.</p>
+<h4 id="raw-python-traceback_3">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback_3" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Traceback (most recent call last):
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  File "analytics.py", line 32, in compute_metrics
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>    active_users = usr_count + 10
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>NameError: name 'usr_count' is not defined
+</span></code></pre></div>
+<h4 id="error-translator-output_3">Error Translator Output:<a class="headerlink" href="#error-translator-output_3" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>│ NameError: name 'usr_count' is not defined                                   │
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a>│ File: analytics.py  |  Line: 32                                              │
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a>│ 32 │ active_users = usr_count + 10                                           │
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a>│ You tried to use a variable or function named 'usr_count', but Python doesn't │
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a>│ recognize it in the current scope.                                           │
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-8-11"><a id="__codelineno-8-11" name="__codelineno-8-11" href="#__codelineno-8-11"></a>│ Check if 'usr_count' is spelled correctly, or define/import it first.        │
+</span><span id="__span-8-12"><a id="__codelineno-8-12" name="__codelineno-8-12" href="#__codelineno-8-12"></a>├─ AST Insight ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-8-13"><a id="__codelineno-8-13" name="__codelineno-8-13" href="#__codelineno-8-13"></a>│ Did you mean 'user_count'? There appears to be a typo.                       │
+</span><span id="__span-8-14"><a id="__codelineno-8-14" name="__codelineno-8-14" href="#__codelineno-8-14"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h3 id="scenario-22-calling-a-method-on-the-wrong-data-type-attributeerror">Scenario 2.2: Calling a Method on the Wrong Data Type (<code>AttributeError</code>)<a class="headerlink" href="#scenario-22-calling-a-method-on-the-wrong-data-type-attributeerror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> Attempting to call <code>.append()</code> on an integer or integer variable.</p>
+<h4 id="raw-python-traceback_4">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback_4" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>Traceback (most recent call last):
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>  File "processor.py", line 9, in accumulate
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>    score.append(100)
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>AttributeError: 'int' object has no attribute 'append'
+</span></code></pre></div>
+<h4 id="error-translator-output_4">Error Translator Output:<a class="headerlink" href="#error-translator-output_4" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>│ AttributeError: 'int' object has no attribute 'append'                       │
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>│ File: processor.py  |  Line: 9                                               │
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>│ 9 │ score.append(100)                                                        │
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>│ You are trying to call .append() on an integer. .append() is a method for    │
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>│ lists.                                                                       │
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>│ If you meant to collect multiple values, initialize a list: score = [].      │
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h2 id="3-collections-mappings">3. Collections &amp; Mappings<a class="headerlink" href="#3-collections-mappings" title="Permanent link">&para;</a></h2>
+<h3 id="scenario-31-accessing-an-out-of-bounds-list-index-indexerror">Scenario 3.1: Accessing an Out-of-Bounds List Index (<code>IndexError</code>)<a class="headerlink" href="#scenario-31-accessing-an-out-of-bounds-list-index-indexerror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> Accessing position 5 in a list with only 3 elements.</p>
+<h4 id="raw-python-traceback_5">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback_5" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Traceback (most recent call last):
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>  File "pipeline.py", line 18, in get_item
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>    target = items[5]
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>IndexError: list index out of range
+</span></code></pre></div>
+<h4 id="error-translator-output_5">Error Translator Output:<a class="headerlink" href="#error-translator-output_5" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>│ IndexError: list index out of range                                          │
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>│ File: pipeline.py  |  Line: 18                                               │
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>│ 18 │ target = items[5]                                                       │
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>│ You are trying to access an item in a list at a position that doesn't exist. │
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>│ Check the length of your list using len(). Python lists start counting at 0! │
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h3 id="scenario-32-missing-dictionary-key-keyerror">Scenario 3.2: Missing Dictionary Key (<code>KeyError</code>)<a class="headerlink" href="#scenario-32-missing-dictionary-key-keyerror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> Querying a key <code>'auth_token'</code> on a dictionary that does not contain it.</p>
+<h4 id="raw-python-traceback_6">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback_6" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Traceback (most recent call last):
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>  File "auth.py", line 12, in validate_headers
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>    token = headers['auth_token']
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>KeyError: 'auth_token'
+</span></code></pre></div>
+<h4 id="error-translator-output_6">Error Translator Output:<a class="headerlink" href="#error-translator-output_6" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>│ KeyError: 'auth_token'                                                       │
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>│ File: auth.py  |  Line: 12                                                   │
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>│ 12 │ token = headers['auth_token']                                           │
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>│ You tried to look up a key named 'auth_token' in a dictionary, but that key  │
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>│ doesn't exist.                                                               │
+</span><span id="__span-14-10"><a id="__codelineno-14-10" name="__codelineno-14-10" href="#__codelineno-14-10"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-14-11"><a id="__codelineno-14-11" name="__codelineno-14-11" href="#__codelineno-14-11"></a>│ Check for typos, or use headers.get('auth_token') to safely retrieve it.    │
+</span><span id="__span-14-12"><a id="__codelineno-14-12" name="__codelineno-14-12" href="#__codelineno-14-12"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h2 id="4-syntax-indentation">4. Syntax &amp; Indentation<a class="headerlink" href="#4-syntax-indentation" title="Permanent link">&para;</a></h2>
+<h3 id="scenario-41-missing-indented-block-indentationerror">Scenario 4.1: Missing Indented Block (<code>IndentationError</code>)<a class="headerlink" href="#scenario-41-missing-indented-block-indentationerror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> Declaring a function or loop without indenting the nested statement body.</p>
+<h4 id="raw-python-traceback_7">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback_7" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>Traceback (most recent call last):
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a>  File "server.py", line 5
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    def start_worker():
+</span><span id="__span-15-4"><a id="__codelineno-15-4" name="__codelineno-15-4" href="#__codelineno-15-4"></a>    print("Starting...")
+</span><span id="__span-15-5"><a id="__codelineno-15-5" name="__codelineno-15-5" href="#__codelineno-15-5"></a>IndentationError: expected an indented block
+</span></code></pre></div>
+<h4 id="error-translator-output_7">Error Translator Output:<a class="headerlink" href="#error-translator-output_7" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>│ IndentationError: expected an indented block                                 │
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>│ File: server.py  |  Line: 5                                                  │
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>│ 5 │ print("Starting...")                                                     │
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>│ Python expected indented code after a statement like 'def', 'if', 'for', or  │
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>│ 'while', but didn't find it.                                                 │
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-16-11"><a id="__codelineno-16-11" name="__codelineno-16-11" href="#__codelineno-16-11"></a>│ Add indentation (usually 4 spaces) to the lines following the colon.         │
+</span><span id="__span-16-12"><a id="__codelineno-16-12" name="__codelineno-16-12" href="#__codelineno-16-12"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h2 id="5-modules-package-imports">5. Modules &amp; Package Imports<a class="headerlink" href="#5-modules-package-imports" title="Permanent link">&para;</a></h2>
+<h3 id="scenario-51-missing-third-party-dependency-modulenotfounderror">Scenario 5.1: Missing Third-Party Dependency (<code>ModuleNotFoundError</code>)<a class="headerlink" href="#scenario-51-missing-third-party-dependency-modulenotfounderror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> Importing a package that is not installed in the active virtual environment.</p>
+<h4 id="raw-python-traceback_8">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback_8" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>Traceback (most recent call last):
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>  File "crawler.py", line 1, in &lt;module&gt;
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    import requests
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>ModuleNotFoundError: No module named 'requests'
+</span></code></pre></div>
+<h4 id="error-translator-output_8">Error Translator Output:<a class="headerlink" href="#error-translator-output_8" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>│ ModuleNotFoundError: No module named 'requests'                              │
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>│ File: crawler.py  |  Line: 1                                                 │
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>│ 1 │ import requests                                                          │
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>│ Python is trying to import a package named 'requests', but it isn't          │
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>│ installed in your current environment.                                       │
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>│ Open your terminal and run: pip install requests                             │
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h2 id="6-filesystem-os-operations">6. Filesystem &amp; OS Operations<a class="headerlink" href="#6-filesystem-os-operations" title="Permanent link">&para;</a></h2>
+<h3 id="scenario-61-non-existent-file-path-filenotfounderror">Scenario 6.1: Non-Existent File Path (<code>FileNotFoundError</code>)<a class="headerlink" href="#scenario-61-non-existent-file-path-filenotfounderror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> Opening a relative path that does not exist in the current working directory.</p>
+<h4 id="raw-python-traceback_9">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback_9" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>Traceback (most recent call last):
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>  File "loader.py", line 4, in &lt;module&gt;
+</span><span id="__span-19-3"><a id="__codelineno-19-3" name="__codelineno-19-3" href="#__codelineno-19-3"></a>    with open('data.csv', 'r') as f:
+</span><span id="__span-19-4"><a id="__codelineno-19-4" name="__codelineno-19-4" href="#__codelineno-19-4"></a>FileNotFoundError: [Errno 2] No such file or directory: 'data.csv'
+</span></code></pre></div>
+<h4 id="error-translator-output_9">Error Translator Output:<a class="headerlink" href="#error-translator-output_9" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>│ FileNotFoundError: [Errno 2] No such file or directory: 'data.csv'           │
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>│ File: loader.py  |  Line: 4                                                  │
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>│ 4 │ with open('data.csv', 'r') as f:                                         │
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>│ Python cannot find the file 'data.csv' in the current working directory.     │
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>│ Verify the file path and name. Use os.path.exists() before opening or        │
+</span><span id="__span-20-11"><a id="__codelineno-20-11" name="__codelineno-20-11" href="#__codelineno-20-11"></a>│ provide an absolute path.                                                    │
+</span><span id="__span-20-12"><a id="__codelineno-20-12" name="__codelineno-20-12" href="#__codelineno-20-12"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h2 id="7-arithmetic-math">7. Arithmetic &amp; Math<a class="headerlink" href="#7-arithmetic-math" title="Permanent link">&para;</a></h2>
+<h3 id="scenario-71-zero-division-zerodivisionerror">Scenario 7.1: Zero Division (<code>ZeroDivisionError</code>)<a class="headerlink" href="#scenario-71-zero-division-zerodivisionerror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> Dividing a number by a denominator that evaluates to zero.</p>
+<h4 id="raw-python-traceback_10">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback_10" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>Traceback (most recent call last):
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a>  File "math_util.py", line 7, in calculate_ratio
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>    return total / count
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a>ZeroDivisionError: division by zero
+</span></code></pre></div>
+<h4 id="error-translator-output_10">Error Translator Output:<a class="headerlink" href="#error-translator-output_10" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a>│ ZeroDivisionError: division by zero                                          │
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a>│ File: math_util.py  |  Line: 7                                               │
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a>│ 7 │ return total / count                                                     │
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>│ You are trying to divide a number by zero, which is mathematically           │
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a>│ impossible.                                                                  │
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a>│ Add an if-statement before the division to check if the denominator is 0.    │
+</span><span id="__span-22-12"><a id="__codelineno-22-12" name="__codelineno-22-12" href="#__codelineno-22-12"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
+<hr />
+<h2 id="8-runtime-limits-recursion">8. Runtime Limits &amp; Recursion<a class="headerlink" href="#8-runtime-limits-recursion" title="Permanent link">&para;</a></h2>
+<h3 id="scenario-81-infinite-recursion-recursionerror">Scenario 8.1: Infinite Recursion (<code>RecursionError</code>)<a class="headerlink" href="#scenario-81-infinite-recursion-recursionerror" title="Permanent link">&para;</a></h3>
+<p><strong>The Bug:</strong> A recursive function without a terminating base case.</p>
+<h4 id="raw-python-traceback_11">Raw Python Traceback:<a class="headerlink" href="#raw-python-traceback_11" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>Traceback (most recent call last):
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>  File "factorial.py", line 5, in &lt;module&gt;
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>    run_recurse(1)
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>  File "factorial.py", line 2, in run_recurse
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>    return run_recurse(n + 1)
+</span><span id="__span-23-6"><a id="__codelineno-23-6" name="__codelineno-23-6" href="#__codelineno-23-6"></a>  ...
+</span><span id="__span-23-7"><a id="__codelineno-23-7" name="__codelineno-23-7" href="#__codelineno-23-7"></a>RecursionError: maximum recursion depth exceeded
+</span></code></pre></div>
+<h4 id="error-translator-output_11">Error Translator Output:<a class="headerlink" href="#error-translator-output_11" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a>│ RecursionError: maximum recursion depth exceeded                             │
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a>│ File: factorial.py  |  Line: 2                                               │
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a>├─ Code Context ───────────────────────────────────────────────────────────────┤
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>│ 2 │ return run_recurse(n + 1)                                                │
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a>├─ Explanation ────────────────────────────────────────────────────────────────┤
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a>│ A function is calling itself so many times that Python's recursion limit has │
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>│ been reached. This usually happens when a function lacks a base case.        │
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a>├─ Suggested Fix ──────────────────────────────────────────────────────────────┤
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a>│ Add a base case to stop the recursion, verify parameters change each step,   │
+</span><span id="__span-24-12"><a id="__codelineno-24-12" name="__codelineno-24-12" href="#__codelineno-24-12"></a>│ or convert the recursive algorithm to an iterative loop.                     │
+</span><span id="__span-24-13"><a id="__codelineno-24-13" name="__codelineno-24-13" href="#__codelineno-24-13"></a>└──────────────────────────────────────────────────────────────────────────────┘
+</span></code></pre></div>
 
 
 
@@ -986,6 +2050,12 @@ Note: the CLI prints a Rich panel UI; examples below use normalized plain text l
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -1016,10 +2086,10 @@ Note: the CLI prints a Rich panel UI; examples below use normalized plain text l
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.top", "navigation.sections", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Python error translator and traceback explainer for developers. Convert Python exceptions into clear explanations and actionable fixes offline.">
+        <meta name="description" content="Offline Python traceback translator and error explainer. Convert cryptic exceptions into clear explanations and actionable fixes.">
       
       
         <meta name="author" content="Gourabananda Datta">
@@ -25,15 +25,15 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Architecture - Error Translator</title>
+        <title>Architecture & Internals - Error Translator</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -80,7 +80,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#architectural-overview" class="md-skip">
+        <a href="#architecture-internals" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Architecture
+              Architecture & Internals
             
           </span>
         </div>
@@ -178,6 +178,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -332,7 +334,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Architecture & Internals
   
 
     
@@ -350,7 +352,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Architecture & Internals
   
 
     
@@ -376,10 +378,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-translation-pipeline" class="md-nav__link">
+  <a href="#1-system-topology-architecture-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Translation Pipeline
+        1. System Topology &amp; Architecture Overview
       
     </span>
   </a>
@@ -387,10 +389,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#implementation-surfaces" class="md-nav__link">
+  <a href="#2-translation-pipeline-lifecycle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Implementation Surfaces
+        2. Translation Pipeline Lifecycle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Translation Pipeline Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lifecycle-step-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Step Breakdown:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-module-breakdown-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Module Breakdown &amp; Responsibilities
       
     </span>
   </a>
@@ -398,10 +428,127 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ast-insight-notes" class="md-nav__link">
+  <a href="#4-dual-matching-engine-c-extension-fallback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AST Insight Notes
+        4. Dual Matching Engine (C Extension &amp; Fallback)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Dual Matching Engine (C Extension &amp; Fallback)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#native-c-extension-fast_matcherc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native C Extension (fast_matcher.c)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pure-python-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure Python Fallback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ast-scoping-typo-resolution-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. AST Scoping &amp; Typo Resolution Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. AST Scoping &amp; Typo Resolution Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lexical-scoping-via-scopedsymbolcollector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lexical Scoping via ScopedSymbolCollector:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-data-contracts-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Data Contracts &amp; Schemas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Data Contracts &amp; Schemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-rule-schema-rulesjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Rule Schema (rules.json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-core-translation-output-dictionary-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Core Translation Output Dictionary Contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-fastapi-request-response-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. FastAPI Request &amp; Response Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fault-isolation-resilience-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Fault Isolation &amp; Resilience Patterns
       
     </span>
   </a>
@@ -409,35 +556,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#runtime-contract" class="md-nav__link">
+  <a href="#8-extending-the-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Runtime Contract
+        8. Extending the Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Extending the Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-translation-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a New Translation Rule:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#extension-strategy" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#registering-a-new-ast-handler" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Extension Strategy
+        Registering a New AST Handler:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-native-acceleration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Optional Native Acceleration
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -463,7 +616,7 @@
   <span class="md-ellipsis">
     
   
-    Examples
+    Real-World Examples
   
 
     
@@ -490,7 +643,7 @@
   <span class="md-ellipsis">
     
   
-    Contributing
+    Contributing Guide
   
 
     
@@ -530,10 +683,10 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#core-translation-pipeline" class="md-nav__link">
+  <a href="#1-system-topology-architecture-overview" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Core Translation Pipeline
+        1. System Topology &amp; Architecture Overview
       
     </span>
   </a>
@@ -541,10 +694,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#implementation-surfaces" class="md-nav__link">
+  <a href="#2-translation-pipeline-lifecycle" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Implementation Surfaces
+        2. Translation Pipeline Lifecycle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Translation Pipeline Lifecycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lifecycle-step-breakdown" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lifecycle Step Breakdown:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-module-breakdown-responsibilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Module Breakdown &amp; Responsibilities
       
     </span>
   </a>
@@ -552,10 +733,127 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ast-insight-notes" class="md-nav__link">
+  <a href="#4-dual-matching-engine-c-extension-fallback" class="md-nav__link">
     <span class="md-ellipsis">
       
-        AST Insight Notes
+        4. Dual Matching Engine (C Extension &amp; Fallback)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Dual Matching Engine (C Extension &amp; Fallback)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#native-c-extension-fast_matcherc" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Native C Extension (fast_matcher.c)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pure-python-fallback" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pure Python Fallback
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-ast-scoping-typo-resolution-engine" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. AST Scoping &amp; Typo Resolution Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. AST Scoping &amp; Typo Resolution Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lexical-scoping-via-scopedsymbolcollector" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lexical Scoping via ScopedSymbolCollector:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-data-contracts-schemas" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Data Contracts &amp; Schemas
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Data Contracts &amp; Schemas">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-rule-schema-rulesjson" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        A. Rule Schema (rules.json)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-core-translation-output-dictionary-contract" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        B. Core Translation Output Dictionary Contract
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#c-fastapi-request-response-models" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        C. FastAPI Request &amp; Response Models
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-fault-isolation-resilience-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Fault Isolation &amp; Resilience Patterns
       
     </span>
   </a>
@@ -563,35 +861,41 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#runtime-contract" class="md-nav__link">
+  <a href="#8-extending-the-engine" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Runtime Contract
+        8. Extending the Engine
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Extending the Engine">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#adding-a-new-translation-rule" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding a New Translation Rule:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#extension-strategy" class="md-nav__link">
+        
+          <li class="md-nav__item">
+  <a href="#registering-a-new-ast-handler" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Extension Strategy
+        Registering a New AST Handler:
       
     </span>
   </a>
   
 </li>
-      
-        <li class="md-nav__item">
-  <a href="#optional-native-acceleration" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Optional Native Acceleration
-      
-    </span>
-  </a>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -628,70 +932,298 @@
   
 
 
-<h1 id="architectural-overview">Architectural Overview<a class="headerlink" href="#architectural-overview" title="Permanent link">&para;</a></h1>
-<p>Error Translator is built around one deterministic engine in <code>error_translator/core.py</code>, supported by modular components for parsing and rule management. The same engine powers the CLI, auto-hook mode, Python imports, and the FastAPI service.</p>
-<h2 id="core-translation-pipeline">Core Translation Pipeline<a class="headerlink" href="#core-translation-pipeline" title="Permanent link">&para;</a></h2>
-<p>Each translation request follows this sequence:</p>
+<h1 id="architecture-internals">Architecture &amp; Internals<a class="headerlink" href="#architecture-internals" title="Permanent link">&para;</a></h1>
+<p><strong>Error Translator</strong> is engineered as a high-performance, local-first Python library and CLI tool. It utilizes a deterministic rule-matching pipeline, Abstract Syntax Tree (AST) lexical inspection, and an optional native C extension to deliver instant, human-readable error explanations without network dependencies or AI latency.</p>
+<hr />
+<h2 id="1-system-topology-architecture-overview">1. System Topology &amp; Architecture Overview<a class="headerlink" href="#1-system-topology-architecture-overview" title="Permanent link">&para;</a></h2>
+<p>The system is decoupled into presentation layers, orchestration pipelines, parsing utilities, and diagnostic engines. All interfaces share the exact same deterministic core engine (<code>error_translator.core</code>).</p>
+<pre class="mermaid"><code>flowchart TB
+    subgraph Inputs [Integration Surfaces]
+        CLI["CLI Tool (explain-error)"]
+        REPL["Interactive REPL"]
+        HOOK["Auto Hook (sys.excepthook)"]
+        JUPYTER["Jupyter (%load_ext)"]
+        API["FastAPI REST Server"]
+    end
+
+    subgraph CorePipeline [Core Translation Pipeline (core.py)]
+        PARSER["Parser (parser.py)&lt;br/&gt;• extract_location()&lt;br/&gt;• linecache source reader"]
+        RULES["Rule Manager (rules.py)&lt;br/&gt;• load_rules() [LRU Cache]&lt;br/&gt;• compiled_rules() [LRU Cache]"]
+
+        subgraph Engine [Dual-Engine Matcher]
+            C_EXT["Native C Extension&lt;br/&gt;(fast_matcher.c)"]
+            PY_LOOP["Pure Python Loop&lt;br/&gt;(re.search)"]
+        end
+
+        AST_ROUTER["AST Router (ast_handlers.py)&lt;br/&gt;• AST_REGISTRY Dispatch"]
+        AST_ENGINE["AST Engine (ast_engine.py)&lt;br/&gt;• ScopedSymbolCollector&lt;br/&gt;• difflib Fuzzy Typo Matcher"]
+    end
+
+    subgraph Outputs [Presentation &amp; Formatting]
+        UI_RICH["Rich Terminal UI (ui.py)"]
+        UI_JSON["JSON Serializer"]
+        UI_MD["IPython Markdown"]
+        UI_HTTP["REST JSON / Web Dashboard"]
+    end
+
+    CLI --&gt; PARSER
+    REPL --&gt; PARSER
+    HOOK --&gt; PARSER
+    JUPYTER --&gt; PARSER
+    API --&gt; PARSER
+
+    PARSER --&gt; Engine
+    RULES --&gt; Engine
+
+    Engine --&gt;|Primary| C_EXT
+    Engine -.-&gt;|Fallback if C unavailable| PY_LOOP
+
+    C_EXT --&gt; AST_ROUTER
+    PY_LOOP --&gt; AST_ROUTER
+
+    AST_ROUTER --&gt; AST_ENGINE
+
+    AST_ENGINE --&gt; UI_RICH
+    AST_ENGINE --&gt; UI_JSON
+    AST_ENGINE --&gt; UI_MD
+    AST_ENGINE --&gt; UI_HTTP</code></pre>
+<hr />
+<h2 id="2-translation-pipeline-lifecycle">2. Translation Pipeline Lifecycle<a class="headerlink" href="#2-translation-pipeline-lifecycle" title="Permanent link">&para;</a></h2>
+<p>Every call to <code>translate_error(traceback_text: str)</code> executes through a strict, deterministic sequence:</p>
+<pre class="mermaid"><code>sequenceDiagram
+    autonumber
+    participant Caller as Ingestion Layer
+    participant Core as core.translate_error
+    participant Parser as parser.py
+    participant Rules as rules.py
+    participant Matcher as fast_matcher / re
+    participant AST as ast_handlers / ast_engine
+
+    Caller-&gt;&gt;Core: Pass raw traceback string
+    Core-&gt;&gt;Parser: Extract location (file, line)
+    Parser--&gt;&gt;Core: (file_path, line_number)
+    Core-&gt;&gt;Parser: Read crashing line via linecache
+    Parser--&gt;&gt;Core: source_code_line
+    Core-&gt;&gt;Rules: Fetch compiled regex rules
+    Rules--&gt;&gt;Core: [(pattern, rule_dict), ...]
+
+    rect rgb(240, 248, 255)
+        note over Core,Matcher: Dual-Engine Regex Matching
+        Core-&gt;&gt;Matcher: Scan actual_error_line against rules
+        Matcher--&gt;&gt;Core: (match_object, rule_definition)
+    end
+
+    alt Match Found
+        Core-&gt;&gt;Core: Format explanation and fix using regex capture groups
+        opt AST Handler Registered &amp; Source File Exists
+            Core-&gt;&gt;AST: Dispatch to error strategy (NameError, AttributeError, etc.)
+            AST-&gt;&gt;AST: Walk AST within lexical scope boundary
+            AST-&gt;&gt;AST: Fuzzy match symbol with difflib (cutoff=0.6)
+            AST--&gt;&gt;Core: ast_insight string ("Did you mean...?")
+        end
+    else No Match Found
+        Core-&gt;&gt;Core: Fallback to "default" rule definition
+    end
+
+    Core--&gt;&gt;Caller: Structured Translation Dictionary</code></pre>
+<h3 id="lifecycle-step-breakdown">Lifecycle Step Breakdown:<a class="headerlink" href="#lifecycle-step-breakdown" title="Permanent link">&para;</a></h3>
 <ol>
-<li><strong>Load and cache rule data</strong> via <code>error_translator/rules.py</code> from <code>src/error_translator/rules.json</code>.</li>
-<li><strong>Extract traceback location</strong> (<code>file</code>, <code>line</code>) using <code>error_translator/parser.py</code>.</li>
-<li><strong>Read source context line</strong> using <code>linecache</code> in <code>parser.py</code> when file and line are available.</li>
-<li><strong>Match the last error line</strong> against pre-compiled regex patterns.<ul>
-<li>First attempt uses the optional C extension matcher (<code>error_translator.fast_matcher.match_loop</code>).</li>
-<li>If the extension is unavailable, the engine falls back to the pure Python loop.</li>
-</ul>
-</li>
-<li><strong>Format output fields</strong> (<code>explanation</code>, <code>fix</code>, and metadata).</li>
-<li><strong>Optionally attach <code>ast_insight</code></strong> for registered error types.</li>
+<li><strong>Traceback Ingestion</strong>: Non-empty lines from the input string are extracted. The final line represents the runtime error message (e.g., <code>ValueError: invalid literal for int() with base 10: 'abc'</code>).</li>
+<li><strong>Location &amp; Code Extraction</strong>:</li>
+<li><code>extract_location()</code> uses regular expressions to capture the file path and line number from standard <code>File "...", line N</code> frames.</li>
+<li><code>extract_code_context()</code> utilizes Python's built-in <code>linecache</code> to fetch the source line from disk without loading the entire file into memory.</li>
+<li><strong>Dual Matching Execution</strong>:</li>
+<li>The compiled regex list is passed to <code>fast_matcher.match_loop</code> (C Extension).</li>
+<li>If <code>fast_matcher</code> is not available, the engine iterates through <code>compiled_rules()</code> in pure Python.</li>
+<li><strong>Pattern Variable Injection</strong>: Dynamic variables captured by regex groups (<code>(.*)</code>) are formatted into the template <code>explanation</code> and <code>fix</code> strings via <code>{0}</code>, <code>{1}</code>, etc.</li>
+<li><strong>AST Lexical Analysis</strong>: If an AST handler is registered for the specific error class (<code>AST_REGISTRY</code>) and the source file is reachable, the AST scoping engine executes to detect typos or missing symbols.</li>
+<li><strong>Unified Dictionary Assembly</strong>: Returns a dictionary conforming to the standard runtime contract.</li>
 </ol>
-<p>If no pattern matches, the <code>default</code> rule is returned.</p>
-<h2 id="implementation-surfaces">Implementation Surfaces<a class="headerlink" href="#implementation-surfaces" title="Permanent link">&para;</a></h2>
-<p>The same engine is exposed through:</p>
-<ol>
-<li><strong>CLI</strong> (<code>error_translator/cli.py</code> acting as an entry point, orchestrating <code>runner.py</code> and <code>ui.py</code>):<ul>
-<li><code>explain-error run script.py</code></li>
-<li><code>explain-error "&lt;error text&gt;"</code></li>
-<li><code>cat error.log | explain-error</code></li>
-</ul>
-</li>
-<li><strong>Auto hook</strong> (<code>error_translator/auto.py</code>): import once to override <code>sys.excepthook</code>.</li>
-<li><strong>Python API</strong>: <code>from error_translator.core import translate_error</code>.</li>
-<li><strong>FastAPI service</strong> (<code>error_translator/api/server.py</code>):<ul>
-<li><code>POST /translate</code></li>
-<li><code>GET /health</code></li>
-<li><code>GET /</code> serves the bundled static UI (if present)</li>
-</ul>
-</li>
-</ol>
-<h2 id="ast-insight-notes">AST Insight Notes<a class="headerlink" href="#ast-insight-notes" title="Permanent link">&para;</a></h2>
-<p><code>ast_insight</code> is optional and routed via <code>AST_REGISTRY</code> in <code>error_translator/ast_handlers.py</code>.</p>
-<p>Current handlers are lightweight placeholders and return suggestion strings for supported error classes (<code>NameError</code>, <code>AttributeError</code>, <code>ImportError</code>). They do not yet perform full file AST traversal.</p>
-<h2 id="runtime-contract">Runtime Contract<a class="headerlink" href="#runtime-contract" title="Permanent link">&para;</a></h2>
-<p><code>translate_error(...)</code> always returns a dictionary with these fields:</p>
+<hr />
+<h2 id="3-module-breakdown-responsibilities">3. Module Breakdown &amp; Responsibilities<a class="headerlink" href="#3-module-breakdown-responsibilities" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Module</th>
+<th style="text-align: left;">Location</th>
+<th style="text-align: left;">Primary Responsibility</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong><code>core</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/core.py</code></td>
+<td style="text-align: left;">Orchestrates the translation pipeline, matching engine, and AST dispatch.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>parser</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/parser.py</code></td>
+<td style="text-align: left;">Parses stack trace strings for filenames and line numbers; reads source lines using <code>linecache</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>rules</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/rules.py</code></td>
+<td style="text-align: left;">Reads <code>rules.json</code>, caches parsed JSON, and pre-compiles <code>re.Pattern</code> objects with <code>functools.lru_cache</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>ast_engine</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/ast/ast_engine.py</code></td>
+<td style="text-align: left;">Traverses Python ASTs with <code>ScopedSymbolCollector</code> and computes string similarities using <code>difflib</code>.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>ast_handlers</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/ast/ast_handlers.py</code></td>
+<td style="text-align: left;">Strategy registry (<code>AST_REGISTRY</code>) mapping error types (<code>NameError</code>, <code>AttributeError</code>, <code>ImportError</code>) to AST analyzers.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>cli</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/cli.py</code></td>
+<td style="text-align: left;">CLI entry point (<code>explain-error</code>), argument parsing, interactive REPL loop, and first-run welcome logic.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>runner</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/runner.py</code></td>
+<td style="text-align: left;">Subprocess executor for running target Python scripts and capturing <code>stderr</code> on crash.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>ui</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/ui.py</code></td>
+<td style="text-align: left;">Presentation layer using Rich panels, syntax highlighting, version metadata, and JSON output serializers.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>auto</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/auto.py</code></td>
+<td style="text-align: left;">Exception hook module overriding <code>sys.excepthook</code> for automatic runtime crash translation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>jupyter</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/jupyter.py</code></td>
+<td style="text-align: left;">IPython extension module registering <code>set_custom_exc</code> for Jupyter cell crash translation.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>server</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/api/server.py</code></td>
+<td style="text-align: left;">FastAPI REST microservice exposing single (<code>/translate</code>) and concurrent batch (<code>/translate/batch</code>) endpoints.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong><code>fast_matcher</code></strong></td>
+<td style="text-align: left;"><code>src/error_translator/ext/fast_matcher.c</code></td>
+<td style="text-align: left;">Native CPython extension providing low-level C loop acceleration for regex rule scanning.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="4-dual-matching-engine-c-extension-fallback">4. Dual Matching Engine (C Extension &amp; Fallback)<a class="headerlink" href="#4-dual-matching-engine-c-extension-fallback" title="Permanent link">&para;</a></h2>
+<p>To provide optimal throughput in automated environments, Error Translator implements a hybrid C / Python architecture.</p>
+<pre class="mermaid"><code>flowchart LR
+    Start([Translation Request]) --&gt; Check{C Extension&lt;br/&gt;Available?}
+    Check --&gt;|Yes| CExt[fast_matcher.match_loop&lt;br/&gt;Native CPython C Loop]
+    Check --&gt;|No| PyLoop[Pure Python Loop&lt;br/&gt;re.search on pre-compiled patterns]
+    CExt --&gt; Done([Match Result])
+    PyLoop --&gt; Done</code></pre>
+<h3 id="native-c-extension-fast_matcherc">Native C Extension (<code>fast_matcher.c</code>)<a class="headerlink" href="#native-c-extension-fast_matcherc" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>explanation</code></li>
-<li><code>fix</code></li>
+<li>Written using the CPython C-API.</li>
+<li>Bypasses Python bytecode iteration overhead by evaluating regex matches (<code>PyObject_CallMethod</code>) directly in native C.</li>
+<li>Includes strict exception hygiene: calls <code>PyErr_Clear()</code> before iterating to prevent pending exceptions from leaking between rule checks.</li>
+<li>Optional during build: configured with <code>optional=True</code> in <code>setup.py</code>.</li>
 </ul>
-<p>And typically includes:</p>
+<h3 id="pure-python-fallback">Pure Python Fallback<a class="headerlink" href="#pure-python-fallback" title="Permanent link">&para;</a></h3>
 <ul>
-<li><code>matched_error</code></li>
-<li><code>file</code> (or <code>Unknown File</code>)</li>
-<li><code>line</code> (or <code>Unknown Line</code>)</li>
-<li><code>code</code> (empty string if unavailable)</li>
-<li><code>ast_insight</code> (only when available)</li>
+<li>If <code>fast_matcher</code> is not compiled (e.g., in environments without GCC/Clang/MSVC), the engine catches <code>ImportError</code> and sets <code>C_EXTENSION_AVAILABLE = False</code>.</li>
+<li>Evaluates rules via pre-compiled <code>re.compile()</code> instances cached in <code>rules.py</code>.</li>
+<li>Produces <strong>100% identical translation results</strong> with zero functional difference.</li>
 </ul>
-<h2 id="extension-strategy">Extension Strategy<a class="headerlink" href="#extension-strategy" title="Permanent link">&para;</a></h2>
-<p>For most contributions, follow this order:</p>
+<hr />
+<h2 id="5-ast-scoping-typo-resolution-engine">5. AST Scoping &amp; Typo Resolution Engine<a class="headerlink" href="#5-ast-scoping-typo-resolution-engine" title="Permanent link">&para;</a></h2>
+<p>Traditional regex tools can only inspect the text of an error message. Error Translator takes debugging further by inspecting the <strong>lexical scope</strong> of the crashing code using Python's <code>ast</code> module.</p>
+<pre class="mermaid"><code>flowchart TD
+    A[Crashing File &amp; Line Number] --&gt; B[ast.parse Source Code]
+    B --&gt; C[ScopedSymbolCollector Visitor]
+
+    C --&gt; D{Is node within&lt;br/&gt;crash lineno &amp; end_lineno?}
+    D --&gt;|Yes| E[Descend into Function / Class Body]
+    D --&gt;|No| F[Skip Internal Body &amp; Collect Outer Identifier]
+
+    E --&gt; G[Harvest Names, Imports, Attributes]
+    F --&gt; G
+
+    G --&gt; H[difflib.get_close_matches&lt;br/&gt;Cutoff = 0.6]
+    H --&gt; I[Generate 'Did you mean?' Suggestion]</code></pre>
+<h3 id="lexical-scoping-via-scopedsymbolcollector">Lexical Scoping via <code>ScopedSymbolCollector</code>:<a class="headerlink" href="#lexical-scoping-via-scopedsymbolcollector" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Boundary Checking</strong>: When encountering a <code>FunctionDef</code> or <code>ClassDef</code> node, the visitor verifies whether <code>node.lineno &lt;= target_line &lt;= node.end_lineno</code>.</li>
+<li><strong>Scope Isolation</strong>: If the crash happened outside a function, variables defined strictly inside that function are ignored. This eliminates false-positive suggestions from unreachable scopes.</li>
+<li><strong>Symbol Categorization</strong>: Collects identifiers across <code>names</code> (variables), <code>functions</code>, <code>classes</code>, <code>attributes</code>, and <code>imports</code>.</li>
+<li><strong>Fuzzy Typo Scoring</strong>: Compares misspelled identifiers against the harvested symbol pool using <code>difflib.get_close_matches(target_word, pool, n=1, cutoff=0.6)</code>.</li>
+</ul>
+<hr />
+<h2 id="6-data-contracts-schemas">6. Data Contracts &amp; Schemas<a class="headerlink" href="#6-data-contracts-schemas" title="Permanent link">&para;</a></h2>
+<h3 id="a-rule-schema-rulesjson">A. Rule Schema (<code>rules.json</code>)<a class="headerlink" href="#a-rule-schema-rulesjson" title="Permanent link">&para;</a></h3>
+<p>Every rule in <code>src/error_translator/rules.json</code> conforms to:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="p">{</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span><span class="nt">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IndexError: (.*) index out of range"</span><span class="p">,</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span><span class="nt">"explanation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You tried to access an element in a {0} at an index that doesn't exist."</span><span class="p">,</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span><span class="nt">"fix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Check the length of your {0} with len(). Remember that indexing starts at 0."</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li><code>pattern</code>: Valid Python regular expression with capture groups <code>(.*)</code>.</li>
+<li><code>explanation</code>: Format string where <code>{0}</code>, <code>{1}</code>, etc., map to regex match groups.</li>
+<li><code>fix</code>: Actionable advice string with variable interpolation.</li>
+</ul>
+<h3 id="b-core-translation-output-dictionary-contract">B. Core Translation Output Dictionary Contract<a class="headerlink" href="#b-core-translation-output-dictionary-contract" title="Permanent link">&para;</a></h3>
+<p>The output of <code>translate_error</code> is guaranteed to contain the following keys:</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="s2">"explanation"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>          <span class="c1"># Clear, plain-English summary of the issue</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s2">"fix"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>                  <span class="c1"># Concrete actionable instructions</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="s2">"ast_insight"</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>   <span class="c1"># Scope-aware suggestions or None</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="s2">"matched_error"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>        <span class="c1"># The exact error line extracted from the traceback</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="s2">"file"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>                 <span class="c1"># File path or 'Unknown File'</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="s2">"line"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>                 <span class="c1"># Line number or 'Unknown Line'</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="s2">"code"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>                 <span class="c1"># Crashing source line or empty string</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="c-fastapi-request-response-models">C. FastAPI Request &amp; Response Models<a class="headerlink" href="#c-fastapi-request-response-models" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ErrorRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">traceback_setting</span><span class="p">:</span> <span class="nb">str</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">BatchErrorRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">tracebacks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</span></code></pre></div>
+<hr />
+<h2 id="7-fault-isolation-resilience-patterns">7. Fault Isolation &amp; Resilience Patterns<a class="headerlink" href="#7-fault-isolation-resilience-patterns" title="Permanent link">&para;</a></h2>
+<p>Error Translator is built for maximum developer stability:</p>
 <ol>
-<li>Add or improve a regex rule in <code>src/error_translator/rules.json</code>.</li>
-<li>Add tests in <code>tests/test_core.py</code>.</li>
-<li>Add/update handler behavior in <code>error_translator/ast_handlers.py</code> only when regex alone is insufficient.</li>
-<li>Update <code>error_translator/core.py</code> only for shared pipeline behavior.</li>
+<li><strong>Narrow Exception Handling</strong>: The codebase explicitly handles expected errors (<code>OSError</code>, <code>ValueError</code>, <code>SyntaxError</code>, <code>UnicodeDecodeError</code>) rather than catching blind <code>except Exception</code>, preserving genuine debugger visibility.</li>
+<li><strong>Subprocess Isolation (<code>runner.py</code>)</strong>: Target scripts are executed in isolated child processes with <code>subprocess.run(capture_output=True, text=True, check=False)</code>. Script crashes never crash the parent CLI runner.</li>
+<li><strong>Interactive REPL Isolation (<code>cli.py</code>)</strong>: Malformed pastes, syntax errors, or encoding issues in user input are caught and formatted inside an error card, keeping the interactive debugging session alive.</li>
 </ol>
-<h2 id="optional-native-acceleration">Optional Native Acceleration<a class="headerlink" href="#optional-native-acceleration" title="Permanent link">&para;</a></h2>
-<p>The optional C extension source lives at <code>src/error_translator/ext/fast_matcher.c</code> and is built via <code>setup_ext.py</code>.</p>
-<p>When built successfully, core translation uses native code for the rule scan loop.
-When not built, behavior remains identical because the Python loop is used automatically.</p>
+<hr />
+<h2 id="8-extending-the-engine">8. Extending the Engine<a class="headerlink" href="#8-extending-the-engine" title="Permanent link">&para;</a></h2>
+<h3 id="adding-a-new-translation-rule">Adding a New Translation Rule:<a class="headerlink" href="#adding-a-new-translation-rule" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Open <code>src/error_translator/rules.json</code>.</li>
+<li>Append your new rule object to the <code>"rules"</code> array.</li>
+<li>Add a unit test in <code>tests/test_core.py</code> verifying both match detection and group substitution.</li>
+</ol>
+<h3 id="registering-a-new-ast-handler">Registering a New AST Handler:<a class="headerlink" href="#registering-a-new-ast-handler" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Define a strategy function in <code>src/error_translator/ast/ast_handlers.py</code>:
+   <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">handle_custom_error</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">line_number</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extracted_values</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    <span class="c1"># Custom AST inspection logic</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    <span class="k">return</span> <span class="s2">"Custom actionable advice"</span>
+</span></code></pre></div></li>
+<li>Register the function in <code>AST_REGISTRY</code>:
+   <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">AST_REGISTRY</span> <span class="o">=</span> <span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    <span class="s2">"NameError"</span><span class="p">:</span> <span class="n">handle_name_error</span><span class="p">,</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    <span class="s2">"AttributeError"</span><span class="p">:</span> <span class="n">handle_attribute_error</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    <span class="s2">"ImportError"</span><span class="p">:</span> <span class="n">handle_import_error</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>    <span class="s2">"CustomError"</span><span class="p">:</span> <span class="n">handle_custom_error</span><span class="p">,</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="p">}</span>
+</span></code></pre></div></li>
+<li>Add a corresponding test in <code>tests/test_ast.py</code>.</li>
+</ol>
 
 
 
@@ -711,6 +1243,12 @@ When not built, behavior remains identical because the Python loop is used autom
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -741,10 +1279,10 @@ When not built, behavior remains identical because the Python loop is used autom
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.top", "navigation.sections", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>

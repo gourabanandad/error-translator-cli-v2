@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Python error translator and traceback explainer for developers. Convert Python exceptions into clear explanations and actionable fixes offline.">
+        <meta name="description" content="Offline Python traceback translator and error explainer. Convert cryptic exceptions into clear explanations and actionable fixes.">
       
       
         <meta name="author" content="Gourabananda Datta">
@@ -23,15 +23,15 @@
       
       
       <link rel="icon" href="../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
     
     
       
-        <title>Contributing - Error Translator</title>
+        <title>Contributing Guide - Error Translator</title>
       
     
     
-      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
       
         
         <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
@@ -114,7 +114,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Contributing
+              Contributing Guide
             
           </span>
         </div>
@@ -176,6 +176,8 @@
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
         </button>
       </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
       
     </form>
     <div class="md-search__output">
@@ -321,7 +323,7 @@
   <span class="md-ellipsis">
     
   
-    Architecture
+    Architecture & Internals
   
 
     
@@ -348,7 +350,7 @@
   <span class="md-ellipsis">
     
   
-    Examples
+    Real-World Examples
   
 
     
@@ -384,7 +386,7 @@
   <span class="md-ellipsis">
     
   
-    Contributing
+    Contributing Guide
   
 
     
@@ -402,7 +404,7 @@
   <span class="md-ellipsis">
     
   
-    Contributing
+    Contributing Guide
   
 
     
@@ -428,33 +430,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#developer-setup" class="md-nav__link">
+  <a href="#1-local-development-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Developer Setup
+        1. Local Development Setup
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#writing-meaningful-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Writing Meaningful Rules
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Writing Meaningful Rules">
+    <nav class="md-nav" aria-label="1. Local Development Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#schema-template" class="md-nav__link">
+  <a href="#option-a-setup-with-uv-recommended-fastest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Schema Template
+        Option A: Setup with uv (Recommended / Fastest)
       
     </span>
   </a>
@@ -462,10 +453,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#capturing-mechanism" class="md-nav__link">
+  <a href="#option-b-setup-with-standard-venv-and-pip" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capturing Mechanism
+        Option B: Setup with Standard venv and pip
       
     </span>
   </a>
@@ -478,10 +469,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-fastest-workflow-ai-powered-rule-builder" class="md-nav__link">
+  <a href="#2-project-directory-layout" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Fastest Workflow: AI-Powered Rule Builder
+        2. Project Directory Layout
       
     </span>
   </a>
@@ -489,10 +480,88 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pull-request-standards" class="md-nav__link">
+  <a href="#3-authoring-translation-rules-rulesjson" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pull Request Standards
+        3. Authoring Translation Rules (rules.json)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Authoring Translation Rules (rules.json)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Specification:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-guidelines-for-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Guidelines for Rules:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ai-powered-rule-builder-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. AI-Powered Rule Builder Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. AI-Powered Rule Builder Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-scrape-reference-error-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Scrape Reference Error Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-launch-the-interactive-ai-rule-synthesizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Launch the Interactive AI Rule Synthesizer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-adding-ast-diagnostic-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Adding AST Diagnostic Handlers
       
     </span>
   </a>
@@ -500,10 +569,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#release-notes-format" class="md-nav__link">
+  <a href="#6-code-style-quality-standards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Release Notes Format
+        6. Code Style &amp; Quality Standards
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-documentation-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Documentation Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-pull-request-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Pull Request Checklist
       
     </span>
   </a>
@@ -545,33 +636,22 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#developer-setup" class="md-nav__link">
+  <a href="#1-local-development-setup" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Developer Setup
+        1. Local Development Setup
       
     </span>
   </a>
   
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#writing-meaningful-rules" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Writing Meaningful Rules
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Writing Meaningful Rules">
+    <nav class="md-nav" aria-label="1. Local Development Setup">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#schema-template" class="md-nav__link">
+  <a href="#option-a-setup-with-uv-recommended-fastest" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Schema Template
+        Option A: Setup with uv (Recommended / Fastest)
       
     </span>
   </a>
@@ -579,10 +659,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#capturing-mechanism" class="md-nav__link">
+  <a href="#option-b-setup-with-standard-venv-and-pip" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Capturing Mechanism
+        Option B: Setup with Standard venv and pip
       
     </span>
   </a>
@@ -595,10 +675,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#the-fastest-workflow-ai-powered-rule-builder" class="md-nav__link">
+  <a href="#2-project-directory-layout" class="md-nav__link">
     <span class="md-ellipsis">
       
-        The Fastest Workflow: AI-Powered Rule Builder
+        2. Project Directory Layout
       
     </span>
   </a>
@@ -606,10 +686,88 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#pull-request-standards" class="md-nav__link">
+  <a href="#3-authoring-translation-rules-rulesjson" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Pull Request Standards
+        3. Authoring Translation Rules (rules.json)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Authoring Translation Rules (rules.json)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#schema-specification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Schema Specification:
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#key-guidelines-for-rules" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Key Guidelines for Rules:
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ai-powered-rule-builder-workflow" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. AI-Powered Rule Builder Workflow
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. AI-Powered Rule Builder Workflow">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#step-1-scrape-reference-error-patterns" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 1: Scrape Reference Error Patterns
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#step-2-launch-the-interactive-ai-rule-synthesizer" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Step 2: Launch the Interactive AI Rule Synthesizer
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-adding-ast-diagnostic-handlers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Adding AST Diagnostic Handlers
       
     </span>
   </a>
@@ -617,10 +775,32 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#release-notes-format" class="md-nav__link">
+  <a href="#6-code-style-quality-standards" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Release Notes Format
+        6. Code Style &amp; Quality Standards
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-documentation-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Documentation Testing
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-pull-request-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Pull Request Checklist
       
     </span>
   </a>
@@ -661,73 +841,157 @@
 
 
 <h1 id="contributing-to-error-translator">Contributing to Error Translator<a class="headerlink" href="#contributing-to-error-translator" title="Permanent link">&para;</a></h1>
-<p>Thank you for your interest in contributing to Error Translator! This project was built to be highly accessible and welcoming to new developers. Most improvements to the engine's translation mapping occur within a single JSON configuration file, meaning impactful contributions are possible even without extensive Python experience.</p>
-<h2 id="developer-setup">Developer Setup<a class="headerlink" href="#developer-setup" title="Permanent link">&para;</a></h2>
-<p>Clone the repository and set up your virtual environment for local development:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/gourabanandad/error-translator.git
-<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="nb">cd</span><span class="w"> </span>error-translator
-<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>python<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
-<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
-<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Activate environment (Windows)</span>
-<a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>.<span class="se">\.</span>venv<span class="se">\S</span>cripts<span class="se">\a</span>ctivate
-<a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># Activate environment (macOS/Linux)</span>
-<a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate
-<a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>
-<a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>pip<span class="w"> </span>install<span class="w"> </span>-r<span class="w"> </span>requirements.txt
-<a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.
-<a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>pytest
-</code></pre></div>
-<p>If the test suite passes successfully, your local environment is correctly configured.</p>
-<h2 id="writing-meaningful-rules">Writing Meaningful Rules<a class="headerlink" href="#writing-meaningful-rules" title="Permanent link">&para;</a></h2>
-<p>The core of Error Translator is driven by <code>rules.json</code>. Adding a rule significantly enhances the translation engine's coverage.</p>
-<p>Navigate to <code>src/error_translator/rules.json</code> and append your pattern to the <code>rules</code> array.</p>
-<h3 id="schema-template">Schema Template<a class="headerlink" href="#schema-template" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">&quot;pattern&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;ValueError: invalid literal for int\\(\\) with base 10: &#39;(.*)&#39;&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">  </span><span class="nt">&quot;explanation&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;You tried to convert &#39;{0}&#39; into an integer, but it is not a valid whole number.&quot;</span><span class="p">,</span>
-<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">  </span><span class="nt">&quot;fix&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Make sure &#39;{0}&#39; only contains digits, or parse it as float first if decimals are expected.&quot;</span>
-<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
-</code></pre></div>
-<h3 id="capturing-mechanism">Capturing Mechanism<a class="headerlink" href="#capturing-mechanism" title="Permanent link">&para;</a></h3>
-<ul>
-<li>The engine evaluates Python <code>re</code> syntax against the target exception.</li>
-<li><code>(.*)</code> evaluates and captures dynamic runtime variables from the raw traceback.</li>
-<li><code>{0}</code>, <code>{1}</code>, etc., inject those extracted sub-patterns into your defined <code>explanation</code> and <code>fix</code> strings for rich user context.</li>
-</ul>
-<h2 id="the-fastest-workflow-ai-powered-rule-builder">The Fastest Workflow: AI-Powered Rule Builder<a class="headerlink" href="#the-fastest-workflow-ai-powered-rule-builder" title="Permanent link">&para;</a></h2>
-<p>If you have a Google Gemini API key, you can utilize our integrated tooling to automate the rule creation lifecycle entirely:</p>
+<p>Thank you for your interest in contributing to <strong>Error Translator</strong>! </p>
+<p>Whether you are improving existing translation advice, adding regex patterns for obscure standard library exceptions, enhancing AST lexical diagnostics, or fixing documentation, we welcome your contributions.</p>
+<hr />
+<h2 id="1-local-development-setup">1. Local Development Setup<a class="headerlink" href="#1-local-development-setup" title="Permanent link">&para;</a></h2>
+<p>We recommend using <a href="https://github.com/astral-sh/uv">uv</a> or standard Python virtual environments.</p>
+<h3 id="option-a-setup-with-uv-recommended-fastest">Option A: Setup with <code>uv</code> (Recommended / Fastest)<a class="headerlink" href="#option-a-setup-with-uv-recommended-fastest" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># Clone the repository</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/gourabanandad/error-translator-cli-v2.git
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="nb">cd</span><span class="w"> </span>error-translator-cli-v2
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># Create environment and install all dependencies (dev, server, jupyter, docs)</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>uv<span class="w"> </span>sync<span class="w"> </span>--all-extras
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="c1"># Run the test suite</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest
+</span></code></pre></div>
+<h3 id="option-b-setup-with-standard-venv-and-pip">Option B: Setup with Standard <code>venv</code> and <code>pip</code><a class="headerlink" href="#option-b-setup-with-standard-venv-and-pip" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># Clone repository</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/gourabanandad/error-translator-cli-v2.git
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="nb">cd</span><span class="w"> </span>error-translator-cli-v2
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># Create and activate virtual environment</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>python3<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>.venv
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="nb">source</span><span class="w"> </span>.venv/bin/activate<span class="w">       </span><span class="c1"># On Windows: .venv\Scripts\activate</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="c1"># Install package in editable mode with all optional dependencies</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span><span class="s2">".[dev,server,jupyter,docs]"</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="c1"># Verify test suite</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>pytest
+</span></code></pre></div>
+<hr />
+<h2 id="2-project-directory-layout">2. Project Directory Layout<a class="headerlink" href="#2-project-directory-layout" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>error-translator-cli-v2/
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>├── src/
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>│   └── error_translator/
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>│       ├── __init__.py          # Package exports (translate_error, load_ipython_extension)
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>│       ├── core.py              # Orchestrates parsing, dual-engine matching, and AST dispatch
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>│       ├── parser.py            # Extracts file paths, lines, and linecache source context
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>│       ├── rules.py             # Rule JSON caching and regex pre-compilation
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>│       ├── rules.json           # Declarative translation database (56+ rules)
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>│       ├── cli.py               # CLI entry point (explain-error) &amp; interactive REPL
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>│       ├── runner.py            # Subprocess runner for `explain-error run`
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>│       ├── ui.py                # Rich terminal UI components and JSON formatting
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>│       ├── auto.py              # sys.excepthook auto-interceptor module
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>│       ├── jupyter.py           # IPython notebook extension (%load_ext)
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>│       ├── ast/
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>│       │   ├── ast_engine.py    # ScopedSymbolCollector &amp; difflib typo matcher
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>│       │   └── ast_handlers.py  # AST_REGISTRY error strategy router
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>│       ├── api/
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>│       │   ├── server.py        # FastAPI REST API &amp; endpoints
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>│       │   └── static/          # Static HTML/CSS assets for Web Dashboard
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>│       └── ext/
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>│           └── fast_matcher.c   # Optional CPython C extension for native speed
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>├── tests/                       # Complete pytest suite (50+ tests)
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>├── scripts/
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>│   ├── scraper.py               # Standard library error pattern scraper
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>│   └── builder.py               # Gemini-powered interactive rule generator
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>├── docs/                        # MkDocs Material documentation source files
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>├── pyproject.toml               # PEP 621 metadata, dependencies &amp; tool configs
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>└── mkdocs.yml                   # MkDocs documentation site configuration
+</span></code></pre></div>
+<hr />
+<h2 id="3-authoring-translation-rules-rulesjson">3. Authoring Translation Rules (<code>rules.json</code>)<a class="headerlink" href="#3-authoring-translation-rules-rulesjson" title="Permanent link">&para;</a></h2>
+<p>Most contributions involve enhancing or adding error translation rules. All rules live declaratively in <code>src/error_translator/rules.json</code>.</p>
+<h3 id="schema-specification">Schema Specification:<a class="headerlink" href="#schema-specification" title="Permanent link">&para;</a></h3>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">"pattern"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TypeError: can only concatenate str \\(not \"(.*)\"\\) to str"</span><span class="p">,</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span><span class="nt">"explanation"</span><span class="p">:</span><span class="w"> </span><span class="s2">"You are trying to add a string to a {0}, which Python cannot do."</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">  </span><span class="nt">"fix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Convert the {0} to a string first using str() before concatenating."</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="p">}</span>
+</span></code></pre></div>
+<h3 id="key-guidelines-for-rules">Key Guidelines for Rules:<a class="headerlink" href="#key-guidelines-for-rules" title="Permanent link">&para;</a></h3>
 <ol>
-<li>
-<p><strong>Scrape Reference Errors</strong>: Download the standard library error map natively.
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>python<span class="w"> </span>scripts/scraper.py
-</code></pre></div>
-   <em>(This hydrates <code>scraped_errors_database.json</code>)</em></p>
-</li>
-<li>
-<p><strong>Run the Interactive Builder</strong>: Export your authentication credentials and invoke the rule generator.
-   <div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># Windows (PowerShell)</span>
-<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="nv">$env</span>:GEMINI_API_KEY<span class="o">=</span><span class="s2">&quot;your_api_key_here&quot;</span>
-<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>python<span class="w"> </span>scripts/builder.py
-<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
-<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># macOS/Linux</span>
-<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GEMINI_API_KEY</span><span class="o">=</span><span class="s2">&quot;your_api_key_here&quot;</span>
-<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>python<span class="w"> </span>scripts/builder.py
-</code></pre></div></p>
-</li>
+<li><strong>Regex Escaping</strong>: Escape parentheses <code>\\(</code>, <code>\\)</code>, brackets <code>\\[</code>, <code>\\]</code>, and special regex characters.</li>
+<li><strong>Dynamic Captures</strong>: Use <code>(.*)</code> or specific groups like <code>'([^']*)'</code> to capture variable names, types, or function signatures from the exception string.</li>
+<li><strong>Template Formatting</strong>: Use <code>{0}</code>, <code>{1}</code>, <code>{2}</code> in <code>explanation</code> and <code>fix</code> to dynamically inject captured variables.</li>
+<li><strong>Tone &amp; Style</strong>:</li>
+<li><strong>Accessible</strong>: Write in clear, encouraging, plain English without unnecessary academic jargon.</li>
+<li><strong>Actionable</strong>: Always provide a concrete code pattern or remedy in the <code>fix</code> field.</li>
 </ol>
-<p>The script autonomously identifies gaps between <code>rules.json</code> and official Python specs, queries the Gemini model to synthesize high-quality regex <code>pattern</code> matching, and generates accessible <code>explanation</code>s and <code>fix</code>es. You can then interactively Accept, Edit, or Skip the proposal.</p>
-<h2 id="pull-request-standards">Pull Request Standards<a class="headerlink" href="#pull-request-standards" title="Permanent link">&para;</a></h2>
-<p>Before submitting a Pull Request, please ensure the following:</p>
+<hr />
+<h2 id="4-ai-powered-rule-builder-workflow">4. AI-Powered Rule Builder Workflow<a class="headerlink" href="#4-ai-powered-rule-builder-workflow" title="Permanent link">&para;</a></h2>
+<p>If you have a Google Gemini API key, you can utilize our automated rule-building toolchain:</p>
+<h3 id="step-1-scrape-reference-error-patterns">Step 1: Scrape Reference Error Patterns<a class="headerlink" href="#step-1-scrape-reference-error-patterns" title="Permanent link">&para;</a></h3>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>scripts/scraper.py
+</span></code></pre></div>
+<em>(Hydrates <code>scripts/scraped_errors_database.json</code> with standard library exceptions).</em></p>
+<h3 id="step-2-launch-the-interactive-ai-rule-synthesizer">Step 2: Launch the Interactive AI Rule Synthesizer<a class="headerlink" href="#step-2-launch-the-interactive-ai-rule-synthesizer" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Export your Gemini API key</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GEMINI_API_KEY</span><span class="o">=</span><span class="s2">"your_api_key_here"</span><span class="w">   </span><span class="c1"># PowerShell: $env:GEMINI_API_KEY="key"</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="c1"># Run interactive generator</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>python<span class="w"> </span>scripts/builder.py
+</span></code></pre></div>
+<p>The builder:
+1. Identifies missing patterns in <code>rules.json</code>.
+2. Queries the Gemini model for high-precision regex matching and user-friendly explanations.
+3. Prompts you interactively in the terminal to <strong>[A]ccept</strong>, <strong>[E]dit</strong>, or <strong>[S]kip</strong> each proposed rule.</p>
+<hr />
+<h2 id="5-adding-ast-diagnostic-handlers">5. Adding AST Diagnostic Handlers<a class="headerlink" href="#5-adding-ast-diagnostic-handlers" title="Permanent link">&para;</a></h2>
+<p>When regular expressions alone cannot provide deep enough insight (e.g., detecting misspelled local variables), add an AST handler:</p>
+<ol>
+<li>Open <code>src/error_translator/ast/ast_handlers.py</code>.</li>
+<li>Write a handler function accepting <code>(file_path: str, line_number: str, extracted_values: list)</code>:
+   <div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">handle_my_error</span><span class="p">(</span><span class="n">file_path</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">line_number</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">extracted_values</span><span class="p">:</span> <span class="nb">list</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    <span class="n">target_word</span> <span class="o">=</span> <span class="n">extracted_values</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="n">extracted_values</span> <span class="k">else</span> <span class="s2">""</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    <span class="n">suggestion</span> <span class="o">=</span> <span class="n">get_ast_suggestions</span><span class="p">(</span><span class="n">file_path</span><span class="p">,</span> <span class="n">line_number</span><span class="p">,</span> <span class="n">target_word</span><span class="p">,</span> <span class="s2">"MyError"</span><span class="p">)</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    <span class="k">if</span> <span class="n">suggestion</span><span class="p">:</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        <span class="k">return</span> <span class="sa">f</span><span class="s2">"Did you mean '</span><span class="si">{</span><span class="n">suggestion</span><span class="si">}</span><span class="s2">'?"</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>    <span class="k">return</span> <span class="s2">"Review definition and spelling in the active scope."</span>
+</span></code></pre></div></li>
+<li>Register your handler in <code>AST_REGISTRY</code>:
+   <div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">AST_REGISTRY</span><span class="p">[</span><span class="s2">"MyError"</span><span class="p">]</span> <span class="o">=</span> <span class="n">handle_my_error</span>
+</span></code></pre></div></li>
+<li>Add comprehensive unit tests in <code>tests/test_ast.py</code>.</li>
+</ol>
+<hr />
+<h2 id="6-code-style-quality-standards">6. Code Style &amp; Quality Standards<a class="headerlink" href="#6-code-style-quality-standards" title="Permanent link">&para;</a></h2>
+<p>We enforce high code quality standards:</p>
 <ul>
-<li>[ ] <strong>Test Coverage</strong>: You have verified new rules locally via <code>pytest</code> and updated <code>tests/test_core.py</code> when applicable.</li>
-<li>[ ] <strong>Accessibility</strong>: Explanations are drafted in plain, supportive terminology without unnecessary technical jargon.</li>
-<li>[ ] <strong>Actionability</strong>: Suggested fixes are concrete, deterministic, and immediately applicable by a developer.</li>
-<li>[ ] <strong>Demonstration</strong>: Include the raw traceback and the output translation directly in your Pull Request description.</li>
+<li><strong>Linting &amp; Formatting</strong>: We use <a href="https://github.com/astral-sh/ruff">Ruff</a>.
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>check<span class="w"> </span>.
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>uv<span class="w"> </span>run<span class="w"> </span>ruff<span class="w"> </span>format<span class="w"> </span>--check<span class="w"> </span>.
+</span></code></pre></div></li>
+<li><strong>Type Annotations</strong>: Use modern Python 3.9+ type hints (<code>list[str]</code>, <code>dict[str, Any]</code>, <code>tuple[str, str]</code>).</li>
+<li><strong>Exception Handling</strong>: Avoid bare <code>except Exception: pass</code>. Catch specific errors (<code>OSError</code>, <code>ValueError</code>, <code>SyntaxError</code>, <code>UnicodeDecodeError</code>).</li>
+<li><strong>Tests</strong>: Ensure 100% of existing tests pass, and write new tests covering your additions.
+  <div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>uv<span class="w"> </span>run<span class="w"> </span>pytest<span class="w"> </span>--cov<span class="o">=</span>error_translator<span class="w"> </span>--cov-report<span class="o">=</span>term-missing
+</span></code></pre></div></li>
 </ul>
-<p>We appreciate your commitment to building a better developer experience with us!</p>
-<h2 id="release-notes-format">Release Notes Format<a class="headerlink" href="#release-notes-format" title="Permanent link">&para;</a></h2>
-<p>For maintainers publishing releases, use the structured template in <code>.github/release-template.md</code>.</p>
-<p>Consistent release notes improve both search indexing and LLM retrieval quality by keeping change summaries predictable and machine-readable.</p>
+<hr />
+<h2 id="7-documentation-testing">7. Documentation Testing<a class="headerlink" href="#7-documentation-testing" title="Permanent link">&para;</a></h2>
+<p>To preview the documentation site locally:</p>
+<p><div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>serve
+</span></code></pre></div>
+Open <code>http://127.0.0.1:8000</code> to inspect live changes with auto-reloading.</p>
+<p>To verify a strict build without warnings:
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>uv<span class="w"> </span>run<span class="w"> </span>mkdocs<span class="w"> </span>build<span class="w"> </span>--strict
+</span></code></pre></div></p>
+<hr />
+<h2 id="8-pull-request-checklist">8. Pull Request Checklist<a class="headerlink" href="#8-pull-request-checklist" title="Permanent link">&para;</a></h2>
+<p>Before opening your pull request, please verify:</p>
+<ul>
+<li>[ ] All tests pass cleanly (<code>pytest</code>).</li>
+<li>[ ] New rules or features include corresponding test cases in <code>tests/</code>.</li>
+<li>[ ] Code passes Ruff linting (<code>ruff check .</code>).</li>
+<li>[ ] Documentation site builds without warnings (<code>mkdocs build --strict</code>).</li>
+<li>[ ] Your PR description includes a brief summary of changes along with a sample raw traceback and translated output.</li>
+</ul>
+<p>Thank you for helping make Python debugging friendly and accessible for everyone!</p>
 
 
 
@@ -747,6 +1011,12 @@
           
 <script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
         </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
         
       </main>
       
@@ -777,10 +1047,10 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["content.action.edit", "content.action.view", "content.code.copy", "navigation.top", "navigation.sections", "search.suggest", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
-      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
       
     
   </body>
