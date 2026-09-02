@@ -1,4 +1,5 @@
 import sys
+
 import pytest
 
 
@@ -18,10 +19,13 @@ def test_raw_traceback_argument_shows_explanation_and_translation(capsys, monkey
 
 
 def test_raw_traceback_argument_with_json_flag_emits_json(capsys, monkeypatch):
-    from error_translator.cli import main
     import json
 
-    monkeypatch.setattr(sys, "argv", ["explain-error", "--json", "NameError: name 'foo' is not defined"])
+    from error_translator.cli import main
+
+    monkeypatch.setattr(
+        sys, "argv", ["explain-error", "--json", "NameError: name 'foo' is not defined"]
+    )
     monkeypatch.setattr(sys.stdin, "isatty", lambda: True)
 
     main()
@@ -100,10 +104,7 @@ def test_run_subcommand_translates_failing_script_traceback(capsys, monkeypatch,
     from error_translator.cli import main
 
     script = tmp_path / "failing_script.py"
-    script.write_text(
-        "print('hello from script')\n"
-        "print(undefined_variable)\n"
-    )
+    script.write_text("print('hello from script')\nprint(undefined_variable)\n")
 
     monkeypatch.setattr(sys, "argv", ["explain-error", "run", str(script)])
     monkeypatch.setattr(sys.stdin, "isatty", lambda: True)
@@ -126,4 +127,6 @@ def test_run_subcommand_missing_script_reports_detected_error(capsys, monkeypatc
     main()  # must not raise
 
     captured = capsys.readouterr().out
-    assert "No such file" in captured or "can't open file" in captured or "Execution Error" in captured
+    assert (
+        "No such file" in captured or "can't open file" in captured or "Execution Error" in captured
+    )

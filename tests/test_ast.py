@@ -20,13 +20,15 @@ def func_b():
     print(banan_num)
 """
 
+
 @pytest.fixture
 def mock_file():
     fd, path = tempfile.mkstemp(suffix=".py")
-    with os.fdopen(fd, 'w', encoding='utf-8') as f:
+    with os.fdopen(fd, "w", encoding="utf-8") as f:
         f.write(MOCK_CODE)
     yield path
     os.remove(path)
+
 
 def test_ast_scoping_func_a(mock_file):
     # Simulate a NameError crash on line 6 (inside func_a) looking for 'appl_qty'
@@ -36,6 +38,7 @@ def test_ast_scoping_func_a(mock_file):
     # Try to access func_b's variable from func_a
     suggestion_bad = get_ast_suggestions(mock_file, "6", "banan_num", "NameError")
     assert suggestion_bad is None  # Should be completely blocked
+
 
 def test_ast_scoping_func_b(mock_file):
     # Simulate a NameError crash on line 11 (inside func_b)

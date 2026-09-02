@@ -15,19 +15,29 @@ authors = [
 keywords = [
     "python",
     "python error translator",
-    "traceback translator",
+    "python traceback translator",
     "python traceback analyzer",
     "python exception explainer",
+    "python stack trace parser",
+    "traceback",
+    "stack-trace",
     "error explainer",
     "error handling",
     "debugging",
     "developer tools",
-    "stack-trace",
     "cli",
     "terminal",
     "offline",
     "fastapi",
-    "human-readable"
+    "human-readable",
+    "ast typo checker",
+    "jupyter error translator",
+    "excepthook",
+    "typeerror",
+    "nameerror",
+    "keyerror",
+    "indexerror",
+    "syntaxerror"
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",

@@ -4,13 +4,23 @@ Command Line Interface (CLI) module for the Error Translator.
 This module provides the terminal entry point (`explain-error`). It parses arguments,
 handles standard input streams, and orchestrates the translation process.
 """
+
 import argparse
 import sys
 from pathlib import Path
 
 from .core import translate_error
 from .runner import run_script
-from .ui import VERSION, console, print_about, print_help, print_execution_error, print_result, print_result_json, print_version
+from .ui import (
+    VERSION,
+    console,
+    print_about,
+    print_execution_error,
+    print_help,
+    print_result,
+    print_result_json,
+    print_version,
+)
 
 
 def check_first_run(as_json: bool):
@@ -28,22 +38,27 @@ def check_first_run(as_json: bool):
             flag_file.touch()
 
             from .banner import print_install_banner
+
             print_install_banner()
 
             from rich.panel import Panel
-            console.print(Panel(
-                "[white]This tool automatically intercepts confusing Python errors and translates them into plain English.[/white]\n\n"
-                "To get started, run:\n"
-                "  [bold cyan]explain-error --help[/bold cyan]",
-                title="[bold green]Welcome to Error Translator CLI V2![/bold green]",
-                border_style="green",
-                expand=False
-            ))
+
+            console.print(
+                Panel(
+                    "[white]Error Translator parses Python exceptions and provides clear explanations with actionable remediation steps.[/white]\n\n"
+                    "Get started by running:\n"
+                    "  [bold cyan]explain-error --help[/bold cyan]",
+                    title="[bold green]Error Translator CLI v2[/bold green]",
+                    border_style="green",
+                    expand=False,
+                )
+            )
             console.print()
         except OSError:
             # Can't write the ~/.config flag file (read-only home, etc.).
             # Not fatal — just skip the welcome banner.
             pass
+
 
 def run_interactive_session(as_json: bool = False):
     """
@@ -62,14 +77,17 @@ def run_interactive_session(as_json: bool = False):
 
     if not as_json:
         from rich.panel import Panel
-        console.print(Panel(
-            "[white]Paste a Python error message or full traceback below.[/white]\n"
-            "Press [bold]Enter[/bold] on a blank line (or [bold]Ctrl+D[/bold]) to submit it.\n"
-            "Type [bold]exit[/bold] or [bold]quit[/bold] to leave, or press [bold]Ctrl+C[/bold] anytime.",
-            title="[bold green]Interactive Mode[/bold green]",
-            border_style="green",
-            expand=False,
-        ))
+
+        console.print(
+            Panel(
+                "[white]Paste a Python error message or full traceback below.[/white]\n"
+                "Press [bold]Enter[/bold] on a blank line (or [bold]Ctrl+D[/bold]) to submit it.\n"
+                "Type [bold]exit[/bold] or [bold]quit[/bold] to leave, or press [bold]Ctrl+C[/bold] anytime.",
+                title="[bold green]Interactive Mode[/bold green]",
+                border_style="green",
+                expand=False,
+            )
+        )
 
     while True:
         try:
@@ -122,7 +140,7 @@ def main():
     """Main CLI entry point."""
     parser = argparse.ArgumentParser(
         prog="explain-error",
-        description="Error Translator — Turn cryptic Python tracebacks into clear, actionable advice.",
+        description="Error Translator — Deterministic Python traceback analysis and exception diagnostics.",
         epilog="""
 Examples:
   explain-error run my_script.py
@@ -131,13 +149,24 @@ Examples:
   explain-error interactive
         """,
         formatter_class=argparse.RawDescriptionHelpFormatter,
-        add_help=False
+        add_help=False,
     )
 
-    parser.add_argument("-a", "--about", action="store_true", help="Display information about the tool.")
-    parser.add_argument("-v", "--version", action="store_true", help="Show the current version of the tool.")
-    parser.add_argument("--json", action="store_true", dest="as_json", help="Output the translated error as a JSON object.")
-    parser.add_argument("-h", "--help", action="store_true", help="Help user through documentation.")
+    parser.add_argument(
+        "-a", "--about", action="store_true", help="Display information about the tool."
+    )
+    parser.add_argument(
+        "-v", "--version", action="store_true", help="Show the current version of the tool."
+    )
+    parser.add_argument(
+        "--json",
+        action="store_true",
+        dest="as_json",
+        help="Output the translated error as a JSON object.",
+    )
+    parser.add_argument(
+        "-h", "--help", action="store_true", help="Help user through documentation."
+    )
     parser.add_argument("args", nargs="*", help="Positional arguments.")
 
     parsed_args = parser.parse_args()
@@ -199,6 +228,7 @@ Examples:
 
         error_input = " ".join(parsed_args.args)
         emit(translate_error(error_input))
+
 
 if __name__ == "__main__":
     main()

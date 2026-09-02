@@ -1,10 +1,10 @@
-# Error Translator
+# Error Translator CLI v2
 
 > Offline Python traceback translator and exception explainer.
 
-Error Translator turns raw Python tracebacks into clear explanations and actionable fixes. It is designed for developers, students, and automation workflows that need deterministic, local error translation.
+Error Translator turns raw Python tracebacks into structured explanations and actionable remediation steps. It is designed for developers, learners, educators, and automation workflows that require deterministic, local-first error translation.
 
-## Primary Keywords
+## Primary Keywords & High-Intent Queries
 
 - Python error translator
 - Python traceback translator
@@ -12,37 +12,49 @@ Error Translator turns raw Python tracebacks into clear explanations and actiona
 - Stack trace analyzer for Python
 - CLI tool for Python debugging
 - Offline Python debugging assistant
+- Jupyter notebook error explainer
+- AST lexical scoping error analyzer
+- Python stack trace to plain English
+- Python NameError typo suggestions
+- Python TypeError concatenation fix
+- Automated Python error diagnostics for CI/CD
+- FastAPI traceback translation microservice
 
 ## Canonical Links
 
 - Homepage: https://github.com/gourabanandad/error-translator-cli-v2
 - Source: https://github.com/gourabanandad/error-translator-cli-v2
 - Package: https://pypi.org/project/error-translator-cli-v2/
-- Docs: https://github.com/gourabanandad/error-translator-cli-v2/tree/master/docs
+- Documentation: https://gourabanandad.github.io/error-translator-cli-v2/
 - Issues: https://github.com/gourabanandad/error-translator-cli-v2/issues
 
-## Interfaces
+## Interfaces & Entry Points
 
-- CLI command: explain-error
-- Python API: error_translator.core.translate_error
-- Auto-hook mode: error_translator.auto
-- FastAPI app: error_translator.api.server:app
+- CLI command: `explain-error` (Supports `run`, `interactive`, direct string, and stdin piping)
+- Programmatic Python API: `error_translator.core.translate_error`
+- Global Exception Hook: `error_translator.auto` (Overrides `sys.excepthook`)
+- Jupyter / IPython Extension: `%load_ext error_translator.jupyter`
+- FastAPI REST Service & Dashboard: `error_translator.api.server:app` (Single `/translate` and batch `/translate/batch`)
 
 ## Feature Summary
 
-- Deterministic regex rule engine
-- Optional C extension acceleration with Python fallback
-- Offline and privacy-friendly execution
-- JSON output mode for scripting
-- Optional AST insight hints for supported errors
+- Deterministic regex rule engine with 56+ rules across 26+ Python exception classes
+- Optional native C extension acceleration (`fast_matcher.c`) with pure-Python fallback
+- 100% offline, privacy-first execution with zero telemetry
+- Scope-aware AST lexical analysis (`ScopedSymbolCollector`) with fuzzy typo suggestion
+- Structured JSON output mode (`--json`) for automation, CI/CD, and log pipelines
+- Rich terminal UI with code context line extraction via `linecache`
 
-## Install
+## Installation
 
+```bash
 pip install error-translator-cli-v2
+```
 
 ## Typical Use Cases
 
-- Explain unfamiliar Python exceptions quickly
-- Improve CI or log pipelines with readable diagnostics
-- Teach Python errors with beginner-friendly wording
-- Add traceback translation to internal tools via API
+- Explain unfamiliar Python exceptions quickly during local development
+- Add human-friendly crash diagnostics to CI pipelines and Docker container logs
+- Teach Python debugging with clear, jargon-free explanations
+- Provide in-cell exception explanations inside Jupyter notebooks and Google Colab
+- Build remote translation services or web dashboards via FastAPI

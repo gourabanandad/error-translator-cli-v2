@@ -2,6 +2,7 @@
 Script execution module.
 Responsible for running target Python scripts and intercepting their output.
 """
+
 import subprocess
 import sys
 
@@ -12,7 +13,7 @@ from .ui import print_execution_error, print_result, print_result_json
 def run_script(script_name: str, *, as_json: bool = False):
     """
     Run a target Python script and dynamically intercept/translate traceback output if it fails.
-    
+
     Args:
         script_name (str): The script to run.
         as_json (bool): Whether to output the error translation in JSON format instead of Rich UI.
@@ -21,11 +22,7 @@ def run_script(script_name: str, *, as_json: bool = False):
         # check=False is intentional: we handle both success (returncode==0)
         # and failure (non-zero returncode) paths explicitly below.
         # Run the script and capture stdout and stderr
-        result = subprocess.run(
-            [sys.executable, script_name],
-            capture_output=True,
-            text=True
-        )
+        result = subprocess.run([sys.executable, script_name], capture_output=True, text=True)
 
         if result.returncode == 0:
             # Script succeeded, just print its normal output
@@ -44,17 +41,9 @@ def run_script(script_name: str, *, as_json: bool = False):
     except FileNotFoundError:
         # Handling the case where the provided script doesn't exist
         print_execution_error(
-            script_name,
-            f"Could not find script '{script_name}'",
-            as_json,
-            "Execution Error"
+            script_name, f"Could not find script '{script_name}'", as_json, "Execution Error"
         )
     except Exception as exc:
         # Catch-all for unexpected runtime issues with the sub-process
         # Surfaced to the user so they see *something* went wrong.
-        print_execution_error(
-            script_name,
-            str(exc),
-            as_json,
-            "Runtime Error"
-        )
+        print_execution_error(script_name, str(exc), as_json, "Runtime Error")
