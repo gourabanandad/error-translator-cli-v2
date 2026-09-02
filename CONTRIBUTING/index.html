@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Offline Python traceback translator and error explainer. Convert cryptic exceptions into clear explanations and actionable fixes.">
+        <meta name="description" content="Offline Python traceback translator, exception explainer, and CLI debugging tool. Analyzes Python stack traces, AST lexical scopes, and source code context to provide structured error remediation.">
       
       
         <meta name="author" content="Gourabananda Datta">
@@ -519,15 +519,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-ai-powered-rule-builder-workflow" class="md-nav__link">
+  <a href="#4-rule-synthesis-tooling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. AI-Powered Rule Builder Workflow
+        4. Rule Synthesis Tooling
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. AI-Powered Rule Builder Workflow">
+    <nav class="md-nav" aria-label="4. Rule Synthesis Tooling">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -542,10 +542,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-launch-the-interactive-ai-rule-synthesizer" class="md-nav__link">
+  <a href="#step-2-run-the-interactive-rule-synthesizer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: Launch the Interactive AI Rule Synthesizer
+        Step 2: Run the Interactive Rule Synthesizer
       
     </span>
   </a>
@@ -725,15 +725,15 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#4-ai-powered-rule-builder-workflow" class="md-nav__link">
+  <a href="#4-rule-synthesis-tooling" class="md-nav__link">
     <span class="md-ellipsis">
       
-        4. AI-Powered Rule Builder Workflow
+        4. Rule Synthesis Tooling
       
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="4. AI-Powered Rule Builder Workflow">
+    <nav class="md-nav" aria-label="4. Rule Synthesis Tooling">
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
@@ -748,10 +748,10 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#step-2-launch-the-interactive-ai-rule-synthesizer" class="md-nav__link">
+  <a href="#step-2-run-the-interactive-rule-synthesizer" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Step 2: Launch the Interactive AI Rule Synthesizer
+        Step 2: Run the Interactive Rule Synthesizer
       
     </span>
   </a>
@@ -923,13 +923,13 @@
 <li><strong>Actionable</strong>: Always provide a concrete code pattern or remedy in the <code>fix</code> field.</li>
 </ol>
 <hr />
-<h2 id="4-ai-powered-rule-builder-workflow">4. AI-Powered Rule Builder Workflow<a class="headerlink" href="#4-ai-powered-rule-builder-workflow" title="Permanent link">&para;</a></h2>
-<p>If you have a Google Gemini API key, you can utilize our automated rule-building toolchain:</p>
+<h2 id="4-rule-synthesis-tooling">4. Rule Synthesis Tooling<a class="headerlink" href="#4-rule-synthesis-tooling" title="Permanent link">&para;</a></h2>
+<p>If you have a Google Gemini API key, you can utilize the automated rule-building toolchain:</p>
 <h3 id="step-1-scrape-reference-error-patterns">Step 1: Scrape Reference Error Patterns<a class="headerlink" href="#step-1-scrape-reference-error-patterns" title="Permanent link">&para;</a></h3>
 <p><div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>python<span class="w"> </span>scripts/scraper.py
 </span></code></pre></div>
-<em>(Hydrates <code>scripts/scraped_errors_database.json</code> with standard library exceptions).</em></p>
-<h3 id="step-2-launch-the-interactive-ai-rule-synthesizer">Step 2: Launch the Interactive AI Rule Synthesizer<a class="headerlink" href="#step-2-launch-the-interactive-ai-rule-synthesizer" title="Permanent link">&para;</a></h3>
+<em>(Populates <code>scripts/scraped_errors_database.json</code> with standard library exceptions).</em></p>
+<h3 id="step-2-run-the-interactive-rule-synthesizer">Step 2: Run the Interactive Rule Synthesizer<a class="headerlink" href="#step-2-run-the-interactive-rule-synthesizer" title="Permanent link">&para;</a></h3>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1"># Export your Gemini API key</span>
 </span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nb">export</span><span class="w"> </span><span class="nv">GEMINI_API_KEY</span><span class="o">=</span><span class="s2">"your_api_key_here"</span><span class="w">   </span><span class="c1"># PowerShell: $env:GEMINI_API_KEY="key"</span>
 </span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>
@@ -938,7 +938,7 @@
 </span></code></pre></div>
 <p>The builder:
 1. Identifies missing patterns in <code>rules.json</code>.
-2. Queries the Gemini model for high-precision regex matching and user-friendly explanations.
+2. Queries the model for pattern matching rules and structured explanations.
 3. Prompts you interactively in the terminal to <strong>[A]ccept</strong>, <strong>[E]dit</strong>, or <strong>[S]kip</strong> each proposed rule.</p>
 <hr />
 <h2 id="5-adding-ast-diagnostic-handlers">5. Adding AST Diagnostic Handlers<a class="headerlink" href="#5-adding-ast-diagnostic-handlers" title="Permanent link">&para;</a></h2>

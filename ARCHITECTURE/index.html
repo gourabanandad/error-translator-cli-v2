@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Offline Python traceback translator and error explainer. Convert cryptic exceptions into clear explanations and actionable fixes.">
+        <meta name="description" content="Offline Python traceback translator, exception explainer, and CLI debugging tool. Analyzes Python stack traces, AST lexical scopes, and source code context to provide structured error remediation.">
       
       
         <meta name="author" content="Gourabananda Datta">
@@ -1175,21 +1175,22 @@
 <h3 id="b-core-translation-output-dictionary-contract">B. Core Translation Output Dictionary Contract<a class="headerlink" href="#b-core-translation-output-dictionary-contract" title="Permanent link">&para;</a></h3>
 <p>The output of <code>translate_error</code> is guaranteed to contain the following keys:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
-</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="s2">"explanation"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>          <span class="c1"># Clear, plain-English summary of the issue</span>
-</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s2">"fix"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>                  <span class="c1"># Concrete actionable instructions</span>
-</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="s2">"ast_insight"</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>   <span class="c1"># Scope-aware suggestions or None</span>
-</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="s2">"matched_error"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>        <span class="c1"># The exact error line extracted from the traceback</span>
-</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="s2">"file"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>                 <span class="c1"># File path or 'Unknown File'</span>
-</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="s2">"line"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>                 <span class="c1"># Line number or 'Unknown Line'</span>
-</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="s2">"code"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>                 <span class="c1"># Crashing source line or empty string</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="s2">"explanation"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>  <span class="c1"># Clear, plain-English summary of the issue</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="s2">"fix"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>  <span class="c1"># Concrete actionable instructions</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    <span class="s2">"ast_insight"</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">,</span>  <span class="c1"># Scope-aware suggestions or None</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="s2">"matched_error"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>  <span class="c1"># The exact error line extracted from the traceback</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="s2">"file"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>  <span class="c1"># File path or 'Unknown File'</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>    <span class="s2">"line"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>  <span class="c1"># Line number or 'Unknown Line'</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="s2">"code"</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>  <span class="c1"># Crashing source line or empty string</span>
 </span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="p">}</span>
 </span></code></pre></div>
 <h3 id="c-fastapi-request-response-models">C. FastAPI Request &amp; Response Models<a class="headerlink" href="#c-fastapi-request-response-models" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">ErrorRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">traceback_setting</span><span class="p">:</span> <span class="nb">str</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
-</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="k">class</span><span class="w"> </span><span class="nc">BatchErrorRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="n">tracebacks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="k">class</span><span class="w"> </span><span class="nc">BatchErrorRequest</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    <span class="n">tracebacks</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
 </span></code></pre></div>
 <hr />
 <h2 id="7-fault-isolation-resilience-patterns">7. Fault Isolation &amp; Resilience Patterns<a class="headerlink" href="#7-fault-isolation-resilience-patterns" title="Permanent link">&para;</a></h2>

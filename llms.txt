@@ -8,7 +8,7 @@ Error Translator is an offline Python traceback analyzer, exception explainer, a
 
 https://gourabanandad.github.io/error-translator-cli-v2/
 
-## High-Intent Queries
+## High-Intent Queries & Keywords
 
 - python traceback translator
 - python exception explainer
@@ -17,6 +17,10 @@ https://gourabanandad.github.io/error-translator-cli-v2/
 - python error translation api
 - jupyter error translator magic
 - python ast error typo suggestion
+- python nameerror did you mean
+- python typeerror fix
+- python stack trace to plain text
+- automated traceback triage in ci cd
 
 ## Key Pages
 

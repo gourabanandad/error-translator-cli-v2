@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="Offline Python traceback translator and error explainer. Convert cryptic exceptions into clear explanations and actionable fixes.">
+        <meta name="description" content="Offline Python traceback translator, exception explainer, and CLI debugging tool. Analyzes Python stack traces, AST lexical scopes, and source code context to provide structured error remediation.">
       
       
         <meta name="author" content="Gourabananda Datta">
@@ -394,6 +394,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#search-index-covered-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Index &amp; Covered Topics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#community-support" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -619,6 +630,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#search-index-covered-topics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Search Index &amp; Covered Topics
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#community-support" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -669,8 +691,8 @@
 
 <p><br></p>
 <div align="center">
-  <h3>⚡ Fatal to Fabulous: Turn cryptic Python exceptions into clear advice and actionable fixes. ⚡</h3>
-  <p><b>100% Offline • Sub-millisecond Performance • AST Scoped Analysis • Multi-Surface Integration</b></p>
+  <h3>Deterministic Python Traceback Analysis and Exception Diagnostics</h3>
+  <p><b>100% Offline • Sub-millisecond Execution • AST Lexical Scoping • Multi-Surface Integration</b></p>
 </div>
 
 <div align="center">
@@ -683,15 +705,15 @@
 <p><br></p>
 <hr />
 <h2 id="what-is-error-translator">What is Error Translator?<a class="headerlink" href="#what-is-error-translator" title="Permanent link">&para;</a></h2>
-<p><strong>Error Translator</strong> is a local-first Python traceback analyzer and exception explainer. It parses raw Python stack traces, retrieves the exact offending line of source code, inspects surrounding Abstract Syntax Tree (AST) lexical scopes for typo detection, and converts cryptic errors into <strong>crystal-clear explanations</strong> paired with <strong>concrete, actionable fixes</strong>.</p>
-<p>Designed for developers, learners, educators, and automated CI pipelines, it operates <strong>entirely offline</strong> with <strong>zero telemetry</strong> and sub-millisecond execution speeds.</p>
-<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>❌ RAW PYTHON EXCEPTION:
+<p><strong>Error Translator</strong> is a local-first Python traceback analyzer and exception explainer. It parses raw Python stack traces, retrieves the offending source line, inspects surrounding Abstract Syntax Tree (AST) lexical scopes for typo resolution, and converts exceptions into <strong>structured explanations</strong> paired with <strong>concrete remediation steps</strong>.</p>
+<p>Designed for developers, educators, and automated CI pipelines, it operates <strong>entirely offline</strong> with <strong>zero telemetry</strong> and sub-millisecond execution speeds.</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>RAW PYTHON EXCEPTION:
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Traceback (most recent call last):
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>  File "calculator.py", line 12, in &lt;module&gt;
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    result = "Total items: " + count
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>TypeError: can only concatenate str (not "int") to str
 </span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
-</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>✨ ERROR TRANSLATOR DIAGNOSTIC:
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>ERROR TRANSLATOR DIAGNOSTIC:
 </span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>┌─ Detected Error ─────────────────────────────────────────────────────────────┐
 </span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>│ TypeError: can only concatenate str (not "int") to str                       │
 </span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>├─ Location ───────────────────────────────────────────────────────────────────┤
@@ -706,23 +728,23 @@
 </span></code></pre></div>
 <hr />
 <h2 id="core-pillars-design-principles">Core Pillars &amp; Design Principles<a class="headerlink" href="#core-pillars-design-principles" title="Permanent link">&para;</a></h2>
-<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">🔒 100% Offline &amp; Private</label><label for="__tabbed_1_2">⚡ Sub-Millisecond Speed</label><label for="__tabbed_1_3">🧠 Lexical Scope AST Intelligence</label><label for="__tabbed_1_4">🔌 Universal Integration</label></div>
+<div class="tabbed-set tabbed-alternate" data-tabs="1:4"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><input id="__tabbed_1_3" name="__tabbed_1" type="radio" /><input id="__tabbed_1_4" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">Offline &amp; Local Execution</label><label for="__tabbed_1_2">Sub-Millisecond Speed</label><label for="__tabbed_1_3">Lexical Scope AST Intelligence</label><label for="__tabbed_1_4">Multi-Surface Integration</label></div>
 <div class="tabbed-content">
 <div class="tabbed-block">
 <p><strong>Zero Network Latency &amp; Total Privacy.</strong></p>
-<p>Your source code, file paths, variable names, and crash logs never leave your workstation. All regex evaluations and AST traversals run strictly on your local CPU without making external API or LLM calls.</p>
+<p>Source code, file paths, variable names, and crash logs remain local to your workstation. All regex evaluations and AST traversals run on the local CPU without external network requests or cloud dependencies.</p>
 </div>
 <div class="tabbed-block">
 <p><strong>Dual-Engine Architecture.</strong></p>
-<p>Powered by a compiled C extension (<code>fast_matcher.c</code>) that accelerates pattern matching across pre-compiled regex tables. On systems without a C compiler, it automatically and transparently falls back to a pure-Python matching loop with zero difference in output.</p>
+<p>Powered by an optional compiled C extension (<code>fast_matcher.c</code>) that accelerates pattern matching across pre-compiled regex tables. On systems without a C compiler, it automatically and transparently falls back to a pure-Python matching loop with zero difference in output.</p>
 </div>
 <div class="tabbed-block">
 <p><strong>Context-Aware Diagnostics.</strong></p>
-<p>When a <code>NameError</code>, <code>AttributeError</code>, or <code>ImportError</code> occurs, the engine parses the Python file into an Abstract Syntax Tree (AST). By analyzing <code>lineno</code> and <code>end_lineno</code> boundaries, it searches for similar identifiers strictly within the visible scope—offering precise "Did you mean?" suggestions.</p>
+<p>When a <code>NameError</code>, <code>AttributeError</code>, or <code>ImportError</code> occurs, the engine parses the Python file into an Abstract Syntax Tree (AST). By analyzing <code>lineno</code> and <code>end_lineno</code> boundaries, it searches for similar identifiers strictly within the visible scope—offering precise suggestions without false positives.</p>
 </div>
 <div class="tabbed-block">
-<p><strong>Five Ways to Debug.</strong></p>
-<p>Use Error Translator anywhere in your development lifecycle:</p>
+<p><strong>Flexible Tooling Across Environments.</strong></p>
+<p>Use Error Translator across the development lifecycle:</p>
 <ol>
 <li><strong>Command-Line Tool (<code>explain-error</code>)</strong> for running scripts, analyzing logs, or starting interactive REPL sessions.</li>
 <li><strong>Automatic Hook (<code>error_translator.auto</code>)</strong> for global exception interception via <code>sys.excepthook</code>.</li>
@@ -821,6 +843,14 @@
 </li>
 </ul>
 </div>
+<hr />
+<h2 id="search-index-covered-topics">Search Index &amp; Covered Topics<a class="headerlink" href="#search-index-covered-topics" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Traceback &amp; Error Parsing</strong>: Python error translator, stack trace parser, traceback interpreter, terminal error explanation, offline debugging tool.</li>
+<li><strong>Common Python Exceptions</strong>: <code>TypeError</code>, <code>ValueError</code>, <code>NameError</code>, <code>AttributeError</code>, <code>IndexError</code>, <code>KeyError</code>, <code>FileNotFoundError</code>, <code>ZeroDivisionError</code>, <code>ModuleNotFoundError</code>, <code>SyntaxError</code>, <code>IndentationError</code>, <code>RecursionError</code>.</li>
+<li><strong>Lexical AST Analysis</strong>: AST scope boundaries, fuzzy identifier matching with <code>difflib</code>, variable typo suggestions, method name correction.</li>
+<li><strong>Integration Points</strong>: CLI (<code>explain-error</code>), REPL interactive shell, global <code>sys.excepthook</code> interceptor, Jupyter / IPython notebook magic (<code>%load_ext</code>), FastAPI REST API service.</li>
+</ul>
 <hr />
 <h2 id="community-support">Community &amp; Support<a class="headerlink" href="#community-support" title="Permanent link">&para;</a></h2>
 <ul>
