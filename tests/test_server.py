@@ -1,4 +1,5 @@
 from fastapi.testclient import TestClient
+
 from error_translator.api.server import app
 
 client = TestClient(app)

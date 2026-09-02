@@ -8,8 +8,9 @@ def test_load_ipython_extension():
     load_ipython_extension(mock_ipython)
     mock_ipython.set_custom_exc.assert_called_once_with((Exception,), custom_exc)
 
-@patch('error_translator.jupyter.translate_error')
-@patch('error_translator.jupyter.AutoFormattedTB')
+
+@patch("error_translator.jupyter.translate_error")
+@patch("error_translator.jupyter.AutoFormattedTB")
 def test_custom_exc(mock_auto_tb, mock_translate, capsys):
     mock_shell = MagicMock()
     mock_tb = MagicMock()
@@ -19,14 +20,11 @@ def test_custom_exc(mock_auto_tb, mock_translate, capsys):
     mock_auto_tb.return_value = mock_tb_instance
     mock_tb_instance.text.return_value = "raw traceback text"
 
-    mock_translate.return_value = {
-        'explanation': 'Test explanation',
-        'fix': 'Test fix'
-    }
+    mock_translate.return_value = {"explanation": "Test explanation", "fix": "Test fix"}
 
     custom_exc(mock_shell, Exception, mock_evalue, mock_tb)
 
-    mock_auto_tb.assert_called_once_with(mode='plain', theme_name='NoColor')
+    mock_auto_tb.assert_called_once_with(mode="plain", theme_name="NoColor")
     mock_tb_instance.text.assert_called_once_with(Exception, mock_evalue, mock_tb)
     mock_translate.assert_called_once_with("raw traceback text")
 

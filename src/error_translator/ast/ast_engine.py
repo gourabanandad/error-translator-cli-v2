@@ -7,18 +7,19 @@ class ScopedSymbolCollector(ast.NodeVisitor):
     """
     Walks the Abstract Syntax Tree (AST) of the target Python file.
     It collects variables, functions, classes, and attributes defined in the code.
-    
+
     Crucially, it respects lexical scope by using the crash line number.
-    It will only descend into function or class bodies if the crash actually 
+    It will only descend into function or class bodies if the crash actually
     happened inside them, preventing it from suggesting variables from unrelated scopes.
     """
+
     def __init__(self, target_line: int):
         self.target_line = target_line
-        self.names = set()        # Variables (e.g., local/global variable assignments)
-        self.attributes = set()   # Object attributes/methods (e.g., obj.method_name)
-        self.classes = set()      # Class names defined in the scope
-        self.functions = set()    # Function names defined in the scope
-        self.imports = set()      # Imported modules or aliases
+        self.names = set()  # Variables (e.g., local/global variable assignments)
+        self.attributes = set()  # Object attributes/methods (e.g., obj.method_name)
+        self.classes = set()  # Class names defined in the scope
+        self.functions = set()  # Function names defined in the scope
+        self.imports = set()  # Imported modules or aliases
 
     def visit_Name(self, node):
         """Collects variable names when they are assigned (Store context)."""
@@ -36,7 +37,7 @@ class ScopedSymbolCollector(ast.NodeVisitor):
         self.functions.add(node.name)
 
         # SCOPING LOGIC: Only visit the body if the crash happened INSIDE this function
-        if hasattr(node, 'lineno') and hasattr(node, 'end_lineno'):
+        if hasattr(node, "lineno") and hasattr(node, "end_lineno"):
             if node.lineno <= self.target_line <= node.end_lineno:
                 self.generic_visit(node)
         else:
@@ -52,7 +53,7 @@ class ScopedSymbolCollector(ast.NodeVisitor):
         self.classes.add(node.name)
 
         # SCOPING LOGIC: Only visit the body if the crash happened INSIDE this class
-        if hasattr(node, 'lineno') and hasattr(node, 'end_lineno'):
+        if hasattr(node, "lineno") and hasattr(node, "end_lineno"):
             if node.lineno <= self.target_line <= node.end_lineno:
                 self.generic_visit(node)
         else:
@@ -84,13 +85,13 @@ def get_ast_suggestions(filepath: str, line_number: str, target_word: str, error
     """
     Parses a Python file into an AST, extracts available symbols for the crashing scope,
     and uses string matching (difflib) to find the closest suggestion to a misspelled word.
-    
+
     Args:
         filepath: Absolute path to the Python file that crashed.
         line_number: The line number where the error was thrown.
         target_word: The misspelled variable, attribute, or import.
         error_type: The type of error (NameError, AttributeError, etc.) to determine the pool of words.
-        
+
     Returns:
         str: The suggested correct spelling, or None if no close match is found.
     """
@@ -101,7 +102,7 @@ def get_ast_suggestions(filepath: str, line_number: str, target_word: str, error
         target_line = int(line_number) if line_number.isdigit() else 0
 
         # Read the crashing source file
-        with open(filepath, encoding='utf-8') as f:
+        with open(filepath, encoding="utf-8") as f:
             source_code = f.read()
 
         # Parse it into an Abstract Syntax Tree

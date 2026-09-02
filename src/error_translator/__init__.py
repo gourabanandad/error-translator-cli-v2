@@ -2,6 +2,7 @@
 Error Translator
 Turn cryptic Python tracebacks into clear, actionable advice.
 """
+
 from .core import translate_error
 from .jupyter import load_ipython_extension
 

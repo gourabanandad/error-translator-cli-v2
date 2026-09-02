@@ -4,6 +4,7 @@ from error_translator.core import compiled_rules, load_rules, translate_error
 
 # --- 1. EDGE CASE TESTS ---
 
+
 def test_name_error_translation_double_quotes():
     """Test standard traceback with double quotes around the filename."""
     mock_traceback = """Traceback (most recent call last):
@@ -16,6 +17,7 @@ NameError: name 'my_variable' is not defined"""
     assert result["file"] == "script.py"
     assert result["line"] == "2"
 
+
 def test_name_error_translation_single_quotes():
     """Test PowerShell-style traceback with single quotes."""
     mock_traceback = """Traceback (most recent call last):
@@ -26,6 +28,7 @@ NameError: name 'my_variable' is not defined"""
     result = translate_error(mock_traceback)
     assert result["file"] == "script.py"
     assert result["line"] == "2"
+
 
 def test_unknown_error_fallback():
     """Test that garbage input returns the default safe message."""
@@ -72,94 +75,100 @@ def test_compiled_rules_are_cached():
 
 # --- 2. THE PARAMETERIZED ENGINE FOR ALL ERRORS ---
 
-@pytest.mark.parametrize("mock_traceback, expected_in_explanation", [
-    (
-        """Traceback (most recent call last):
+
+@pytest.mark.parametrize(
+    "mock_traceback, expected_in_explanation",
+    [
+        (
+            """Traceback (most recent call last):
   File "script.py", line 5, in <module>
     print("Age: " + 25)
 TypeError: can only concatenate str (not "int") to str""",
-        "int"  # Checks if regex (*.) captured the type 'int'
-    ),
-    (
-        """Traceback (most recent call last):
+            "int",  # Checks if regex (*.) captured the type 'int'
+        ),
+        (
+            """Traceback (most recent call last):
   File "script.py", line 5, in <module>
     result = 5 + "10"
 TypeError: unsupported operand type(s) for +: 'int' and 'str'""",
-        "int"  # Checks if regex captured the first type
-    ),
-    (
-        """Traceback (most recent call last):
+            "int",  # Checks if regex captured the first type
+        ),
+        (
+            """Traceback (most recent call last):
   File "script.py", line 5, in <module>
     my_list[10]
 IndexError: list index out of range""",
-        "position that doesn't exist"
-    ),
-    (
-        """Traceback (most recent call last):
+            "position that doesn't exist",
+        ),
+        (
+            """Traceback (most recent call last):
   File "script.py", line 5, in <module>
     my_dict['missing_key']
 KeyError: 'missing_key'""",
-        "missing_key" # Checks if regex captured the key name
-    ),
-    (
-        """Traceback (most recent call last):
+            "missing_key",  # Checks if regex captured the key name
+        ),
+        (
+            """Traceback (most recent call last):
   File "script.py", line 5, in <module>
     1 / 0
 ZeroDivisionError: division by zero""",
-        "divide a number by zero"
-    ),
-    (
-        """Traceback (most recent call last):
+            "divide a number by zero",
+        ),
+        (
+            """Traceback (most recent call last):
   File "script.py", line 5, in <module>
     import numpy
 ModuleNotFoundError: No module named 'numpy'""",
-        "numpy" # Checks if regex captured the module name
-    ),
-    (
-        """Traceback (most recent call last):
+            "numpy",  # Checks if regex captured the module name
+        ),
+        (
+            """Traceback (most recent call last):
   File "script.py", line 5, in <module>
     [].appendd(1)
 AttributeError: 'list' object has no attribute 'appendd'""",
-        "appendd" # Checks if regex captured the method typo
-    ),
-    (
-        """Traceback (most recent call last):
+            "appendd",  # Checks if regex captured the method typo
+        ),
+        (
+            """Traceback (most recent call last):
   File "script.py", line 5, in <module>
     int("abc")
 ValueError: invalid literal for int() with base 10: 'abc'""",
-        "abc" # Checks if regex captured the bad value
-    ),
-    (
-        """Traceback (most recent call last):
+            "abc",  # Checks if regex captured the bad value
+        ),
+        (
+            """Traceback (most recent call last):
   File "script.py", line 5, in <module>
     open('data.csv')
 FileNotFoundError: [Errno 2] No such file or directory: 'data.csv'""",
-        "data.csv" # Checks if regex captured the missing filename
-    ),
-    (
-        """Traceback (most recent call last):
+            "data.csv",  # Checks if regex captured the missing filename
+        ),
+        (
+            """Traceback (most recent call last):
   File "script.py", line 5, in <module>
     from math import pie
 ImportError: cannot import name 'pie' from 'math'""",
-        "pie" # Checks if regex captured the bad import
-    ),
-    (
-        """  File "script.py", line 5
+            "pie",  # Checks if regex captured the bad import
+        ),
+        (
+            """  File "script.py", line 5
     if True
            ^
 SyntaxError: invalid syntax""",
-        "grammar"
-    )
-])
+            "grammar",
+        ),
+    ],
+)
 def test_regex_extraction_for_supported_errors(mock_traceback, expected_in_explanation):
     """
-    This single function will run 11 different times automatically, 
+    This single function will run 11 different times automatically,
     once for every error in the list above!
     """
     result = translate_error(mock_traceback)
 
     # 1. Prove the Regex Engine successfully extracted the variable and injected it
-    assert expected_in_explanation in result["explanation"], f"Failed to find '{expected_in_explanation}' in explanation."
+    assert expected_in_explanation in result["explanation"], (
+        f"Failed to find '{expected_in_explanation}' in explanation."
+    )
 
     # 2. Prove the Context Engine successfully parsed the file location
     assert result["file"] == "script.py"
@@ -209,6 +218,7 @@ def test_cli_help(capsys, monkeypatch):
 
 # --- 3. INTERACTIVE MODE TESTS ---
 
+
 def _stub_input(monkeypatch, responses):
     """Patch builtins.input to yield `responses` in order, then raise EOFError (stdin closed)."""
     it = iter(responses)
@@ -217,7 +227,7 @@ def _stub_input(monkeypatch, responses):
         try:
             return next(it)
         except StopIteration:
-            raise EOFError
+            raise EOFError from None
 
     monkeypatch.setattr("builtins.input", fake_input)
 
@@ -225,11 +235,14 @@ def _stub_input(monkeypatch, responses):
 def test_interactive_translates_single_line_then_exits(capsys, monkeypatch):
     from error_translator.cli import run_interactive_session
 
-    _stub_input(monkeypatch, [
-        "NameError: name 'my_variable' is not defined",
-        "",       # blank line submits the single-line entry
-        "exit",   # leaves the session
-    ])
+    _stub_input(
+        monkeypatch,
+        [
+            "NameError: name 'my_variable' is not defined",
+            "",  # blank line submits the single-line entry
+            "exit",  # leaves the session
+        ],
+    )
     run_interactive_session(as_json=False)
 
     captured = capsys.readouterr().out
@@ -258,10 +271,13 @@ def test_interactive_eof_at_prompt_ends_session_without_crashing(monkeypatch):
 def test_interactive_blank_first_line_is_ignored_not_submitted(capsys, monkeypatch):
     from error_translator.cli import run_interactive_session
 
-    _stub_input(monkeypatch, [
-        "",     # accidental empty Enter at the prompt: should just re-prompt
-        "exit",
-    ])
+    _stub_input(
+        monkeypatch,
+        [
+            "",  # accidental empty Enter at the prompt: should just re-prompt
+            "exit",
+        ],
+    )
     run_interactive_session(as_json=False)
 
     captured = capsys.readouterr().out
@@ -273,14 +289,17 @@ def test_interactive_multiline_paste_is_one_translation(capsys, monkeypatch):
     not as one call per line."""
     from error_translator.cli import run_interactive_session
 
-    _stub_input(monkeypatch, [
-        "Traceback (most recent call last):",
-        '  File "script.py", line 2, in <module>',
-        "    print(my_variable)",
-        "NameError: name 'my_variable' is not defined",
-        "",       # blank line submits the whole block
-        "exit",
-    ])
+    _stub_input(
+        monkeypatch,
+        [
+            "Traceback (most recent call last):",
+            '  File "script.py", line 2, in <module>',
+            "    print(my_variable)",
+            "NameError: name 'my_variable' is not defined",
+            "",  # blank line submits the whole block
+            "exit",
+        ],
+    )
     run_interactive_session(as_json=False)
 
     captured = capsys.readouterr().out
@@ -292,11 +311,16 @@ def test_interactive_multiline_paste_is_one_translation(capsys, monkeypatch):
 def test_interactive_two_separate_entries_in_one_session(capsys, monkeypatch):
     from error_translator.cli import run_interactive_session
 
-    _stub_input(monkeypatch, [
-        "NameError: name 'a' is not defined", "",
-        "NameError: name 'b' is not defined", "",
-        "exit",
-    ])
+    _stub_input(
+        monkeypatch,
+        [
+            "NameError: name 'a' is not defined",
+            "",
+            "NameError: name 'b' is not defined",
+            "",
+            "exit",
+        ],
+    )
     run_interactive_session(as_json=False)
 
     captured = capsys.readouterr().out
@@ -307,12 +331,17 @@ def test_interactive_two_separate_entries_in_one_session(capsys, monkeypatch):
 
 def test_interactive_json_mode_emits_one_json_line_per_entry_and_skips_banner(capsys, monkeypatch):
     import json
+
     from error_translator.cli import run_interactive_session
 
-    _stub_input(monkeypatch, [
-        "NameError: name 'x' is not defined", "",
-        "exit",
-    ])
+    _stub_input(
+        monkeypatch,
+        [
+            "NameError: name 'x' is not defined",
+            "",
+            "exit",
+        ],
+    )
     run_interactive_session(as_json=True)
 
     captured = capsys.readouterr().out
@@ -329,10 +358,13 @@ def test_interactive_eof_mid_multiline_paste_still_translates_partial_entry(caps
     captured so far must still be translated instead of silently dropped."""
     from error_translator.cli import run_interactive_session
 
-    _stub_input(monkeypatch, [
-        "NameError: name 'my_variable' is not defined",
-        # input stream ends here -> EOFError fires on the next input() call, mid-paste
-    ])
+    _stub_input(
+        monkeypatch,
+        [
+            "NameError: name 'my_variable' is not defined",
+            # input stream ends here -> EOFError fires on the next input() call, mid-paste
+        ],
+    )
     run_interactive_session(as_json=False)
 
     captured = capsys.readouterr().out
@@ -364,10 +396,14 @@ def test_interactive_translate_error_exception_is_reported_not_fatal(capsys, mon
     it via the existing execution-error panel and keep going, not crash outright."""
     import error_translator.cli as cli_module
 
-    _stub_input(monkeypatch, [
-        "some input", "",
-        "exit",
-    ])
+    _stub_input(
+        monkeypatch,
+        [
+            "some input",
+            "",
+            "exit",
+        ],
+    )
 
     def boom(_text):
         raise ValueError("boom")
@@ -385,12 +421,14 @@ def test_interactive_subcommand_is_wired_into_main(monkeypatch):
     """`explain-error interactive` should dispatch to run_interactive_session, not be treated
     as a raw traceback string."""
     import sys
+
     import error_translator.cli as cli_module
 
     monkeypatch.setattr(sys, "argv", ["explain-error", "interactive"])
     monkeypatch.setattr(sys.stdin, "isatty", lambda: True)
 
     called = {}
+
     def fake_run_interactive_session(as_json=False):
         called["hit"] = True
         called["as_json"] = as_json

@@ -1,5 +1,5 @@
 site_name: Error Translator
-site_description: Python error translator and traceback explainer for developers. Convert Python exceptions into clear explanations and actionable fixes offline.
+site_description: Offline Python traceback translator, exception explainer, and CLI debugging tool. Analyzes Python stack traces, AST lexical scopes, and source code context to provide structured error remediation.
 site_author: Gourabananda Datta
 site_url: https://gourabanandad.github.io/error-translator-cli-v2/
 repo_name: gourabanandad/error-translator-cli-v2
@@ -11,6 +11,11 @@ theme:
   features:
     - content.action.edit
     - content.action.view
+    - content.code.copy
+    - navigation.top
+    - navigation.sections
+    - search.suggest
+    - search.highlight
   palette:
     - media: "(prefers-color-scheme: light)"
       scheme: default
@@ -28,16 +33,28 @@ theme:
         name: Switch to light mode
 
 markdown_extensions:
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight:
       anchor_linenums: true
-  - pymdownx.superfences
-  - admonition
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.tabbed:
+      alternate_style: true
+  - attr_list
+  - md_in_html
   - toc:
       permalink: true
 
 nav:
   - Home: index.md
   - Features & Integrations: features.md
-  - Architecture: ARCHITECTURE.md
-  - Examples: examples.md
-  - Contributing: CONTRIBUTING.md
+  - Architecture & Internals: ARCHITECTURE.md
+  - Real-World Examples: examples.md
+  - Contributing Guide: CONTRIBUTING.md

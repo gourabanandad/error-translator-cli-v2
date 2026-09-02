@@ -2,6 +2,7 @@
 Traceback parsing module.
 Responsible for extracting contextual information from traceback strings.
 """
+
 import linecache
 import re
 
@@ -10,10 +11,10 @@ def extract_location(traceback_text: str) -> tuple[str, str]:
     """
     Extract the file name and line number where the error occurred
     by parsing the standard Python traceback format.
-    
+
     Args:
         traceback_text (str): The raw traceback text.
-        
+
     Returns:
         tuple[str, str]: The file name and line number.
     """
@@ -23,14 +24,15 @@ def extract_location(traceback_text: str) -> tuple[str, str]:
         return "Unknown File", "Unknown Line"
     return location_match.group(1), location_match.group(2)
 
+
 def extract_code_context(file_name: str, line_number: str) -> str:
     """
     Attempt to read the exact line of code that caused the error.
-    
+
     Args:
         file_name (str): Path to the source file.
         line_number (str): Line number string.
-        
+
     Returns:
         str: The extracted line of code, or empty string if not found.
     """

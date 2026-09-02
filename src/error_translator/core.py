@@ -6,14 +6,16 @@ This module is responsible for:
 2. Using a fast C extension for matching if available, with a Python fallback.
 3. Delegating to AST handlers for deep, code-specific insights.
 """
+
 from .ast.ast_handlers import AST_REGISTRY
 from .parser import extract_code_context, extract_location
 from .rules import compiled_rules, load_rules
 
-# Attempt to load the ultra-fast C extension for matching rules,
-# and fallback to the Python implementation if it's unavailable.
+# Attempt to load the native C extension for rule matching,
+# with fallback to pure Python if unavailable.
 try:
     from .fast_matcher import match_loop  # type: ignore
+
     C_EXTENSION_AVAILABLE = True
 except ImportError:
     C_EXTENSION_AVAILABLE = False
@@ -21,14 +23,14 @@ except ImportError:
 
 def translate_error(traceback_text: str) -> dict:
     """
-    Translate a raw traceback string into a detailed explanation dictionary.
-    
+    Translate a raw traceback string into a structured explanation dictionary.
+
     Args:
         traceback_text (str): The raw traceback string.
-        
+
     Returns:
         dict: A dictionary containing the explanation, suggested fix,
-              AST-based insight (if any), file, line number, code context, 
+              AST-based insight (if any), file, line number, code context,
               and the matched error line.
     """
     # Load configuration rules and pre-compiled regex patterns
@@ -50,14 +52,11 @@ def translate_error(traceback_text: str) -> dict:
     # Attempt to read the exact line of code that caused the error
     code_context = extract_code_context(file_name, line_number)
 
-    # ==========================================
-    # FAST MATCHING ENGINE (C Extension + Python Fallback)
-    # ==========================================
+    # Rule Matching Engine (C Extension with Python Fallback)
     match = None
     rule = None
 
     if C_EXTENSION_AVAILABLE:
-        # Execute the C extension for maximum performance
         result = match_loop(actual_error_line, rules)
         if result:
             match, rule = result
