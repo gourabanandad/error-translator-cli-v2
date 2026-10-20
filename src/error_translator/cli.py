@@ -6,6 +6,7 @@ handles standard input streams, and orchestrates the translation process.
 """
 
 import argparse
+import os
 import sys
 from pathlib import Path
 
@@ -182,11 +183,28 @@ Examples:
         help="Output the translated error as a JSON object.",
     )
     parser.add_argument(
+        "--no-color",
+        action="store_true",
+        help="Disable colored output (useful for CI/CD pipelines).",
+    )
+
+    parser.add_argument(
         "-h", "--help", action="store_true", help="Help user through documentation."
     )
     parser.add_argument("args", nargs=argparse.REMAINDER, help="Positional arguments.")
 
     parsed_args = parser.parse_args()
+
+    if "--no-color" in parsed_args.args:
+        parsed_args.no_color = True
+        parsed_args.args.remove("--no-color")
+
+    if parsed_args.no_color:
+        console.no_color = True
+        console._color_system = None
+    else:
+        console.no_color = "NO_COLOR" in os.environ
+        console._color_system = console._detect_color_system()
 
     # Handle meta-flags
     if parsed_args.about:
@@ -226,8 +244,15 @@ Examples:
                 emit(translate_error(error_input))
         else:
             # Otherwise, treat the entire string of arguments as a raw traceback text
-            path = Path(parsed_args.args[0])
-            if path.is_file():
+            try:
+                path = Path(parsed_args.args[0])
+
+                is_file = path.is_file()
+
+            except (OSError, ValueError):
+                is_file = False
+
+            if is_file:
                 if path.suffix == ".py":
                     sys.exit(
                         run_script(str(path), parsed_args.args[1:], as_json=parsed_args.as_json)
