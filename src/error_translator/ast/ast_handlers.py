@@ -9,6 +9,7 @@ in the scope.
 """
 
 from .ast_engine import get_ast_suggestions
+from .import_suggestions import get_import_suggestion
 
 # --- 1. THE INDIVIDUAL STRATEGIES (PLUGINS) ---
 # Each handler is responsible for analyzing the AST for a specific type of error
@@ -45,12 +46,13 @@ def handle_attribute_error(file_path: str, line_number: str, extracted_values: l
 
 def handle_import_error(file_path: str, line_number: str, extracted_values: list) -> str:
     """
-    Handles ImportError / ModuleNotFoundError.
-    Uses AST analysis to verify if the class/function being imported exists or suggests fixes.
+    Handle cannot-import-name errors using names from the target module.
+    Inspect local source or loaded modules without importing traceback-supplied names.
     """
-    bad_name = extracted_values[0] if extracted_values else ""
-
-    suggestion = get_ast_suggestions(file_path, line_number, bad_name, "ImportError")
+    suggestion = None
+    if isinstance(extracted_values, (list, tuple)) and len(extracted_values) >= 2:
+        bad_name, module_name = extracted_values[:2]
+        suggestion = get_import_suggestion(file_path, module_name, bad_name)
     if suggestion:
         return f"Did you mean to import '{suggestion}' instead?"
     return "Verify that the class/function exists in the target module and is spelled correctly."
