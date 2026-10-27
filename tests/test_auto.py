@@ -27,6 +27,7 @@ def test_original_traceback_preserved(capsys):
 
 def test_keyboardinterrupt_bypass(monkeypatch, capsys):
     called = []
+
     def mock_excepthook(*args, **kwargs):
         called.append(True)
 
@@ -42,6 +43,7 @@ def test_keyboardinterrupt_bypass(monkeypatch, capsys):
 
 def test_systemexit_bypass(monkeypatch, capsys):
     called = []
+
     def mock_excepthook(*args, **kwargs):
         called.append(True)
 
