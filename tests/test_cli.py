@@ -452,3 +452,96 @@ def test_xdg_config_home_respected(monkeypatch, tmp_path, capsys):
     monkeypatch.setattr(sys.stdout, "isatty", lambda: True)
     main()
     assert (xdg_path / "error-translator" / ".initialized").exists()
+
+
+def test_no_color_flag_produces_zero_ansi_escapes(capsys, monkeypatch):
+    import re
+
+    from error_translator.cli import main
+    from error_translator.ui import console
+
+    monkeypatch.setattr(
+        sys, "argv", ["explain-error", "--no-color", "NameError: name 'x' is not defined"]
+    )
+    monkeypatch.setattr(sys.stdin, "isatty", lambda: True)
+
+    main()
+
+    captured = capsys.readouterr().out
+    assert "Explanation" in captured
+    assert "Suggested Fix" in captured
+    assert "NameError" in captured
+    # Must have zero ANSI escape sequences
+    ansi_escapes = re.findall(r"\x1b\[[0-9;]*[a-zA-Z]", captured)
+    assert not ansi_escapes
+    assert console.no_color is True
+
+
+def test_no_color_flag_after_positional_produces_zero_ansi_escapes(capsys, monkeypatch):
+    import re
+
+    from error_translator.cli import main
+    from error_translator.ui import console
+
+    monkeypatch.setattr(
+        sys, "argv", ["explain-error", "NameError: name 'x' is not defined", "--no-color"]
+    )
+    monkeypatch.setattr(sys.stdin, "isatty", lambda: True)
+
+    main()
+
+    captured = capsys.readouterr().out
+    assert "Explanation" in captured
+    ansi_escapes = re.findall(r"\x1b\[[0-9;]*[a-zA-Z]", captured)
+    assert not ansi_escapes
+    assert console.no_color is True
+
+
+def test_no_color_flag_piped_input_produces_zero_ansi_escapes(capsys, monkeypatch):
+    import re
+
+    from error_translator.cli import main
+
+    monkeypatch.setattr(sys, "argv", ["explain-error", "--no-color"])
+    monkeypatch.setattr(sys.stdin, "isatty", lambda: False)
+    monkeypatch.setattr(
+        sys.stdin, "read", lambda: "ValueError: invalid literal for int() with base 10: 'abc'"
+    )
+
+    main()
+
+    captured = capsys.readouterr().out
+    assert "ValueError" in captured
+    ansi_escapes = re.findall(r"\x1b\[[0-9;]*[a-zA-Z]", captured)
+    assert not ansi_escapes
+
+
+def test_no_color_flag_help_screen(capsys, monkeypatch):
+    import re
+
+    from error_translator.cli import main
+
+    monkeypatch.setattr(sys, "argv", ["explain-error", "--no-color", "--help"])
+    monkeypatch.setattr(sys.stdin, "isatty", lambda: True)
+
+    with pytest.raises(SystemExit) as excinfo:
+        main()
+
+    assert excinfo.value.code == 0
+    captured = capsys.readouterr().out
+    assert "Error Translator CLI Version" in captured
+    ansi_escapes = re.findall(r"\x1b\[[0-9;]*[a-zA-Z]", captured)
+    assert not ansi_escapes
+
+
+def test_colored_output_preserved_when_no_color_flag_absent(capsys, monkeypatch):
+    from error_translator.cli import main
+    from error_translator.ui import console
+
+    monkeypatch.delenv("NO_COLOR", raising=False)
+    monkeypatch.setattr(sys, "argv", ["explain-error", "NameError: name 'x' is not defined"])
+    monkeypatch.setattr(sys.stdin, "isatty", lambda: True)
+
+    main()
+
+    assert console.no_color is False

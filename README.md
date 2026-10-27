@@ -248,6 +248,7 @@ Commands & Arguments:
 
 Options:
   --json                Output pure, single-line JSON instead of styled Rich UI.
+  --no-color            Disable colored output (useful for CI/CD pipelines).
   -a, --about           Show developer metadata, runtime info, and environment diagnostics.
   -v, --version         Show package version, Python version, and C-extension build status.
   -h, --help            Render the interactive command palette and documentation overview.

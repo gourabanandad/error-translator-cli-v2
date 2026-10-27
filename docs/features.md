@@ -61,6 +61,7 @@ explain-error server_error.log
 | Flag | Name | Description |
 | :--- | :--- | :--- |
 | `--json` | **JSON Mode** | Outputs translations as single-line JSON objects instead of Rich UI panels. |
+| `--no-color` | **No Color** | Disables ANSI colored output for CI/CD pipelines and plain-text log files. |
 | `-a`, `--about` | **About View** | Displays author information, environment details, Python version, and C-extension status. |
 | `-v`, `--version` | **Version Info** | Prints version strings and native acceleration diagnostics. |
 | `-h`, `--help` | **Help Dashboard** | Renders a styled help reference table and documentation links. |
