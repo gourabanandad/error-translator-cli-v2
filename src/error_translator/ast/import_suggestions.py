@@ -96,5 +96,7 @@ def get_import_suggestion(file_path: str, module_name: str, missing_name: str) -
     pool = {name for name in names if isinstance(name, str) and name.isidentifier()}
     if missing_name in pool:
         return None
+    # This cutoff scores names in the target module. ast_engine.py uses 0.6
+    # for symbols in the crashing file; review both when tuning similarity.
     matches = difflib.get_close_matches(missing_name, sorted(pool), n=1, cutoff=0.5)
     return matches[0] if matches else None
