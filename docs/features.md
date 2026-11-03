@@ -61,6 +61,7 @@ explain-error server_error.log
 | Flag | Name | Description |
 | :--- | :--- | :--- |
 | `--json` | **JSON Mode** | Outputs translations as single-line JSON objects instead of Rich UI panels. |
+| `--no-color` | **No Color** | Disables ANSI colored output for CI/CD pipelines and plain-text log files. |
 | `-a`, `--about` | **About View** | Displays author information, environment details, Python version, and C-extension status. |
 | `-v`, `--version` | **Version Info** | Prints version strings and native acceleration diagnostics. |
 | `-h`, `--help` | **Help Dashboard** | Renders a styled help reference table and documentation links. |
@@ -410,7 +411,14 @@ Beyond simple regular expressions, Error Translator includes an **Abstract Synta
 
 - **`NameError`**: Detects misspelled variables and functions within the current lexical scope.
 - **`AttributeError`**: Identifies misspelled methods or object attributes.
-- **`ImportError` / `ModuleNotFoundError`**: Suggests correctly-spelled classes or functions from available imports.
+- **`ImportError`**: Suggests similarly spelled names from the target module.
+
+For `ImportError: cannot import name ...`, suggestions come from the named target module,
+not from symbols in the crashing file. The handler inspects nearby Python modules and
+ordinary packages as source, without executing them. It can also use names from already
+loaded plain modules and the standard `math` module. The import-name comparison uses a
+`0.5` similarity threshold. Unknown, unloaded third-party modules or unreadable source
+keep the generic advice; the handler does not import modules named by a traceback.
 
 ---
 

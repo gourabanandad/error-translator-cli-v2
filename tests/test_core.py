@@ -45,6 +45,35 @@ def test_empty_input_returns_helpful_message():
     assert result["fix"] == "Provide a valid Python error."
 
 
+@pytest.mark.parametrize("missing_name", ["squar_root", "squrt"])
+def test_import_error_suggests_target_module_symbol(tmp_path, missing_name):
+    source = tmp_path / "imports.py"
+    source.write_text(f"from math import {missing_name}\n", encoding="utf-8")
+    traceback_text = (
+        "Traceback (most recent call last):\n"
+        f'  File "{source}", line 1, in <module>\n'
+        f"    from math import {missing_name}\n"
+        f"ImportError: cannot import name '{missing_name}' from 'math' (unknown location)"
+    )
+
+    result = translate_error(traceback_text)
+
+    assert result["ast_insight"] == "Did you mean to import 'sqrt' instead?"
+    assert result["file"] == str(source)
+    assert result["line"] == "1"
+    assert result["code"] == f"from math import {missing_name}"
+    assert missing_name in result["explanation"]
+    assert set(result) == {
+        "explanation",
+        "fix",
+        "ast_insight",
+        "matched_error",
+        "file",
+        "line",
+        "code",
+    }
+
+
 def test_unexpected_eof_translation():
     """Unexpected EOF should explain the likely missing closing delimiter."""
     mock_traceback = """Traceback (most recent call last):
