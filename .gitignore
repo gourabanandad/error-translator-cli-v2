@@ -12,7 +12,8 @@ build/
 build/
 # Environment files
 .env
-venv/
+.venv/
+.vscode/
 
 # OS Files
 .DS_Store
